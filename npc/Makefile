@@ -3,7 +3,6 @@ MODULE=top
 .PHONY:sim
 sim: waveform.vcd
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo "Write this Makefile by your self."
 
 .PHONY:verilate
 verilate: .stamp.verilate
