@@ -1,4 +1,6 @@
 module top (
+    input a,
+    input b,
     input clk,
     input rst,
     input [7:0] sw,
@@ -19,7 +21,8 @@ module top (
     output [7:0] seg4,
     output [7:0] seg5,
     output [7:0] seg6,
-    output [7:0] seg7
+    output [7:0] seg7,
+    output f
 );
 
 led led1(
@@ -30,6 +33,7 @@ led led1(
 );
 
 assign VGA_CLK = clk;
+assign f = a ^ b;
 
 wire [9:0] h_addr;
 wire [9:0] v_addr;
