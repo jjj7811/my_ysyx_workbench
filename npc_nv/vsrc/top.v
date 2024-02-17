@@ -3,10 +3,6 @@ module top (
     input b,
     input clk,
     input rst,
-    input [7:0] sw,
-    input ps2_clk,
-    input ps2_data,
-    output [15:0] ledr,
     output VGA_CLK,
     output VGA_HSYNC,
     output VGA_VSYNC,
@@ -17,12 +13,6 @@ module top (
     output f
 );
 
-led led1(
-    .clk(clk),
-    .rst(rst),
-    .sw(sw),
-    .ledr(ledr)
-);
 
 assign VGA_CLK = clk;
 assign f = a ^ b;
@@ -43,13 +33,6 @@ vga_ctrl my_vga_ctrl(
     .vga_r(VGA_R),
     .vga_g(VGA_G),
     .vga_b(VGA_B)
-);
-
-ps2_keyboard my_keyboard(
-    .clk(clk),
-    .resetn(~rst),
-    .ps2_clk(ps2_clk),
-    .ps2_data(ps2_data)
 );
 
 
