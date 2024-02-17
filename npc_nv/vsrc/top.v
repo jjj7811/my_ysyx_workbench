@@ -3,6 +3,7 @@ module top (
     input b,
     input clk,
     input rst,
+    output [15:0] led,
     output VGA_CLK,
     output VGA_HSYNC,
     output VGA_VSYNC,
@@ -16,6 +17,12 @@ module top (
 
 assign VGA_CLK = clk;
 assign f = a ^ b;
+
+light my_light(
+  .clk(clk),
+  .rst(rst),
+  .led(led)
+);
 
 wire [9:0] h_addr;
 wire [9:0] v_addr;
