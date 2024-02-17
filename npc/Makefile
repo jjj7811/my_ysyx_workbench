@@ -46,7 +46,5 @@ clean:
 	rm -rf ./obj_dir
 	rm -rf waveform.vcd
 
-sim:
-	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 
 include ../Makefile
