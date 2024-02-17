@@ -89,9 +89,46 @@ $(BIN): $(VSRCS) $(CSRCS) $(NVBOARD_ARCHIVE)
 		$(addprefix -CFLAGS , $(CXXFLAGS)) $(addprefix -LDFLAGS , $(LDFLAGS)) \
 		--Mdir $(OBJ_DIR) --exe -o $(abspath $(BIN))
 
+.PHONY:sim
+sim: waveform.vcd
+	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
+
+.PHONY:verilate
+verilate: .stamp.verilate
+
+.PHONY:build
+build: obj_dir/Vtop
+
+.PHONY:waves
+waves: waveform.vcd
+	@echo
+	@echo "### WAVES ###"
+	gtkwave waveform.vcd
+
+waveform.vcd: ./obj_dir/V$(MODULE)
+	@echo
+	@echo "### SIMULATING ###"
+	# @./obj_dir/V$(MODULE)
+	@./obj_dir/V$(MODULE) +verilator+rand+reset+2
+
+./obj_dir/V$(MODULE): .stamp.verilate
+	@echo
+	@echo "### BUILDING SIM ###"
+	make -C obj_dir -f V$(MODULE).mk V$(MODULE)
+
+.stamp.verilate: vsrc/$(MODULE).v csrc/tb_$(MODULE).cpp
+	@echo
+	@echo "### VERILATING ###"
+
+	# verilator -Wall --trace -cc $(MODULE).v --exe tb_$(MODULE).cpp
+	verilator -Wall --trace --x-assign unique --x-initial unique -cc vsrc/$(MODULE).v --exe csrc/tb_$(MODULE).cpp
+	@touch .stamp.verilate
+	
+
 all: default
 
 run: $(BIN)
+	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@$^
 
 

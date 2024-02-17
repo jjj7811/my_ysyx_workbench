@@ -3,6 +3,7 @@
 #include <verilated_vcd_c.h>
 #include <stdlib.h>
 #include <iostream>
+#include <nvboard.h>
 
 
 #define MAX_SIM_TIME 30
