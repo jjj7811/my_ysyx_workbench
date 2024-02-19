@@ -1,16 +1,16 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Symbol table implementation internals
 
-#include "Vtop__Syms.h"
-#include "Vtop.h"
-#include "Vtop___024root.h"
+#include "Vmux21__Syms.h"
+#include "Vmux21.h"
+#include "Vmux21___024root.h"
 
 // FUNCTIONS
-Vtop__Syms::~Vtop__Syms()
+Vmux21__Syms::~Vmux21__Syms()
 {
 }
 
-Vtop__Syms::Vtop__Syms(VerilatedContext* contextp, const char* namep, Vtop* modelp)
+Vmux21__Syms::Vmux21__Syms(VerilatedContext* contextp, const char* namep, Vmux21* modelp)
     : VerilatedSyms{contextp}
     // Setup internal state of the Syms class
     , __Vm_modelp{modelp}
