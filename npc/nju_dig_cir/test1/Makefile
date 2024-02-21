@@ -1,5 +1,5 @@
 MODULE=top
-include /home/hehe/ysyx-workbench/Makefile
+include $(NPC_HOME)/Makefile
 VSRCS = $(shell find $(abspath ./vsrc) -name "*.v")
 CSRCS = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
 
