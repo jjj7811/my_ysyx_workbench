@@ -14,14 +14,21 @@ VL_ATTR_COLD void Vtop___024root__trace_init_sub__TOP__0(Vtop___024root* vlSelf,
     tracep->declBus(c+1,"x", false,-1, 1,0);
     tracep->declBit(c+2,"en", false,-1);
     tracep->declBus(c+3,"y", false,-1, 3,0);
+    tracep->declBus(c+4,"z", false,-1, 1,0);
     tracep->pushNamePrefix("top ");
     tracep->declBus(c+1,"x", false,-1, 1,0);
     tracep->declBit(c+2,"en", false,-1);
     tracep->declBus(c+3,"y", false,-1, 3,0);
+    tracep->declBus(c+4,"z", false,-1, 1,0);
     tracep->pushNamePrefix("de1 ");
     tracep->declBus(c+1,"x", false,-1, 1,0);
     tracep->declBit(c+2,"en", false,-1);
     tracep->declBus(c+3,"y", false,-1, 3,0);
+    tracep->popNamePrefix(1);
+    tracep->pushNamePrefix("en1 ");
+    tracep->declBus(c+3,"x", false,-1, 3,0);
+    tracep->declBit(c+2,"en", false,-1);
+    tracep->declBus(c+4,"y", false,-1, 1,0);
     tracep->popNamePrefix(2);
 }
 
@@ -68,4 +75,5 @@ VL_ATTR_COLD void Vtop___024root__trace_full_sub_0(Vtop___024root* vlSelf, Veril
     bufp->fullCData(oldp+1,(vlSelf->x),2);
     bufp->fullBit(oldp+2,(vlSelf->en));
     bufp->fullCData(oldp+3,(vlSelf->y),4);
+    bufp->fullCData(oldp+4,(vlSelf->z),2);
 }
