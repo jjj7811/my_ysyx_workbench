@@ -6,23 +6,23 @@
 
 #include "Vtop___024root.h"
 
-extern const VlUnpacked<CData/*3:0*/, 8> Vtop__ConstPool__TABLE_hae8518dd_0;
-extern const VlUnpacked<CData/*1:0*/, 32> Vtop__ConstPool__TABLE_h780d35c4_0;
+extern const VlUnpacked<CData/*7:0*/, 16> Vtop__ConstPool__TABLE_hef4165ea_0;
+extern const VlUnpacked<CData/*2:0*/, 512> Vtop__ConstPool__TABLE_h4daadb30_0;
 
 VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___ico_sequent__TOP__0\n"); );
     // Init
-    CData/*2:0*/ __Vtableidx1;
+    CData/*3:0*/ __Vtableidx1;
     __Vtableidx1 = 0;
-    CData/*4:0*/ __Vtableidx2;
+    SData/*8:0*/ __Vtableidx2;
     __Vtableidx2 = 0;
     // Body
     __Vtableidx1 = (((IData)(vlSelf->x) << 1U) | (IData)(vlSelf->en));
-    vlSelf->y = Vtop__ConstPool__TABLE_hae8518dd_0[__Vtableidx1];
+    vlSelf->y = Vtop__ConstPool__TABLE_hef4165ea_0[__Vtableidx1];
     __Vtableidx2 = (((IData)(vlSelf->y) << 1U) | (IData)(vlSelf->en));
-    vlSelf->z = Vtop__ConstPool__TABLE_h780d35c4_0[__Vtableidx2];
+    vlSelf->z = Vtop__ConstPool__TABLE_h4daadb30_0[__Vtableidx2];
 }
 
 void Vtop___024root___eval_ico(Vtop___024root* vlSelf) {
@@ -132,7 +132,7 @@ void Vtop___024root___eval_debug_assertions(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_debug_assertions\n"); );
     // Body
-    if (VL_UNLIKELY((vlSelf->x & 0xfcU))) {
+    if (VL_UNLIKELY((vlSelf->x & 0xf8U))) {
         Verilated::overWidthError("x");}
     if (VL_UNLIKELY((vlSelf->en & 0xfeU))) {
         Verilated::overWidthError("en");}

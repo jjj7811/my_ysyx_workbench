@@ -1,18 +1,22 @@
 module decode24(x,en,y);
-  input  [1:0] x;
+  input  [2:0] x;
   input  en;
-  output reg [3:0]y;
+  output reg [7:0]y;
 
   always @(x or en)
     if (en)
     begin
       case (x)
-            2'd0 : y = 4'b0001;
-            2'd1 : y = 4'b0010;
-            2'd2 : y = 4'b0100;
-            2'd3 : y = 4'b1000;
+            3'd0 : y = 8'b00000001;
+            3'd1 : y = 8'b00000010;
+            3'd2 : y = 8'b00000100;
+            3'd3 : y = 8'b00001000;
+            3'd4 : y = 8'b00010000;
+            3'd5 : y = 8'b00100000;
+            3'd6 : y = 8'b01000000;
+            3'd7 : y = 8'b10000000;
       endcase
     end
-    else  y = 4'b0000;
+    else  y = 8'b00000000;
 
 endmodule

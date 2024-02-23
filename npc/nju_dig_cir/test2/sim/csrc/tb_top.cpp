@@ -33,10 +33,14 @@ int main() {
                   top->x = 0b01;  step_and_dump_wave();
                   top->x = 0b10;  step_and_dump_wave();
                   top->x = 0b11;  step_and_dump_wave();
-  top->en = 0b1;  top->x = 0b00;  step_and_dump_wave();
-                  top->x = 0b01;  step_and_dump_wave();
-                  top->x = 0b10;  step_and_dump_wave();
-                  top->x = 0b11;  step_and_dump_wave();
+  top->en = 0b1;  top->x = 0b000;  step_and_dump_wave();
+                  top->x = 0b001;  step_and_dump_wave();
+                  top->x = 0b010;  step_and_dump_wave();
+                  top->x = 0b011;  step_and_dump_wave();
+                  top->x = 0b100;  step_and_dump_wave();
+                  top->x = 0b101;  step_and_dump_wave();
+                  top->x = 0b110;  step_and_dump_wave();
+                  top->x = 0b111;  step_and_dump_wave();
                   
   sim_exit();
 }

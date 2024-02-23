@@ -14,9 +14,9 @@ class Vtop___024root final : public VerilatedModule {
 
     // DESIGN SPECIFIC STATE
     VL_IN8(en,0,0);
-    VL_IN8(x,1,0);
-    VL_OUT8(y,3,0);
-    VL_OUT8(z,1,0);
+    VL_IN8(x,2,0);
+    VL_OUT8(y,7,0);
+    VL_OUT8(z,2,0);
     CData/*0:0*/ __VactContinue;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VicoIterCount;
