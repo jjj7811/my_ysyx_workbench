@@ -38,9 +38,6 @@ VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) 
                                                    >> 2U) 
                                                   | ((IData)(vlSelf->top__DOT__u3__DOT__sum_1) 
                                                      & (IData)(vlSelf->top__DOT____Vcellinp__u3__Ci))));
-    vlSelf->Co = (1U & ((((IData)(vlSelf->A) & (IData)(vlSelf->B)) 
-                         >> 3U) | ((IData)(vlSelf->top__DOT__u4__DOT__sum_1) 
-                                   & (IData)(vlSelf->top__DOT____Vcellinp__u4__Ci))));
     vlSelf->S = ((((IData)(vlSelf->top__DOT__u4__DOT__sum_1) 
                    ^ (IData)(vlSelf->top__DOT____Vcellinp__u4__Ci)) 
                   << 3U) | ((((IData)(vlSelf->top__DOT__u3__DOT__sum_1) 
