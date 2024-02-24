@@ -15,7 +15,7 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , B{vlSymsp->TOP.B}
     , Ci{vlSymsp->TOP.Ci}
     , S{vlSymsp->TOP.S}
-    , Cos{vlSymsp->TOP.Cos}
+    , Co{vlSymsp->TOP.Co}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

@@ -4,7 +4,7 @@ module top (
     input       Ci,
 
     output wire [3:0] S,
-    output wire       Cos
+    output wire       Co
 );
 
   wire [3:0] C;
