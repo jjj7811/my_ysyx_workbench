@@ -9,9 +9,27 @@ module top (
     output VGA_BLANK_N,
     output [7:0] VGA_R,
     output [7:0] VGA_G,
-    output [7:0] VGA_B
+    output [7:0] VGA_B,
+    output [7:0] seg0
+);
+reg [7:0] y;
+
+// assign seg0 = y;
+decode24 de1(
+.x(sw[2:0]),
+.en(sw[3]),
+.y(y)
 );
 
+encode42 en1(
+y,
+sw[3],
+ledr[2:0]
+);
+
+hex7seg D4(
+    .x(sw[2:0]),
+    .a_g(seg0[7:0]));
 
 assign VGA_CLK = clk;
 
@@ -32,20 +50,6 @@ vga_ctrl my_vga_ctrl(
     .vga_g(VGA_G),
     .vga_b(VGA_B)
 );
-wire a;
-wire b;
-wire y;
-wire s;
-assign a = sw[0];
-assign b = sw[1];
-assign s = sw[2];
-assign ledr[0] = y;
-// assign y = ledr[0];
-// assign ledr[0]=1;
-MuxKey #(2, 1, 1) i0 (y, s, {
-1'b0, a,
-1'b1, b
-});
 
 
 vmem my_vmem(
