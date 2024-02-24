@@ -17,7 +17,7 @@ class Vtop___024root final : public VerilatedModule {
     VL_IN8(B,3,0);
     VL_IN8(Ci,0,0);
     VL_OUT8(S,3,0);
-    VL_OUT8(Co,0,0);
+    VL_OUT8(Cos,0,0);
     CData/*0:0*/ top__DOT____Vcellinp__u2__Ci;
     CData/*0:0*/ top__DOT____Vcellinp__u3__Ci;
     CData/*0:0*/ top__DOT____Vcellinp__u4__Ci;

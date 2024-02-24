@@ -48,39 +48,49 @@ void Vtop___024root__trace_chg_sub_0(Vtop___024root* vlSelf, VerilatedVcd::Buffe
     bufp->chgCData(oldp+14,(vlSelf->B),4);
     bufp->chgBit(oldp+15,(vlSelf->Ci));
     bufp->chgCData(oldp+16,(vlSelf->S),4);
-    bufp->chgBit(oldp+17,(vlSelf->Co));
-    bufp->chgCData(oldp+18,((((IData)(vlSelf->Co) << 3U) 
-                             | (((IData)(vlSelf->top__DOT____Vcellinp__u4__Ci) 
-                                 << 2U) | (((IData)(vlSelf->top__DOT____Vcellinp__u3__Ci) 
-                                            << 1U) 
-                                           | (IData)(vlSelf->top__DOT____Vcellinp__u2__Ci))))),4);
-    bufp->chgBit(oldp+19,((1U & (IData)(vlSelf->A))));
-    bufp->chgBit(oldp+20,((1U & (IData)(vlSelf->B))));
-    bufp->chgBit(oldp+21,(((IData)(vlSelf->top__DOT__u1__DOT__sum_1) 
+    bufp->chgBit(oldp+17,(vlSelf->Cos));
+    bufp->chgCData(oldp+18,(((8U & ((0xfffffff8U & 
+                                     ((IData)(vlSelf->A) 
+                                      & (IData)(vlSelf->B))) 
+                                    | (((IData)(vlSelf->top__DOT__u4__DOT__sum_1) 
+                                        & (IData)(vlSelf->top__DOT____Vcellinp__u4__Ci)) 
+                                       << 3U))) | (
+                                                   ((IData)(vlSelf->top__DOT____Vcellinp__u4__Ci) 
+                                                    << 2U) 
+                                                   | (((IData)(vlSelf->top__DOT____Vcellinp__u3__Ci) 
+                                                       << 1U) 
+                                                      | (IData)(vlSelf->top__DOT____Vcellinp__u2__Ci))))),4);
+    bufp->chgBit(oldp+19,((1U & ((((IData)(vlSelf->A) 
+                                   & (IData)(vlSelf->B)) 
+                                  >> 3U) | ((IData)(vlSelf->top__DOT__u4__DOT__sum_1) 
+                                            & (IData)(vlSelf->top__DOT____Vcellinp__u4__Ci))))));
+    bufp->chgBit(oldp+20,((1U & (IData)(vlSelf->A))));
+    bufp->chgBit(oldp+21,((1U & (IData)(vlSelf->B))));
+    bufp->chgBit(oldp+22,(((IData)(vlSelf->top__DOT__u1__DOT__sum_1) 
                            ^ (IData)(vlSelf->Ci))));
-    bufp->chgBit(oldp+22,((1U & ((IData)(vlSelf->A) 
+    bufp->chgBit(oldp+23,((1U & ((IData)(vlSelf->A) 
                                  & (IData)(vlSelf->B)))));
-    bufp->chgBit(oldp+23,(((IData)(vlSelf->top__DOT__u1__DOT__sum_1) 
+    bufp->chgBit(oldp+24,(((IData)(vlSelf->top__DOT__u1__DOT__sum_1) 
                            & (IData)(vlSelf->Ci))));
-    bufp->chgBit(oldp+24,((1U & ((IData)(vlSelf->A) 
+    bufp->chgBit(oldp+25,((1U & ((IData)(vlSelf->A) 
                                  >> 1U))));
-    bufp->chgBit(oldp+25,((1U & ((IData)(vlSelf->B) 
+    bufp->chgBit(oldp+26,((1U & ((IData)(vlSelf->B) 
                                  >> 1U))));
-    bufp->chgBit(oldp+26,((1U & (((IData)(vlSelf->A) 
+    bufp->chgBit(oldp+27,((1U & (((IData)(vlSelf->A) 
                                   & (IData)(vlSelf->B)) 
                                  >> 1U))));
-    bufp->chgBit(oldp+27,((1U & ((IData)(vlSelf->A) 
+    bufp->chgBit(oldp+28,((1U & ((IData)(vlSelf->A) 
                                  >> 2U))));
-    bufp->chgBit(oldp+28,((1U & ((IData)(vlSelf->B) 
+    bufp->chgBit(oldp+29,((1U & ((IData)(vlSelf->B) 
                                  >> 2U))));
-    bufp->chgBit(oldp+29,((1U & (((IData)(vlSelf->A) 
+    bufp->chgBit(oldp+30,((1U & (((IData)(vlSelf->A) 
                                   & (IData)(vlSelf->B)) 
                                  >> 2U))));
-    bufp->chgBit(oldp+30,((1U & ((IData)(vlSelf->A) 
+    bufp->chgBit(oldp+31,((1U & ((IData)(vlSelf->A) 
                                  >> 3U))));
-    bufp->chgBit(oldp+31,((1U & ((IData)(vlSelf->B) 
+    bufp->chgBit(oldp+32,((1U & ((IData)(vlSelf->B) 
                                  >> 3U))));
-    bufp->chgBit(oldp+32,((1U & (((IData)(vlSelf->A) 
+    bufp->chgBit(oldp+33,((1U & (((IData)(vlSelf->A) 
                                   & (IData)(vlSelf->B)) 
                                  >> 3U))));
 }
