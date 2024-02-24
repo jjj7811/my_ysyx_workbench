@@ -1,4 +1,4 @@
-module top (
+module ALU (
     input      [2:0] op,
     input      [3:0] a,
     input      [3:0] b,
@@ -7,8 +7,11 @@ module top (
     output           out
 );
 
-  reg [3:0] a_reg = a;
-  reg [3:0] b_reg = b;
+  reg [3:0] a_reg;
+  reg [3:0] b_reg;
+
+  assign a_reg = a;
+  assign b_reg = b;
 
   always @(posedge clk) begin
     case (op)
