@@ -12,6 +12,12 @@ void step_and_dump_wave(){
   contextp->timeInc(1);
   tfp->dump(contextp->time());
 }
+
+static void single_cycle() {
+  top->clk = 0; step_and_dump_wave();
+  top->clk = 1; step_and_dump_wave();
+}
+
 void sim_init(){
   contextp = new VerilatedContext;
   tfp = new VerilatedVcdC;
@@ -28,16 +34,17 @@ void sim_exit(){
 
 int main() {
   sim_init();
-  top->A = 0b1000; top->B = 0b1000; top->Ci = 0b0;
-  step_and_dump_wave();
-  top->A = 0b0100; top->B = 0b0010; top->Ci = 0b0;
-  step_and_dump_wave();
-  top->A = 0b0011; top->B = 0b0101; top->Ci = 0b0;
-  step_and_dump_wave();
-  top->A = 0b1110; top->B = 0b0010; top->Ci = 0b1;
-  step_and_dump_wave();
-  top->A = 0b1010; top->B = 0b0000; top->Ci = 0b1;
-  step_and_dump_wave();
+  top->a = 0b001; top->b = 0b0101;  top->op = 0b0;
+  single_cycle();
+  // step_and_dump_wave();
+  // top->A = 0b0100; top->B = 0b0010; top->Ci = 0b0;
+  // step_and_dump_wave();
+  // top->A = 0b0011; top->B = 0b0101; top->Ci = 0b0;
+  // step_and_dump_wave();
+  // top->A = 0b1110; top->B = 0b0010; top->Ci = 0b1;
+  // step_and_dump_wave();
+  // top->A = 0b1010; top->B = 0b0000; top->Ci = 0b1;
+  // step_and_dump_wave();
 
                   
   sim_exit();

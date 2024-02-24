@@ -1,47 +1,53 @@
-module top (
-    input [3:0] A,
-    input [3:0] B,
-    input       Ci,
-
-    output wire [3:0] S,
-    output wire       Co
+module top(
+    input       [2:0]   op,
+    input       [3:0]   a,
+    input       [3:0]   b,
+    input               clk,
+    output reg  [3:0]   result,
+    output              out
 );
 
-  wire [3:0] C;
+reg [3:0]   a_reg = a;
+reg [3:0]   b_reg = b;
 
-  add_full u1 (
-      .A (A[0]),
-      .B (B[0]),
-      .Ci(Ci),
-
-      .S (S[0]),
-      .Co(C[0])
-  );
-  add_full u2 (
-      .A (A[1]),
-      .B (B[1]),
-      .Ci(C[0]),
-
-      .S (S[1]),
-      .Co(C[1])
-  );
-  add_full u3 (
-      .A (A[2]),
-      .B (B[2]),
-      .Ci(C[1]),
-
-      .S (S[2]),
-      .Co(C[2])
-  );
-  add_full u4 (
-      .A (A[3]),
-      .B (B[3]),
-      .Ci(C[2]),
-
-      .S (S[3]),
-      .Co(C[3])
-  );
-  assign Co = C[3];
+    always @(posedge clk) begin
+        case (op)
+            3'b000:begin
+            	 //这样写能够取出溢出的那一位，用以判断是否溢出，如果需要，可以输出
+                 {out, result} = a_reg + b_reg;
+            end
+            3'b001:begin
+                 b_reg = ~b_reg + 1;
+                 {out, result} = a_reg + b_reg;
+            end
+            3'b010:begin
+                 result = ~a_reg;
+            end
+            3'b011:begin
+                 result = a_reg & b_reg;
+            end
+            3'b100:begin
+                 result = a_reg | b_reg;
+            end
+            3'b101:begin
+                 result = a_reg ^ b_reg;
+            end
+            3'b110:begin
+                if (a_reg[3] == b_reg[3]) begin		//判断符号位是否相等
+                    if (a_reg < b_reg)  result = 1;	//符号位相等直接比大小
+                        else  result = 0;
+                end
+                else begin					//符号位不相等直接比符号位
+                    if ((a_reg[3] == 0) && (b_reg[3] == 1)) result = 0;
+                    if ((a_reg[3] == 1) && (b_reg[3] == 0)) result = 1;
+                end
+            end
+            3'b111:begin
+                if (a_reg == b_reg)  result = 1;
+                    else  result = 0;
+            end
+        endcase
+    end
 
 
 endmodule
