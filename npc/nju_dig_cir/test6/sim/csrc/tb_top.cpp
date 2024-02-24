@@ -36,6 +36,7 @@ int main() {
   sim_init();
   top->rst_n = 0b1; top->load = 0b1; top->seed = 0b00000001;
   single_cycle();
+  top->load = 0b0;
   single_cycle();
   single_cycle();
   single_cycle();
