@@ -6,22 +6,10 @@
 
 #include "Vtop___024root.h"
 
-VL_ATTR_COLD void Vtop___024root___eval_static__TOP(Vtop___024root* vlSelf);
-
 VL_ATTR_COLD void Vtop___024root___eval_static(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_static\n"); );
-    // Body
-    Vtop___024root___eval_static__TOP(vlSelf);
-}
-
-VL_ATTR_COLD void Vtop___024root___eval_static__TOP(Vtop___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_static__TOP\n"); );
-    // Body
-    vlSelf->top__DOT__b_reg = vlSelf->b;
 }
 
 VL_ATTR_COLD void Vtop___024root___eval_initial(Vtop___024root* vlSelf) {
@@ -30,6 +18,7 @@ VL_ATTR_COLD void Vtop___024root___eval_initial(Vtop___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_initial\n"); );
     // Body
     vlSelf->__Vtrigrprev__TOP__clk = vlSelf->clk;
+    vlSelf->__Vtrigrprev__TOP__rst_n = vlSelf->rst_n;
 }
 
 VL_ATTR_COLD void Vtop___024root___eval_final(Vtop___024root* vlSelf) {
@@ -54,7 +43,7 @@ VL_ATTR_COLD void Vtop___024root___dump_triggers__act(Vtop___024root* vlSelf) {
         VL_DBG_MSGF("         No triggers active\n");
     }
     if (vlSelf->__VactTriggered.at(0U)) {
-        VL_DBG_MSGF("         'act' region trigger index 0 is active: @(posedge clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 0 is active: @(posedge clk or negedge rst_n)\n");
     }
 }
 #endif  // VL_DEBUG
@@ -69,7 +58,7 @@ VL_ATTR_COLD void Vtop___024root___dump_triggers__nba(Vtop___024root* vlSelf) {
         VL_DBG_MSGF("         No triggers active\n");
     }
     if (vlSelf->__VnbaTriggered.at(0U)) {
-        VL_DBG_MSGF("         'nba' region trigger index 0 is active: @(posedge clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 0 is active: @(posedge clk or negedge rst_n)\n");
     }
 }
 #endif  // VL_DEBUG
@@ -79,12 +68,11 @@ VL_ATTR_COLD void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___ctor_var_reset\n"); );
     // Body
-    vlSelf->op = VL_RAND_RESET_I(3);
-    vlSelf->a = VL_RAND_RESET_I(4);
-    vlSelf->b = VL_RAND_RESET_I(4);
+    vlSelf->rst_n = VL_RAND_RESET_I(1);
     vlSelf->clk = VL_RAND_RESET_I(1);
-    vlSelf->result = VL_RAND_RESET_I(4);
-    vlSelf->out = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__b_reg = VL_RAND_RESET_I(4);
+    vlSelf->load = VL_RAND_RESET_I(1);
+    vlSelf->seed = VL_RAND_RESET_I(8);
+    vlSelf->rand_num = VL_RAND_RESET_I(8);
     vlSelf->__Vtrigrprev__TOP__clk = VL_RAND_RESET_I(1);
+    vlSelf->__Vtrigrprev__TOP__rst_n = VL_RAND_RESET_I(1);
 }

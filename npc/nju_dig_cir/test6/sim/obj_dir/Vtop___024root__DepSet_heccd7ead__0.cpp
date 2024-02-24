@@ -16,56 +16,28 @@ VL_INLINE_OPT void Vtop___024root___nba_sequent__TOP__0(Vtop___024root* vlSelf) 
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___nba_sequent__TOP__0\n"); );
+    // Init
+    CData/*7:0*/ __Vdly__rand_num;
+    __Vdly__rand_num = 0;
     // Body
-    if ((4U & (IData)(vlSelf->op))) {
-        if ((2U & (IData)(vlSelf->op))) {
-            if ((1U & (IData)(vlSelf->op))) {
-                vlSelf->result = (((IData)(vlSelf->a) 
-                                   == (IData)(vlSelf->top__DOT__b_reg))
-                                   ? 1U : 0U);
-            } else if (((1U & ((IData)(vlSelf->a) >> 3U)) 
-                        == (1U & ((IData)(vlSelf->top__DOT__b_reg) 
-                                  >> 3U)))) {
-                vlSelf->result = (((IData)(vlSelf->a) 
-                                   < (IData)(vlSelf->top__DOT__b_reg))
-                                   ? 1U : 0U);
-            } else {
-                if ((IData)(((~ ((IData)(vlSelf->a) 
-                                 >> 3U)) & ((IData)(vlSelf->top__DOT__b_reg) 
-                                            >> 3U)))) {
-                    vlSelf->result = 0U;
-                }
-                if ((IData)((((IData)(vlSelf->a) >> 3U) 
-                             & (~ ((IData)(vlSelf->top__DOT__b_reg) 
-                                   >> 3U))))) {
-                    vlSelf->result = 1U;
-                }
-            }
+    __Vdly__rand_num = vlSelf->rand_num;
+    if (vlSelf->rst_n) {
+        if (vlSelf->load) {
+            __Vdly__rand_num = vlSelf->seed;
         } else {
-            vlSelf->result = ((1U & (IData)(vlSelf->op))
-                               ? ((IData)(vlSelf->a) 
-                                  ^ (IData)(vlSelf->top__DOT__b_reg))
-                               : ((IData)(vlSelf->a) 
-                                  | (IData)(vlSelf->top__DOT__b_reg)));
+            __Vdly__rand_num = ((0x80U & (IData)(__Vdly__rand_num)) 
+                                | (0x7fU & ((IData)(vlSelf->rand_num) 
+                                            >> 1U)));
+            __Vdly__rand_num = ((0x7fU & (IData)(__Vdly__rand_num)) 
+                                | (0x80U & (VL_REDXOR_8(
+                                                        (0x1dU 
+                                                         & (IData)(vlSelf->rand_num))) 
+                                            << 7U)));
         }
-    } else if ((2U & (IData)(vlSelf->op))) {
-        vlSelf->result = (0xfU & ((1U & (IData)(vlSelf->op))
-                                   ? ((IData)(vlSelf->a) 
-                                      & (IData)(vlSelf->top__DOT__b_reg))
-                                   : (~ (IData)(vlSelf->a))));
-    } else if ((1U & (IData)(vlSelf->op))) {
-        vlSelf->top__DOT__b_reg = (0xfU & ((IData)(1U) 
-                                           + (~ (IData)(vlSelf->top__DOT__b_reg))));
-        vlSelf->out = (1U & (((IData)(vlSelf->a) + (IData)(vlSelf->top__DOT__b_reg)) 
-                             >> 4U));
-        vlSelf->result = (0xfU & ((IData)(vlSelf->a) 
-                                  + (IData)(vlSelf->top__DOT__b_reg)));
     } else {
-        vlSelf->out = (1U & (((IData)(vlSelf->a) + (IData)(vlSelf->top__DOT__b_reg)) 
-                             >> 4U));
-        vlSelf->result = (0xfU & ((IData)(vlSelf->a) 
-                                  + (IData)(vlSelf->top__DOT__b_reg)));
+        __Vdly__rand_num = 0U;
     }
+    vlSelf->rand_num = __Vdly__rand_num;
 }
 
 void Vtop___024root___eval_nba(Vtop___024root* vlSelf) {
@@ -111,7 +83,7 @@ void Vtop___024root___eval(Vtop___024root* vlSelf) {
 #ifdef VL_DEBUG
                     Vtop___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("/home/hehe/ysyx-workbench/npc/nju_dig_cir/test3/sim/vsrc/top.v", 1, "", "Active region did not converge.");
+                    VL_FATAL_MT("/home/hehe/ysyx-workbench/npc/nju_dig_cir/test6/sim/vsrc/top.v", 1, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -126,7 +98,7 @@ void Vtop___024root___eval(Vtop___024root* vlSelf) {
 #ifdef VL_DEBUG
                 Vtop___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("/home/hehe/ysyx-workbench/npc/nju_dig_cir/test3/sim/vsrc/top.v", 1, "", "NBA region did not converge.");
+                VL_FATAL_MT("/home/hehe/ysyx-workbench/npc/nju_dig_cir/test6/sim/vsrc/top.v", 1, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             Vtop___024root___eval_nba(vlSelf);
@@ -140,13 +112,11 @@ void Vtop___024root___eval_debug_assertions(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_debug_assertions\n"); );
     // Body
-    if (VL_UNLIKELY((vlSelf->op & 0xf8U))) {
-        Verilated::overWidthError("op");}
-    if (VL_UNLIKELY((vlSelf->a & 0xf0U))) {
-        Verilated::overWidthError("a");}
-    if (VL_UNLIKELY((vlSelf->b & 0xf0U))) {
-        Verilated::overWidthError("b");}
+    if (VL_UNLIKELY((vlSelf->rst_n & 0xfeU))) {
+        Verilated::overWidthError("rst_n");}
     if (VL_UNLIKELY((vlSelf->clk & 0xfeU))) {
         Verilated::overWidthError("clk");}
+    if (VL_UNLIKELY((vlSelf->load & 0xfeU))) {
+        Verilated::overWidthError("load");}
 }
 #endif  // VL_DEBUG
