@@ -5,8 +5,8 @@ VSRCS = $(shell find $(abspath ./vsrc) -name "*.v")
 CSRCS = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
 
 VERILATOR_CFLAGS += -Wall --trace --x-assign unique \
-					--x-initial unique -cc --top-module top
-			
+					--x-initial unique -cc --top-module top \
+					-Wno-lint 			
 .PHONY:sim
 sim: waveform.vcd
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!

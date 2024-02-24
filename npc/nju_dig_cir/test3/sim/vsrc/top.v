@@ -1,30 +1,47 @@
-module top(
-   input                A   ,
-   input                B   ,
-   input                Ci  , 
+module top (
+    input [3:0] A,
+    input [3:0] B,
+    input       Ci,
 
-   output	wire        S   ,
-   output   wire        Co   
+    output wire [3:0] S,
+    output wire       Co
 );
 
-wire S0;
-wire C0,C1;
+  wire [3:0] C;
 
-add_half adder1(
-    .A(A),
-    .B(B),
-    .S(S0),
-    .C(C0)
-);
+  add_full u1 (
+      .A (A[0]),
+      .B (B[0]),
+      .Ci(Ci),
 
+      .S (S[0]),
+      .Co(C[0])
+  );
+  add_full u2 (
+      .A (A[1]),
+      .B (B[1]),
+      .Ci(C[0]),
 
-add_half adder2(
-    .A(S0),
-    .B(Ci),
-    .S(S),
-    .C(C1)
-);
+      .S (S[1]),
+      .Co(C[1])
+  );
+  add_full u3 (
+      .A (A[2]),
+      .B (B[2]),
+      .Ci(C[1]),
 
-assign Co=C1 | C0;
+      .S (S[2]),
+      .Co(C[2])
+  );
+  add_full u4 (
+      .A (A[3]),
+      .B (B[3]),
+      .Ci(C[2]),
+
+      .S (S[3]),
+      .Co(C[3])
+  );
+  assign Co = C[3];
+
 
 endmodule

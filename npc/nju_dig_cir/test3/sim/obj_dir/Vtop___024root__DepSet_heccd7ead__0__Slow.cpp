@@ -81,6 +81,8 @@ VL_ATTR_COLD void Vtop___024root___eval_stl(Vtop___024root* vlSelf) {
     // Body
     if (vlSelf->__VstlTriggered.at(0U)) {
         Vtop___024root___ico_sequent__TOP__0(vlSelf);
+        vlSelf->__Vm_traceActivity[1U] = 1U;
+        vlSelf->__Vm_traceActivity[0U] = 1U;
     }
 }
 
@@ -128,10 +130,19 @@ VL_ATTR_COLD void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___ctor_var_reset\n"); );
     // Body
-    vlSelf->A = VL_RAND_RESET_I(1);
-    vlSelf->B = VL_RAND_RESET_I(1);
+    vlSelf->A = VL_RAND_RESET_I(4);
+    vlSelf->B = VL_RAND_RESET_I(4);
     vlSelf->Ci = VL_RAND_RESET_I(1);
-    vlSelf->S = VL_RAND_RESET_I(1);
+    vlSelf->S = VL_RAND_RESET_I(4);
     vlSelf->Co = VL_RAND_RESET_I(1);
-    vlSelf->top__DOT__S0 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT____Vcellinp__u2__Ci = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT____Vcellinp__u3__Ci = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT____Vcellinp__u4__Ci = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__u1__DOT__sum_1 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__u2__DOT__sum_1 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__u3__DOT__sum_1 = VL_RAND_RESET_I(1);
+    vlSelf->top__DOT__u4__DOT__sum_1 = VL_RAND_RESET_I(1);
+    for (int __Vi0 = 0; __Vi0 < 2; ++__Vi0) {
+        vlSelf->__Vm_traceActivity[__Vi0] = 0;
+    }
 }

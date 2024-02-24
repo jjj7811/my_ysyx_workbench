@@ -11,11 +11,44 @@ VL_INLINE_OPT void Vtop___024root___ico_sequent__TOP__0(Vtop___024root* vlSelf) 
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___ico_sequent__TOP__0\n"); );
     // Body
-    vlSelf->top__DOT__S0 = ((IData)(vlSelf->A) ^ (IData)(vlSelf->B));
-    vlSelf->S = ((IData)(vlSelf->top__DOT__S0) ^ (IData)(vlSelf->Ci));
-    vlSelf->Co = (((IData)(vlSelf->A) & (IData)(vlSelf->B)) 
-                  | ((IData)(vlSelf->top__DOT__S0) 
-                     & (IData)(vlSelf->Ci)));
+    vlSelf->top__DOT__u4__DOT__sum_1 = (1U & (((IData)(vlSelf->A) 
+                                               ^ (IData)(vlSelf->B)) 
+                                              >> 3U));
+    vlSelf->top__DOT__u3__DOT__sum_1 = (1U & (((IData)(vlSelf->A) 
+                                               ^ (IData)(vlSelf->B)) 
+                                              >> 2U));
+    vlSelf->top__DOT__u2__DOT__sum_1 = (1U & (((IData)(vlSelf->A) 
+                                               ^ (IData)(vlSelf->B)) 
+                                              >> 1U));
+    vlSelf->top__DOT__u1__DOT__sum_1 = (1U & ((IData)(vlSelf->A) 
+                                              ^ (IData)(vlSelf->B)));
+    vlSelf->top__DOT____Vcellinp__u2__Ci = (1U & (((IData)(vlSelf->A) 
+                                                   & (IData)(vlSelf->B)) 
+                                                  | ((IData)(vlSelf->top__DOT__u1__DOT__sum_1) 
+                                                     & (IData)(vlSelf->Ci))));
+    vlSelf->top__DOT____Vcellinp__u3__Ci = (1U & ((
+                                                   ((IData)(vlSelf->A) 
+                                                    & (IData)(vlSelf->B)) 
+                                                   >> 1U) 
+                                                  | ((IData)(vlSelf->top__DOT__u2__DOT__sum_1) 
+                                                     & (IData)(vlSelf->top__DOT____Vcellinp__u2__Ci))));
+    vlSelf->top__DOT____Vcellinp__u4__Ci = (1U & ((
+                                                   ((IData)(vlSelf->A) 
+                                                    & (IData)(vlSelf->B)) 
+                                                   >> 2U) 
+                                                  | ((IData)(vlSelf->top__DOT__u3__DOT__sum_1) 
+                                                     & (IData)(vlSelf->top__DOT____Vcellinp__u3__Ci))));
+    vlSelf->Co = (1U & ((((IData)(vlSelf->A) & (IData)(vlSelf->B)) 
+                         >> 3U) | ((IData)(vlSelf->top__DOT__u4__DOT__sum_1) 
+                                   & (IData)(vlSelf->top__DOT____Vcellinp__u4__Ci))));
+    vlSelf->S = ((((IData)(vlSelf->top__DOT__u4__DOT__sum_1) 
+                   ^ (IData)(vlSelf->top__DOT____Vcellinp__u4__Ci)) 
+                  << 3U) | ((((IData)(vlSelf->top__DOT__u3__DOT__sum_1) 
+                              ^ (IData)(vlSelf->top__DOT____Vcellinp__u3__Ci)) 
+                             << 2U) | ((((IData)(vlSelf->top__DOT__u2__DOT__sum_1) 
+                                         ^ (IData)(vlSelf->top__DOT____Vcellinp__u2__Ci)) 
+                                        << 1U) | ((IData)(vlSelf->top__DOT__u1__DOT__sum_1) 
+                                                  ^ (IData)(vlSelf->Ci)))));
 }
 
 void Vtop___024root___eval_ico(Vtop___024root* vlSelf) {
@@ -25,6 +58,7 @@ void Vtop___024root___eval_ico(Vtop___024root* vlSelf) {
     // Body
     if (vlSelf->__VicoTriggered.at(0U)) {
         Vtop___024root___ico_sequent__TOP__0(vlSelf);
+        vlSelf->__Vm_traceActivity[1U] = 1U;
     }
 }
 
@@ -125,9 +159,9 @@ void Vtop___024root___eval_debug_assertions(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_debug_assertions\n"); );
     // Body
-    if (VL_UNLIKELY((vlSelf->A & 0xfeU))) {
+    if (VL_UNLIKELY((vlSelf->A & 0xf0U))) {
         Verilated::overWidthError("A");}
-    if (VL_UNLIKELY((vlSelf->B & 0xfeU))) {
+    if (VL_UNLIKELY((vlSelf->B & 0xf0U))) {
         Verilated::overWidthError("B");}
     if (VL_UNLIKELY((vlSelf->Ci & 0xfeU))) {
         Verilated::overWidthError("Ci");}
