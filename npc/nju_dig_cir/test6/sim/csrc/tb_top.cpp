@@ -40,6 +40,11 @@ int main() {
   single_cycle();
   single_cycle();
   single_cycle();
+  single_cycle();
+  single_cycle();
+  single_cycle();
+  single_cycle();
+  single_cycle();
                   
   sim_exit();
 }
