@@ -26,6 +26,7 @@ module top (
   assign ledr[7:0] = rand_num[7:0];
   assign seed[7:0] = sw[7:0];
   assign load      = sw[9];
+  
 
   LFSR lfsr1 (
       rst_n,
