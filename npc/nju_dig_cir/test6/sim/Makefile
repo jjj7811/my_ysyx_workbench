@@ -6,7 +6,20 @@ CSRCS = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*
 
 VERILATOR_CFLAGS += --trace --x-assign unique \
 					--x-initial unique -cc --top-module top \
-								
+
+#this is for iSTA
+PROJ_PATH = $(shell pwd)
+
+DESIGN ?= top
+SDC_FILE ?= $(PROJ_PATH)/top.sdc
+RTL_FILES ?= $(shell find $(PROJ_PATH)/vsrc -name "*.v")
+export CLK_FREQ_MHZ ?= 500
+
+RESULT_DIR = $(PROJ_PATH)/result/$(DESIGN)-$(CLK_FREQ_MHZ)MHz
+NETLIST_V  = $(RESULT_DIR)/$(DESIGN).netlist.v
+TIMING_RPT = $(RESULT_DIR)/$(DESIGN).rpt
+
+
 .PHONY:sim
 sim: waveform.vcd
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
@@ -52,3 +65,19 @@ clean:
 	rm -rf ./obj_dir
 	rm -rf waveform.vcd
 	rm -rf $(BUILD_DIR)
+	rm -rf result/
+
+.PHONY: init
+init:
+	bash -c "$$(wget -O - https://ysyx.oscc.cc/slides/resources/scripts/init-yosys-sta.sh)"
+
+.PHONY: syn
+syn: $(NETLIST_V)
+$(NETLIST_V): $(RTL_FILES) yosys.tcl
+	mkdir -p $(@D)
+	echo tcl yosys.tcl $(DESIGN) \"$(RTL_FILES)\" $(NETLIST_V) | yosys -l $(@D)/yosys.log -s -
+
+.PHONY: sta
+sta: $(TIMING_RPT)
+$(TIMING_RPT): $(SDC_FILE) $(NETLIST_V)
+	LD_LIBRARY_PATH=$(YOSYS_STA)/bin $(YOSYS_STA)/bin/iSTA $(PROJ_PATH)/sta.tcl $(DESIGN) $(SDC_FILE) $(NETLIST_V)

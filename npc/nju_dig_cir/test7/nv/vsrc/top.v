@@ -28,6 +28,8 @@ module top (
   reg  [7:0] data_out;
   reg  [7:0] ascii_out;
   reg  [7:0] count_ready;
+  reg  [7:0] hex_num_1;
+  reg  [7:0] hex_num_2;
 
   assign clrn = sw[8];
 
@@ -55,21 +57,16 @@ module top (
     end
   end
 
-  reg [7:0] hex_num_1;
-  reg [7:0] hex_num_2;
-
   always @(negedge clk) begin
     if (ready != 1'b0) begin
       if (data == 8'hf0) begin
         count_ready = count_ready + 1;
         hex_num_2 <= (count_ready / 8'd10);
         hex_num_1 <= (count_ready % 8'd10);
-
         $display("count %d", count_ready);
       end
     end
   end
-
 
   ps2_to_ascii ps2ascii (
       data_out,
