@@ -16,7 +16,8 @@ module top (
     output [ 7:0] seg1,
     output [ 7:0] seg2,
     output [ 7:0] seg3,
-    output [ 7:0] seg4
+    output [ 7:0] seg4,
+    output [ 7:0] seg5
 );
   wire       clrn;
   reg  [7:0] data;
@@ -26,7 +27,9 @@ module top (
   wire       overflow;
   reg  [7:0] data_out;
   reg  [7:0] ascii_out;
-  reg  [3:0] count_ready;
+  reg  [7:0] count_ready;
+  reg  [7:0] hex_num_1;
+  reg  [7:0] hex_num_2;
 
   assign clrn = sw[8];
 
@@ -41,15 +44,6 @@ module top (
       overflow
   );
 
-  hex7seg se1 (
-      data_out[3:0],
-      seg0  //a_g[6:0]->(a,b,c,d,e,f,g)
-  );
-
-  hex7seg se2 (
-      data_out[7:4],
-      seg1  //a_g[6:0]->(a,b,c,d,e,f,g)
-  );
 
   always @(negedge clk) begin
     if (ready != 1'b0) begin
@@ -63,24 +57,30 @@ module top (
     end
   end
 
-
   always @(negedge clk) begin
     if (ready != 1'b0) begin
       if (data == 8'hf0) begin
         count_ready = count_ready + 1;
+        hex_num_2 <= (count_ready / 8'd10);
+        hex_num_1 <= (count_ready % 8'd10);
         $display("count %d", count_ready);
       end
     end
   end
 
-  hex7seg se5 (
-      count_ready[3:0],
-      seg4  //a_g[6:0]->(a,b,c,d,e,f,g)
-  );
-
   ps2_to_ascii ps2ascii (
       data_out,
       ascii_out
+  );
+
+  hex7seg se1 (
+      data_out[3:0],
+      seg0  //a_g[6:0]->(a,b,c,d,e,f,g)
+  );
+
+  hex7seg se2 (
+      data_out[7:4],
+      seg1  //a_g[6:0]->(a,b,c,d,e,f,g)
   );
 
   hex7seg se3 (
@@ -92,6 +92,16 @@ module top (
       ascii_out[7:4],
       seg3  //a_g[6:0]->(a,b,c,d,e,f,g)
   );
+  hex7seg se5 (
+      hex_num_1[3:0],
+      seg4  //a_g[6:0]->(a,b,c,d,e,f,g)
+  );
+
+  hex7seg se6 (
+      hex_num_2[3:0],
+      seg5  //a_g[6:0]->(a,b,c,d,e,f,g)
+  );
+
 
 
   assign VGA_CLK = clk;
