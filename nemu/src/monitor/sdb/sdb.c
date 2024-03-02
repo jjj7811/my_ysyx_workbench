@@ -89,7 +89,7 @@ static int cmd_x(char *args) {
   }else{
     sscanf(N,"%u",&n);
     sscanf(addr,"%x",&paddr);
-    paddr_read(paddr,4);
+    // paddr_read(paddr,4);
     printf("%u %x",n,paddr);
   }
 
