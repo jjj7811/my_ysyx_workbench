@@ -201,9 +201,10 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   for (int i = 0; i < nr_token; i++) {
-    if (tokens[i].type == 42 || tokens[i].type == 43 || tokens[i].type == 45 ||
-        tokens[i].type == 47 || tokens[i].type == 40 || tokens[i].type == 41)
-      printf("tokens[%d]:\ttype:%c str:%s\r\n", i, tokens[i].type,
+    int ty = tokens[i].type;
+    if (ty == 42 || ty == 43 || ty == 45 ||
+        ty == 47 || ty == 40 || ty == 41)
+      printf("tokens[%d]:\ttype:%c str:%s\r\n", i, ty,
              tokens[i].str);
     else
       printf("tokens[%d]:\ttype:%d str:%s\r\n", i, tokens[i].type,
