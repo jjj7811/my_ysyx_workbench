@@ -103,9 +103,9 @@ static int cmd_x(char *args) {
 
 static int cmd_p(char *args) {
   char *cmd = strtok(NULL, " ");
-  bool *b = 0;
-  expr(cmd,b);
-  printf("%d",b[0]);
+  bool b = 0;
+  expr(cmd,&b);
+  printf("%d",b);
   return 0;
 }
 
