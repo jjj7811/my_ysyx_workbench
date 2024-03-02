@@ -71,10 +71,17 @@ static int cmd_info(char *args) {
   char *arg = strtok(NULL, " ");
   if (arg == NULL)
     printf("wrong args\r\n");
-  else if (strcmp(arg,"r")==0){
+  else if (strcmp(arg, "r") == 0) {
     printf("print args\r\n");
     isa_reg_display();
   }
+  return 0;
+}
+
+static int cmd_x(char *args) {
+  // char *N = strtok(NULL, " ");
+  // char *addr = strtok(NULL, " ");
+
   return 0;
 }
 
@@ -90,6 +97,7 @@ static struct {
     {"q", "Exit NEMU", cmd_q},
     {"si", "exec once", cmd_si},
     {"info", "print the state of program", cmd_info},
+    {"x", "print N values on the addr", cmd_x},
 
     /* TODO: Add more commands */
 
