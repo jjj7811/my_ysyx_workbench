@@ -131,7 +131,7 @@ static bool make_token(char *e) {
           break;
         case NUM:
           tokens->type = NUM;
-          strncpy(tokens->str,e+position-substr_len,substr_len);
+          strncpy(tokens->str, e + position - substr_len, substr_len);
         default:
           // TODO();
         }
@@ -146,7 +146,33 @@ static bool make_token(char *e) {
     }
   }
 
-  return false;
+  return true;
+}
+
+bool check_parentheses(int p, int q) {
+  if (tokens[p].type != '(' || tokens[q].type != ')') {
+    return false;
+  }
+  return true;
+}
+
+u_int32_t eval(int p, int q) {
+  if (p > q) {
+    /* Bad expression */
+  } else if (p == q) {
+    /* Single token.
+     * For now this token should be a number.
+     * Return the value of the number.
+     */
+  } else if (check_parentheses(p, q) == true) {
+    /* The expression is surrounded by a matched pair of parentheses.
+     * If that is the case, just throw away the parentheses.
+     */
+    return eval(p + 1, q - 1);
+  } else {
+    /* We should do more things here. */
+  }
+  return 0;
 }
 
 word_t expr(char *e, bool *success) {
