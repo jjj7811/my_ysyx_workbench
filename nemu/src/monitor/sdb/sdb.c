@@ -55,7 +55,8 @@ static int cmd_q(char *args) {
 
 static int cmd_si(char *args) {
   char *arg = strtok(NULL, " ");
-  printf("%s",arg);
+  int i = atoi(arg);
+  printf("%d",i);
   // cpu_exec(1);
   return 0;
 }
