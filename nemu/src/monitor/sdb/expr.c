@@ -124,10 +124,10 @@ static bool make_token(char *e) {
           tokens[nr_token++].type = '/';
           break;
         case '(':
-          tokens[nr_token++].type = '(';
+          tokens[nr_token++].type = L_par;
           break;
         case ')':
-          tokens[nr_token++].type = ')';
+          tokens[nr_token++].type = R_par;
           break;
         case NUM:
           tokens[nr_token].type = NUM;
@@ -205,7 +205,7 @@ word_t expr(char *e, bool *success) {
              tokens[i].str);
   }
 
-  eval(0,nr_token);
+  // eval(0,nr_token);
 
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();
