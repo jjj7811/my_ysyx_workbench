@@ -146,7 +146,7 @@ static bool make_token(char *e) {
     }
   }
 
-  return true;
+  return false;
 }
 
 word_t expr(char *e, bool *success) {
