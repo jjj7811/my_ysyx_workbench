@@ -131,7 +131,7 @@ static bool make_token(char *e) {
           break;
         case NUM:
           tokens[nr_token++].type = NUM;
-          strncpy(tokens[nr_token++].str, e + position - substr_len, substr_len);
+          strncpy(tokens[nr_token].str, e + position - substr_len, substr_len);
         default:
           // TODO();
         }
