@@ -79,8 +79,15 @@ static int cmd_info(char *args) {
 }
 
 static int cmd_x(char *args) {
-  // char *N = strtok(NULL, " ");
-  // char *addr = strtok(NULL, " ");
+  char *N = strtok(NULL, " ");
+  char *addr = strtok(NULL, " ");
+
+  if(N==NULL || addr == NULL){
+    printf("Wrong args");
+  }else{
+    
+  }
+
 
   return 0;
 }
