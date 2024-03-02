@@ -14,12 +14,12 @@
  ***************************************************************************************/
 
 #include "sdb.h"
+#include <common.h>
 #include <cpu/cpu.h>
 #include <isa.h>
+#include <memory/paddr.h>
 #include <readline/history.h>
 #include <readline/readline.h>
-#include <memory/paddr.h>
-#include <common.h>
 
 static int is_batch_mode = false;
 
@@ -85,15 +85,16 @@ static int cmd_x(char *args) {
   char *addr = strtok(NULL, " ");
   int n = 0;
   paddr_t paddr = 0;
-  if(N==NULL || addr == NULL){
+  if (N == NULL || addr == NULL) {
     printf("Wrong args\r\n");
-  }else{
-    sscanf(N,"%u",&n);
-    sscanf(addr,"%x",&paddr);
-    word_t t = paddr_read(paddr,4);
-    printf("%u %x : %u\r\n",n,paddr,t);
+  } else {
+    sscanf(N, "%u", &n);
+    sscanf(addr, "%x", &paddr);
+    for (int i = 0; i < n; i++) {
+      word_t t = paddr_read(paddr, 4);
+      printf("%u %x : %u\r\n", n, paddr, t);
+    }
   }
-
 
   return 0;
 }
