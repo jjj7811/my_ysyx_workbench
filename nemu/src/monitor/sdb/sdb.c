@@ -58,10 +58,10 @@ static int cmd_si(char *args) {
   if(arg!=NULL){
     int i = atoi(arg);
     cpu_exec(i);
-    printf("exec:%d times",i);
+    printf("exec:%d times\r\n",i);
   }else{
     cpu_exec(1);
-    printf("exec:%d times",1);
+    printf("exec:%d times\r\n",1);
   }
   return 0;
 }
