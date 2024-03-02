@@ -151,7 +151,7 @@ static bool make_token(char *e) {
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
-    *success = true;
+    *success = false;
     return 0;
   }
 

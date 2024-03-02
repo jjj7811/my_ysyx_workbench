@@ -103,7 +103,7 @@ static int cmd_x(char *args) {
 
 static int cmd_p(char *args) {
   char *cmd = strtok(NULL, " ");
-  bool b = 0;
+  bool b = 1;
   expr(cmd, &b);
   if (b == false)
     printf("fasle:%d\r\n", b);
