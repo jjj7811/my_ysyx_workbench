@@ -151,7 +151,7 @@ static bool make_token(char *e) {
 }
 
 bool check_parentheses(int p, int q) {
-  if (tokens[p].type != '(' || tokens[q].type != ')') {
+  if (tokens[p].type != R_par || tokens[q].type != L_par) {
     return false;
   }
   while (p < q) {
