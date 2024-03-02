@@ -76,7 +76,7 @@ static int cmd_info(char *args) {
   else if (strcmp(arg, "r") == 0) {
     printf("print args\r\n");
     isa_reg_display();
-  } else if (strcmp(arg, "w")) {
+  } else if (strcmp(arg, "w")==0) {
     printf("Not yet implemented\r\n");
   }
   return 0;
