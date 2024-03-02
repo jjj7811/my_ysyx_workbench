@@ -76,6 +76,8 @@ static int cmd_info(char *args) {
   else if (strcmp(arg, "r") == 0) {
     printf("print args\r\n");
     isa_reg_display();
+  } else if (strcmp(arg, "w")) {
+    printf("Not yet implemented\r\n");
   }
   return 0;
 }
@@ -91,8 +93,8 @@ static int cmd_x(char *args) {
     sscanf(N, "%u", &n);
     sscanf(addr, "%x", &paddr);
     for (int i = 0; i < n; i++) {
-      word_t t = paddr_read(paddr+i*4, 4);
-      printf("%u 0x%x : 0x%x\r\n", n, paddr+i*4, t);
+      word_t t = paddr_read(paddr + i * 4, 4);
+      printf("%u 0x%x : 0x%x\r\n", n, paddr + i * 4, t);
     }
   }
 
