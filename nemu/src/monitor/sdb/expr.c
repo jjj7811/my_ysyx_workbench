@@ -142,11 +142,11 @@ static bool make_token(char *e) {
 
     if (i == NR_REGEX) {
       printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
-      // return false;
+      return false;
     }
   }
 
-  return true;
+  return false;
 }
 
 word_t expr(char *e, bool *success) {
