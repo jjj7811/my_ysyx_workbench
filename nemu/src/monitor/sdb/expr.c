@@ -155,7 +155,7 @@ bool check_parentheses(int p, int q) {
     return false;
   }
   while (p < q) {
-    printf("p:%d q:%d",p,q);
+    printf("p:%d q:%d\r\n",p,q);
     if (tokens[p].type == '(' && tokens[q].type == ')') {
       p++;
       q--;
