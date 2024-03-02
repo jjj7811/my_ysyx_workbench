@@ -29,5 +29,6 @@ static inline const char* reg_name(int idx) {
   extern const char* regs[];
   return regs[check_reg_idx(idx)];
 }
+void isa_reg_display();
 
 #endif
