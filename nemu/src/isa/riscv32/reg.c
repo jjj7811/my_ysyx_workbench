@@ -25,7 +25,7 @@ void isa_reg_display() {
   for (int i = 0; i < 32; i++) {
     // printf("%s:%d\r", regs[i], cpu.gpr[i]);
     printf("%s:%u\t", regs[i], cpu.gpr[i]);
-    if (i % 8 == 1)
+    if (i % 8 == 8)
       printf("\r\n");
   }
   printf("\r\n");
