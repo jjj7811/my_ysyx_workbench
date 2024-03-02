@@ -19,6 +19,7 @@
 #include <readline/history.h>
 #include <readline/readline.h>
 #include <memory/paddr.h>
+#include <common.h>
 
 static int is_batch_mode = false;
 
@@ -89,7 +90,7 @@ static int cmd_x(char *args) {
   }else{
     sscanf(N,"%u",&n);
     sscanf(addr,"%x",&paddr);
-    uint32_t t = paddr_read(paddr,4);
+    word_t t = paddr_read(paddr,4);
     printf("%u %x : %u\r\n",n,paddr,t);
   }
 
