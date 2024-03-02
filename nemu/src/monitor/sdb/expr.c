@@ -208,7 +208,7 @@ word_t expr(char *e, bool *success) {
       printf("tokens[%d]:\ttype:%d str:%s\r\n", i, tokens[i].type,
              tokens[i].str);
   }
-
+  printf("%d ",nr_token);
   eval(0, nr_token);
 
   /* TODO: Insert codes to evaluate the expression. */
