@@ -25,7 +25,10 @@ void isa_reg_display() {
   for (int i = 0; i < 32; i++) {
     // printf("%s:%d\r", regs[i], cpu.gpr[i]);
     printf("%u\t", cpu.gpr[i]);
+    if (i % 8 == 0)
+      printf("\r\n");
   }
+  printf("\r\n");
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) { return 0; }
