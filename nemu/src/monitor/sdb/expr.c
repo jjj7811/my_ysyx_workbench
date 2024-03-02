@@ -190,6 +190,7 @@ u_int32_t eval(int p, int q) {
     return eval(p + 1, q - 1);
   } else {
     /* We should do more things here. */
+    printf("else\r\n");
   }
   return 0;
 }
@@ -208,7 +209,7 @@ word_t expr(char *e, bool *success) {
       printf("tokens[%d]:\ttype:%d str:%s\r\n", i, tokens[i].type,
              tokens[i].str);
   }
-  printf("%d ",nr_token);
+  printf("nr_token:%d \r\n",nr_token);
   eval(0, nr_token);
 
   /* TODO: Insert codes to evaluate the expression. */
