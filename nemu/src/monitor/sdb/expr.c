@@ -131,7 +131,8 @@ static bool make_token(char *e) {
           break;
         case NUM:
           tokens[nr_token].type = NUM;
-          strncpy(tokens[nr_token++].str, e + position - substr_len, substr_len);
+          strncpy(tokens[nr_token++].str, e + position - substr_len,
+                  substr_len);
         default:
           // TODO();
         }
@@ -194,9 +195,14 @@ word_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  for(int i=0;i<nr_token;i++){
-    // if(tokens[i].type>=)
-    printf("tokens[%d]:\ttype:%d str:%s\r\n",i,tokens[i].type,tokens[i].str);
+  for (int i = 0; i < nr_token; i++) {
+    if (tokens[i].type == 42 || tokens[i].type == 43 || tokens[i].type == 45 ||
+        tokens[i].type == 47)
+      printf("tokens[%d]:\ttype:%c str:%s\r\n", i, tokens[i].type,
+             tokens[i].str);
+    else
+      printf("tokens[%d]:\ttype:%d str:%s\r\n", i, tokens[i].type,
+             tokens[i].str);
   }
 
   // eval()
