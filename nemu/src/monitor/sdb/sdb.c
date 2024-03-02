@@ -68,7 +68,13 @@ static int cmd_si(char *args) {
 
 static int cmd_info(char *args) {
   // cpu_exec(4);
-  isa_reg_display();
+  char *arg = strtok(NULL, " ");
+  if (arg == NULL)
+    printf("wrong args\r\n");
+  else if (strcmp(arg,"r")==0){
+    printf("print args\r\n");
+    isa_reg_display();
+  }
   return 0;
 }
 
