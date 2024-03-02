@@ -123,10 +123,10 @@ static bool make_token(char *e) {
         case '/':
           tokens[nr_token++].type = '/';
           break;
-        case '(':
+        case L_par:
           tokens[nr_token++].type = L_par;
           break;
-        case ')':
+        case R_par:
           tokens[nr_token++].type = R_par;
           break;
         case NUM:
