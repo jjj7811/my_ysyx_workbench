@@ -23,8 +23,8 @@
 enum {
   TK_NOTYPE = 256,
   TK_EQ = 1,
-  L_par = 2,
-  R_par = 3,
+  // L_par = 2,
+  // R_par = 3,
   NUM = 4,
 
   /* TODO: Add more token types */
@@ -47,8 +47,8 @@ static struct rule {
     {"\\*", '*'}, // mux
     {"\\/", '/'}, // div
 
-    {"\\(", L_par}, // left parenthesis
-    {"\\)", R_par}, // right parenthesis
+    {"\\(", '('}, // left parenthesis
+    {"\\)", ')'}, // right parenthesis
 
     {"==", TK_EQ}, // equal
 
@@ -123,11 +123,11 @@ static bool make_token(char *e) {
         case '/':
           tokens[nr_token++].type = '/';
           break;
-        case L_par:
-          tokens[nr_token++].type = L_par;
+        case '(':
+          tokens[nr_token++].type = '(';
           break;
-        case R_par:
-          tokens[nr_token++].type = R_par;
+        case ')':
+          tokens[nr_token++].type = ')';
           break;
         case NUM:
           tokens[nr_token].type = NUM;
@@ -151,7 +151,7 @@ static bool make_token(char *e) {
 }
 
 bool check_parentheses(int p, int q) {
-  if (tokens[p].type != R_par || tokens[q].type != L_par) {
+  if (tokens[p].type != '(' || tokens[q].type != ')') {
     return false;
   }
   while (p < q) {
