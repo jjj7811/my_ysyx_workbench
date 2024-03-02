@@ -91,7 +91,7 @@ static int cmd_x(char *args) {
     sscanf(N, "%u", &n);
     sscanf(addr, "%x", &paddr);
     for (int i = 0; i < n; i++) {
-      word_t t = paddr_read(paddr, 4);
+      word_t t = paddr_read(paddr+i*4, 4);
       printf("%u 0x%x : 0x%x\r\n", n, paddr, t);
     }
   }
