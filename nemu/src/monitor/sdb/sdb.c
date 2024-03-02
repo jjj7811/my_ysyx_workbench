@@ -54,7 +54,9 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_si(char *args) {
-  cpu_exec(1);
+  char *arg = strtok(NULL, " ");
+  printf("%s",arg);
+  // cpu_exec(1);
   return 0;
 }
 
