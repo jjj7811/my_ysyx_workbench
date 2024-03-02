@@ -81,13 +81,15 @@ static int cmd_info(char *args) {
 static int cmd_x(char *args) {
   char *N = strtok(NULL, " ");
   char *addr = strtok(NULL, " ");
-  int n = atoi(N);
-  // paddr_t paddr = atoi(addr);
+  int n = 0;
+  paddr_t paddr = 0;
   if(N==NULL || addr == NULL){
     printf("Wrong args\r\n");
   }else{
+    sscanf(N,"%u",&n);
+    sscanf(addr,"%x",&paddr);
     // paddr_read();
-    printf("%d",n);
+    printf("%u %x",n,paddr);
   }
 
 
