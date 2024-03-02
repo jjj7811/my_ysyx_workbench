@@ -155,7 +155,7 @@ bool check_parentheses(int p, int q) {
     return false;
   }
   while (p < q) {
-    printf("p:%d q:%d\r\n",p,q);
+    printf("p:%d q:%d\r\n", p, q);
     if (tokens[p].type == '(' && tokens[q].type == ')') {
       p++;
       q--;
@@ -202,14 +202,14 @@ word_t expr(char *e, bool *success) {
   }
   for (int i = 0; i < nr_token; i++) {
     if (tokens[i].type == 42 || tokens[i].type == 43 || tokens[i].type == 45 ||
-        tokens[i].type == 47)
+        tokens[i].type == 47 || tokens[i].type == 40 || tokens[i].type == 41)
       printf("tokens[%d]:\ttype:%c str:%s\r\n", i, tokens[i].type,
              tokens[i].str);
     else
       printf("tokens[%d]:\ttype:%d str:%s\r\n", i, tokens[i].type,
              tokens[i].str);
   }
-  printf("nr_token:%d \r\n",nr_token);
+  printf("nr_token:%d \r\n", nr_token);
   eval(0, nr_token);
 
   /* TODO: Insert codes to evaluate the expression. */
