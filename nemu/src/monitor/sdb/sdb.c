@@ -92,7 +92,7 @@ static int cmd_x(char *args) {
     sscanf(addr, "%x", &paddr);
     for (int i = 0; i < n; i++) {
       word_t t = paddr_read(paddr, 4);
-      printf("%u %x : %u\r\n", n, paddr, t);
+      printf("%u 0x%x : 0x%x\r\n", n, paddr, t);
     }
   }
 
