@@ -55,9 +55,14 @@ static int cmd_q(char *args) {
 
 static int cmd_si(char *args) {
   char *arg = strtok(NULL, " ");
-  int i = atoi(arg);
-  printf("%d",i);
-  // cpu_exec(1);
+  if(arg!=NULL){
+    int i = atoi(arg);
+    cpu_exec(i);
+    printf("exec:%d times",i);
+  }else{
+    cpu_exec(1);
+    printf("exec:%d times",1);
+  }
   return 0;
 }
 
