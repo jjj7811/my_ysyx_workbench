@@ -111,27 +111,27 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type) {
         case '+':
-          tokens->type = '+';
+          tokens[nr_token++].type = '+';
           // tokens[nr_token++] =
           break;
         case '-':
-          tokens->type = '-';
+          tokens[nr_token++].type = '-';
           break;
         case '*':
-          tokens->type = '*';
+          tokens[nr_token++].type = '*';
           break;
         case '/':
-          tokens->type = '/';
+          tokens[nr_token++].type = '/';
           break;
         case '(':
-          tokens->type = '(';
+          tokens[nr_token++].type = '(';
           break;
         case ')':
-          tokens->type = ')';
+          tokens[nr_token++].type = ')';
           break;
         case NUM:
-          tokens->type = NUM;
-          strncpy(tokens->str, e + position - substr_len, substr_len);
+          tokens[nr_token++].type = NUM;
+          strncpy(tokens[nr_token++].str, e + position - substr_len, substr_len);
         default:
           // TODO();
         }
@@ -152,6 +152,20 @@ static bool make_token(char *e) {
 bool check_parentheses(int p, int q) {
   if (tokens[p].type != '(' || tokens[q].type != ')') {
     return false;
+  }
+  while (p < q) {
+    if (tokens[p].type == '(' && tokens[q].type == ')') {
+      p++;
+      q--;
+    } else if (tokens[p].type == '(' && tokens[q].type != ')') {
+      q--;
+    } else if (tokens[p].type != '(' && tokens[q].type == ')') {
+      p++;
+    } else if (tokens[p].type != '(' && tokens[q].type != ')') {
+      p++;
+    } else {
+      p++;
+    }
   }
   return true;
 }
@@ -180,6 +194,8 @@ word_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
+
+  // eval()
 
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();
