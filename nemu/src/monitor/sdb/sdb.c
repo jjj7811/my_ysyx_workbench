@@ -71,12 +71,12 @@ static int cmd_si(char *args) {
 static int cmd_info(char *args) {
   // cpu_exec(4);
   char *arg = strtok(NULL, " ");
-  if (arg == NULL)
+  if (arg == NULL) {
     printf("wrong args\r\n");
-  else if (strcmp(arg, "r") == 0) {
+  } else if (strcmp(arg, "r") == 0) {
     printf("print args\r\n");
     isa_reg_display();
-  } else if (strcmp(arg, "w")==0) {
+  } else if (strcmp(arg, "w") == 0) {
     printf("Not yet implemented\r\n");
   }
   return 0;
@@ -101,6 +101,12 @@ static int cmd_x(char *args) {
   return 0;
 }
 
+static int cmd_p(char *args) {
+  bool *b = 0;
+  expr(args,b);
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -114,6 +120,7 @@ static struct {
     {"si", "exec once", cmd_si},
     {"info", "print the state of program", cmd_info},
     {"x", "print N values on the addr", cmd_x},
+    {"p", "Expression evaluation", cmd_p},
 
     /* TODO: Add more commands */
 
