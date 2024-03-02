@@ -160,6 +160,8 @@ bool check_parentheses(int p, int q) {
       q--;
     } else if (tokens[p].type == '(' && tokens[q].type != ')') {
       q--;
+    } else if (tokens[p].type == ')') {
+      return false;
     } else if (tokens[p].type != '(' && tokens[q].type == ')') {
       p++;
     } else if (tokens[p].type != '(' && tokens[q].type != ')') {
@@ -183,6 +185,7 @@ u_int32_t eval(int p, int q) {
     /* The expression is surrounded by a matched pair of parentheses.
      * If that is the case, just throw away the parentheses.
      */
+    printf("true\r\n");
     return eval(p + 1, q - 1);
   } else {
     /* We should do more things here. */
@@ -205,7 +208,7 @@ word_t expr(char *e, bool *success) {
              tokens[i].str);
   }
 
-  // eval(0,nr_token);
+  eval(0, nr_token);
 
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();
