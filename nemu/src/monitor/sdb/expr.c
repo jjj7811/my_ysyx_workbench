@@ -25,6 +25,7 @@ enum {
   TK_EQ = 1,
   L_par = 2,
   R_par = 3,
+  NUM = 4,
 
   /* TODO: Add more token types */
 
@@ -50,6 +51,8 @@ static struct rule {
     {"\\)", R_par}, // right parenthesis
 
     {"==", TK_EQ}, // equal
+
+    {"[0-9]*", NUM}, // number
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -126,6 +129,9 @@ static bool make_token(char *e) {
         case ')':
           tokens->type = ')';
           break;
+        case NUM:
+          tokens->type = NUM;
+          strncpy(tokens->str,e+position-substr_len,substr_len);
         default:
           // TODO();
         }
