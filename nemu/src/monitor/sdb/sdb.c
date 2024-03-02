@@ -18,6 +18,7 @@
 #include <isa.h>
 #include <readline/history.h>
 #include <readline/readline.h>
+#include <memory/vaddr.h>
 
 static int is_batch_mode = false;
 
@@ -88,7 +89,7 @@ static int cmd_x(char *args) {
   }else{
     sscanf(N,"%u",&n);
     sscanf(addr,"%x",&paddr);
-    // paddr_read();
+    vaddr_read(paddr,4);
     printf("%u %x",n,paddr);
   }
 
