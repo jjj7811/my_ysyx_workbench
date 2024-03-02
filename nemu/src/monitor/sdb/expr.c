@@ -120,6 +120,12 @@ static bool make_token(char *e) {
         case '/':
           tokens->type = '/';
           break;
+        case '(':
+          tokens->type = '(';
+          break;
+        case ')':
+          tokens->type = ')';
+          break;
         default:
           // TODO();
         }
