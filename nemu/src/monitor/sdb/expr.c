@@ -191,7 +191,7 @@ u_int32_t eval(int p, int q) {
      * For now this token should be a number.
      * Return the value of the number.
      */
-  } else if (check_parentheses(p, q) == true) {
+  } else if (check_parentheses(p, q) == false) {
     /* The expression is surrounded by a matched pair of parentheses.
      * If that is the case, just throw away the parentheses.
      */
