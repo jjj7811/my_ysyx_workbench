@@ -116,19 +116,29 @@ static bool make_token(char *e) {
                   substr_len);
           break;
         case '-':
-          tokens[nr_token++].type = '-';
+          tokens[nr_token].type = '-';
+          strncpy(tokens[nr_token++].str, e + position - substr_len,
+                  substr_len);
           break;
         case '*':
-          tokens[nr_token++].type = '*';
+          tokens[nr_token].type = '*';
+          strncpy(tokens[nr_token++].str, e + position - substr_len,
+                  substr_len);
           break;
         case '/':
-          tokens[nr_token++].type = '/';
+          tokens[nr_token].type = '/';
+          strncpy(tokens[nr_token++].str, e + position - substr_len,
+                  substr_len);
           break;
         case '(':
-          tokens[nr_token++].type = '(';
+          tokens[nr_token].type = '(';
+          strncpy(tokens[nr_token++].str, e + position - substr_len,
+                  substr_len);
           break;
         case ')':
-          tokens[nr_token++].type = ')';
+          tokens[nr_token].type = ')';
+          strncpy(tokens[nr_token++].str, e + position - substr_len,
+                  substr_len);
           break;
         case NUM:
           tokens[nr_token].type = NUM;
@@ -203,10 +213,8 @@ word_t expr(char *e, bool *success) {
   }
   for (int i = 0; i < nr_token; i++) {
     int ty = tokens[i].type;
-    if (ty == 42 || ty == 43 || ty == 45 ||
-        ty == 47 || ty == 40 || ty == 41)
-      printf("tokens[%d]:\ttype:%c str:%s\r\n", i, ty,
-             tokens[i].str);
+    if (ty == 42 || ty == 43 || ty == 45 || ty == 47 || ty == 40 || ty == 41)
+      printf("tokens[%d]:\ttype:%c str:%s\r\n", i, ty, tokens[i].str);
     else
       printf("tokens[%d]:\ttype:%d str:%s\r\n", i, tokens[i].type,
              tokens[i].str);
