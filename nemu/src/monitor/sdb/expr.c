@@ -167,20 +167,18 @@ bool check_parentheses(int p, int q) {
   }
   while (p < q) {
     printf("p:%d q:%d\r\n", p, q);
-    if (tokens[p].type == '(' && tokens[q].type == ')') {
-      p++;
-      q--;
-    } else if (tokens[p].type == '(' && tokens[q].type != ')') {
-      q--;
+    if (tokens[p].type == '(') {
+      if (tokens[q].type == ')') {
+        p++;
+        q--;
+      } else {
+        q--;
+      }
+      continue;
     } else if (tokens[p].type == ')') {
       return false;
-    } else if (tokens[p].type != '(' && tokens[q].type == ')') {
+    } else
       p++;
-    } else if (tokens[p].type != '(' && tokens[q].type != ')') {
-      p++;
-    } else {
-      p++;
-    }
   }
   return true;
 }
