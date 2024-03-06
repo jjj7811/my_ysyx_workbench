@@ -182,7 +182,7 @@ int find_main_op(int p, int q) {
   int pp = p;
   int arry_ptr = 0;
   int main_op = p;
-  int op_tep_pri= 3;
+  // int op_tep_pri= 3;
   while (pp <= q) {
     if (tokens[pp].type == '(') {
       while (tokens[pp].type != ')')
@@ -195,12 +195,12 @@ int find_main_op(int p, int q) {
     }
     pp++;
   }
-  for(int i=0;i<arry_ptr;i++){
-    op_tep_pri=op_pri(tokens[op_arry[i]].type);
-    if(op_pri(tokens[main_op].type)>=op_tep_pri){
-      main_op=op_arry[i];
-    }
-  }
+  // for(int i=0;i<arry_ptr;i++){
+  //   op_tep_pri=op_pri(tokens[op_arry[i]].type);
+  //   if(op_pri(tokens[main_op].type)>=op_tep_pri){
+  //     main_op=op_arry[i];
+  //   }
+  // }
   for(int i =0;i<10;i++){
     printf("op_arry:%d\t",op_arry[i]);
   }
