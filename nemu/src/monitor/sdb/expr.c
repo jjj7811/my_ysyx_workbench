@@ -181,8 +181,8 @@ int find_main_op(int p, int q) {
   int op_arry[256] = {0};
   int pp = p;
   int arry_ptr = 0;
-  int main_op = 0;
-  int op_tep_pri=0;
+  int main_op = p;
+  int op_tep_pri= 3;
   while (pp <= q) {
     if (tokens[pp].type == '(') {
       while (tokens[pp].type != ')')
