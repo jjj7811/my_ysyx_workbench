@@ -185,14 +185,13 @@ int find_main_op(int p, int q) {
   int arry_ptr = 0;
   int main_op;
   int op_tep_pri = 3;
+  int cnts = 0;
   while (pp <= q) {
     if (tokens[pp].type == '(') {
-      while (tokens[pp].type != ')')
-        pp++;
-      pp++;
-      continue;
-    }
-    if (tokens[pp].type != NUM) {
+      cnts++;
+    } else if (tokens[pp].type == ')') {
+      cnts--;
+    } else if (cnts ==0 && tokens[pp].type != NUM) {
       op_arry[arry_ptr] = pp;
       arry_ptr++;
     }
