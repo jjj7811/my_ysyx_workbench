@@ -161,6 +161,44 @@ static bool make_token(char *e) {
   return true;
 }
 
+int op_pri(int op_type) {
+  switch (op_type) {
+  case '+':
+    return 1;
+  case '-':
+    return 1;
+  case '*':
+    return 2;
+  case '/':
+    return 2;
+  default:
+    printf("Undefine oprator\n");
+    assert(0);
+  }
+}
+
+int find_main_op(int p, int q) {
+  int op_arry[256] = {};
+  int pp = p;
+  int arry_ptr = 0;
+  while (p <= q) {
+    if (tokens[pp].type == '(') {
+      while (tokens[pp].type != ')')
+        pp++;
+      continue;
+    }
+    if (tokens[pp].type != NUM) {
+      op_arry[arry_ptr] = pp;
+      arry_ptr++;
+    }
+
+  }
+  for(int i =0;i<10;i++){
+    printf("op_arry:%d\t",op_arry[i]);
+  }
+  return 0;
+}
+
 bool check_parentheses(int p, int q) {
   if (tokens[p].type != '(' || tokens[q].type != ')') {
     return false;
@@ -203,6 +241,7 @@ u_int32_t eval(int p, int q) {
   } else {
     /* We should do more things here. */
     // printf("else\r\n");
+    find_main_op(p,q);
   }
   return 0;
 }
