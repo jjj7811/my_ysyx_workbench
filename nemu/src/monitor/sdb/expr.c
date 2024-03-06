@@ -196,9 +196,9 @@ int find_main_op(int p, int q) {
     pp++;
   }
   for(int i=0;i<arry_ptr;i++){
-    op_tep_pri=op_pri(tokens[i].type);
+    op_tep_pri=op_pri(tokens[op_arry[i]].type);
     if(op_pri(tokens[main_op].type)>=op_tep_pri){
-      main_op=i;
+      main_op=op_arry[i];
     }
   }
   for(int i =0;i<10;i++){
