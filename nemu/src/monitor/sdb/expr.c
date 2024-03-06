@@ -215,14 +215,15 @@ bool check_parentheses(int p, int q) {
   if (tokens[p].type != '(' || tokens[q].type != ')') {
     return false;
   }
-  while (p < q) {
+  while (p <= q) {
     // printf("p:%d q:%d\r\n", p, q);
     if (tokens[p].type == '(') {
       if (tokens[q].type == ')') {
         p++;
         q--;
-        continue;
-      } else {
+      } else if(p==q){
+        return false;
+      }else{
         q--;
       }
       
