@@ -248,13 +248,13 @@ u_int32_t eval(int p, int q, bool *success) {
      * For now this token should be a number.
      * Return the value of the number.
      */
-    printf("singal token\r\n");
+    // printf("singal token\r\n");
     return atoi(tokens[p].str);
   } else if (check_parentheses(p, q, success) == true) {
     /* The expression is surrounded by a matched pair of parentheses.
      * If that is the case, just throw away the parentheses.
      */
-    printf("right expression,here we go!\r\n");
+    // printf("right expression,here we go!\r\n");
     return eval(p + 1, q - 1, success);
   } else {
     /* We should do more things here. */
