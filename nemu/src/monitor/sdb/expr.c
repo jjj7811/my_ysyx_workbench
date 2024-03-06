@@ -222,7 +222,7 @@ bool check_parentheses(int p, int q,bool *success) {
         p++;
         q--;
       } else if(p==q){
-        success = false;
+        *success = false;
         return false;
       }else{
         q--;
@@ -278,8 +278,7 @@ word_t expr(char *e, bool *success) {
   int ev = eval(0, nr_token - 1,success);
   printf("value: %d\r\n", ev);
   /* TODO: Insert codes to evaluate the expression. */
-  // TODO();
-  *success = false;
+  // TODO();s
 
   return 0;
 }
