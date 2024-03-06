@@ -166,7 +166,7 @@ bool check_parentheses(int p, int q) {
     return false;
   }
   while (p <= q) {
-    printf("p:%d q:%d\r\n", p, q);
+    // printf("p:%d q:%d\r\n", p, q);
     if (tokens[p].type == '(') {
       if (tokens[q].type == ')') {
         p++;
@@ -201,7 +201,7 @@ u_int32_t eval(int p, int q) {
     return eval(p + 1, q - 1);
   } else {
     /* We should do more things here. */
-    printf("else\r\n");
+    // printf("else\r\n");
   }
   return 0;
 }
