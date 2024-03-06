@@ -219,7 +219,7 @@ word_t expr(char *e, bool *success) {
       printf("tokens[%d]:\ttype:%d str:%s\r\n", i, tokens[i].type,
              tokens[i].str);
   }
-  printf("nr_token:%d \r\n", nr_token);
+  // printf("nr_token:%d \r\n", nr_token);
   int ev = eval(0, nr_token - 1);
   printf("value: %d\r\n", ev);
   /* TODO: Insert codes to evaluate the expression. */
