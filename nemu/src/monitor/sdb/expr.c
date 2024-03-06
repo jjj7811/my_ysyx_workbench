@@ -221,10 +221,11 @@ bool check_parentheses(int p, int q) {
       if (tokens[q].type == ')') {
         p++;
         q--;
+        continue;
       } else {
         q--;
       }
-      continue;
+      
     } else if (tokens[p].type == ')') {
       return false;
     } else
