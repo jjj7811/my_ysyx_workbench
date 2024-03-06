@@ -191,7 +191,7 @@ int find_main_op(int p, int q) {
       cnts++;
     } else if (tokens[pp].type == ')') {
       cnts--;
-    }  if (cnts == 0 && tokens[pp].type != NUM) {
+    } else if (cnts == 0 && tokens[pp].type != NUM) {
       op_arry[arry_ptr] = pp;
       arry_ptr++;
     }
