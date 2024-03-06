@@ -213,7 +213,7 @@ int find_main_op(int p, int q) {
 
 bool check_parentheses(int p, int q,bool *success) {
   if (tokens[p].type != '(' || tokens[q].type != ')') {
-    *success = false;
+    // *success = false;
     return false;
   }
   while (p <= q) {
