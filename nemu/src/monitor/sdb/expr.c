@@ -178,10 +178,10 @@ int op_pri(int op_type) {
 }
 
 int find_main_op(int p, int q) {
-  int op_arry[256] = {};
+  int op_arry[256] = {0};
   int pp = p;
   int arry_ptr = 0;
-  while (p <= q) {
+  while (pp <= q) {
     if (tokens[pp].type == '(') {
       while (tokens[pp].type != ')')
         pp++;
@@ -192,7 +192,6 @@ int find_main_op(int p, int q) {
       arry_ptr++;
     }
     pp++;
-
   }
   for(int i =0;i<10;i++){
     printf("op_arry:%d\t",op_arry[i]);
