@@ -191,6 +191,7 @@ int find_main_op(int p, int q) {
       op_arry[arry_ptr] = pp;
       arry_ptr++;
     }
+    pp++;
 
   }
   for(int i =0;i<10;i++){
