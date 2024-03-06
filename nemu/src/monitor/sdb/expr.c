@@ -250,7 +250,7 @@ u_int32_t eval(int p, int q) {
     /* The expression is surrounded by a matched pair of parentheses.
      * If that is the case, just throw away the parentheses.
      */
-    printf("true\r\n");
+    printf("right expression,here we go!\r\n");
     return eval(p + 1, q - 1);
   } else {
     /* We should do more things here. */
