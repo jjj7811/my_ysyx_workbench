@@ -173,7 +173,7 @@ int op_pri(int op_type) {
     return 2;
   default:
     printf("Undefine oprator\n");
-    printf("type:%d\r\n",op_type);
+    printf("type:%d\r\n", op_type);
     return 3;
     // assert(0);
   }
@@ -183,12 +183,13 @@ int find_main_op(int p, int q) {
   int op_arry[256] = {0};
   int pp = p;
   int arry_ptr = 0;
-  int main_op ;
-  int op_tep_pri= 3;
+  int main_op;
+  int op_tep_pri = 3;
   while (pp <= q) {
     if (tokens[pp].type == '(') {
       while (tokens[pp].type != ')')
         pp++;
+      pp++;
       continue;
     }
     if (tokens[pp].type != NUM) {
@@ -198,16 +199,16 @@ int find_main_op(int p, int q) {
     pp++;
   }
   main_op = op_arry[0];
-  for(int i=0;i<arry_ptr;i++){
-    op_tep_pri=op_pri(tokens[op_arry[i]].type);
-    if(op_pri(tokens[main_op].type)>=op_tep_pri){
-      main_op=op_arry[i];
+  for (int i = 0; i < arry_ptr; i++) {
+    op_tep_pri = op_pri(tokens[op_arry[i]].type);
+    if (op_pri(tokens[main_op].type) >= op_tep_pri) {
+      main_op = op_arry[i];
     }
   }
-  for(int i =0;i<10;i++){
-    printf("op_arry:%d\t",op_arry[i]);
+  for (int i = 0; i < 10; i++) {
+    printf("op_arry:%d\t", op_arry[i]);
   }
-  printf("\r\nmain_op:%d\r\n",main_op);
+  printf("\r\nmain_op:%d\r\n", main_op);
   return 0;
 }
 
@@ -253,7 +254,7 @@ u_int32_t eval(int p, int q) {
   } else {
     /* We should do more things here. */
     // printf("else\r\n");
-    find_main_op(p,q);
+    find_main_op(p, q);
   }
   return 0;
 }
