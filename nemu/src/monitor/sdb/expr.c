@@ -173,6 +173,7 @@ int op_pri(int op_type) {
     return 2;
   default:
     printf("Undefine oprator\n");
+    printf("%c",op_type);
     return 3;
     // assert(0);
   }
