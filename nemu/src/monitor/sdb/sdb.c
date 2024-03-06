@@ -106,7 +106,7 @@ static int cmd_p(char *args) {
   bool b = 1;
   expr(cmd, &b);
   if (b == false)
-    printf("fasle:%d\r\n", b);
+    printf("something is wrong,check your expression:\r\n");
   return 0;
 }
 

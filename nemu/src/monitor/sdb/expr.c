@@ -211,7 +211,7 @@ int find_main_op(int p, int q) {
   return 0;
 }
 
-bool check_parentheses(int p, int q) {
+bool check_parentheses(int p, int q,bool *success) {
   if (tokens[p].type != '(' || tokens[q].type != ')') {
     return false;
   }
@@ -222,6 +222,7 @@ bool check_parentheses(int p, int q) {
         p++;
         q--;
       } else if(p==q){
+        success = false;
         return false;
       }else{
         q--;
@@ -235,7 +236,7 @@ bool check_parentheses(int p, int q) {
   return true;
 }
 
-u_int32_t eval(int p, int q) {
+u_int32_t eval(int p, int q,bool *success) {
   if (p > q) {
     /* Bad expression */
     assert(0);
@@ -246,12 +247,12 @@ u_int32_t eval(int p, int q) {
      */
     printf("singal token\r\n");
     return atoi(tokens[p].str);
-  } else if (check_parentheses(p, q) == true) {
+  } else if (check_parentheses(p, q,success) == true) {
     /* The expression is surrounded by a matched pair of parentheses.
      * If that is the case, just throw away the parentheses.
      */
     printf("right expression,here we go!\r\n");
-    return eval(p + 1, q - 1);
+    return eval(p + 1, q - 1,success);
   } else {
     /* We should do more things here. */
     // printf("else\r\n");
@@ -274,7 +275,7 @@ word_t expr(char *e, bool *success) {
              tokens[i].str);
   }
   // printf("nr_token:%d \r\n", nr_token);
-  int ev = eval(0, nr_token - 1);
+  int ev = eval(0, nr_token - 1,success);
   printf("value: %d\r\n", ev);
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();
