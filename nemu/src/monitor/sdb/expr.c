@@ -258,6 +258,7 @@ u_int32_t eval(int p, int q,bool *success) {
     // printf("else\r\n");
     find_main_op(p, q);
   }
+  *success = false;
   return 0;
 }
 
