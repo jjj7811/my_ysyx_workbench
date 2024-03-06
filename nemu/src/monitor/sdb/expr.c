@@ -279,6 +279,7 @@ word_t expr(char *e, bool *success) {
   printf("value: %d\r\n", ev);
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();
+  success = false;
 
   return 0;
 }

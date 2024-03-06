@@ -105,7 +105,7 @@ static int cmd_p(char *args) {
   char *cmd = strtok(NULL, " ");
   bool b = 1;
   expr(cmd, &b);
-  // if (b == false)
+  if (b == false)
     printf("something is wrong,check your expression:\r\n");
   return 0;
 }
