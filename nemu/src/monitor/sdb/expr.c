@@ -208,10 +208,10 @@ int find_main_op(int p, int q) {
     printf("op_arry:%d\t", op_arry[i]);
   }
   printf("\r\nmain_op:%d\r\n", main_op);
-  return 0;
+  return main_op;
 }
 
-bool check_parentheses(int p, int q,bool *success) {
+bool check_parentheses(int p, int q, bool *success) {
   if (tokens[p].type != '(' || tokens[q].type != ')') {
     // *success = false;
     return false;
@@ -222,13 +222,13 @@ bool check_parentheses(int p, int q,bool *success) {
       if (tokens[q].type == ')') {
         p++;
         q--;
-      } else if(p==q){
+      } else if (p == q) {
         *success = false;
         return false;
-      }else{
+      } else {
         q--;
       }
-      
+
     } else if (tokens[p].type == ')') {
       *success = false;
       return false;
@@ -238,7 +238,8 @@ bool check_parentheses(int p, int q,bool *success) {
   return true;
 }
 
-u_int32_t eval(int p, int q,bool *success) {
+u_int32_t eval(int p, int q, bool *success) {
+  int main_op;
   if (p > q) {
     /* Bad expression */
     assert(0);
@@ -249,16 +250,36 @@ u_int32_t eval(int p, int q,bool *success) {
      */
     printf("singal token\r\n");
     return atoi(tokens[p].str);
-  } else if (check_parentheses(p, q,success) == true) {
+  } else if (check_parentheses(p, q, success) == true) {
     /* The expression is surrounded by a matched pair of parentheses.
      * If that is the case, just throw away the parentheses.
      */
     printf("right expression,here we go!\r\n");
-    return eval(p + 1, q - 1,success);
+    return eval(p + 1, q - 1, success);
   } else {
     /* We should do more things here. */
     // printf("else\r\n");
-    find_main_op(p, q);
+    main_op = find_main_op(p, q);
+    u_int32_t val1 = eval(p, main_op - 1, success);
+    u_int32_t val2 = eval(main_op + 1, q, success);
+
+    switch (tokens[main_op].type) {
+    case '+':
+      return val1 + val2;
+      break;
+    case '-':
+      return val1 - val2;
+      break;
+    case '*':
+      return val1 * val2;
+      break;
+    case '/':
+      return val1 / val2;
+      break;
+    default:
+      printf("wrong op\r\n");
+      break;
+    }
   }
   return 0;
 }
@@ -277,7 +298,7 @@ word_t expr(char *e, bool *success) {
              tokens[i].str);
   }
   // printf("nr_token:%d \r\n", nr_token);
-  int ev = eval(0, nr_token - 1,success);
+  int ev = eval(0, nr_token - 1, success);
   printf("value: %d\r\n", ev);
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();s
