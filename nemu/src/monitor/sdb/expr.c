@@ -183,7 +183,7 @@ int find_main_op(int p, int q) {
   int op_arry[256] = {0};
   int pp = p;
   int arry_ptr = 0;
-  int main_op = p;
+  int main_op ;
   int op_tep_pri= 3;
   while (pp <= q) {
     if (tokens[pp].type == '(') {
@@ -197,6 +197,7 @@ int find_main_op(int p, int q) {
     }
     pp++;
   }
+  main_op = op_arry[0];
   for(int i=0;i<arry_ptr;i++){
     op_tep_pri=op_pri(tokens[op_arry[i]].type);
     if(op_pri(tokens[main_op].type)>=op_tep_pri){
