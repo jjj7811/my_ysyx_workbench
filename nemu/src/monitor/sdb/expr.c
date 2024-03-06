@@ -205,7 +205,7 @@ int find_main_op(int p, int q) {
   for(int i =0;i<10;i++){
     printf("op_arry:%d\t",op_arry[i]);
   }
-  printf("\r\nmain_op:%d",main_op);
+  printf("\r\nmain_op:%d\r\n",main_op);
   return 0;
 }
 
