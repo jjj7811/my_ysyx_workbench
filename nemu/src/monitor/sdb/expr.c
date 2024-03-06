@@ -237,6 +237,7 @@ bool check_parentheses(int p, int q,bool *success) {
 }
 
 u_int32_t eval(int p, int q,bool *success) {
+  *success = false;
   if (p > q) {
     /* Bad expression */
     assert(0);
@@ -258,7 +259,7 @@ u_int32_t eval(int p, int q,bool *success) {
     // printf("else\r\n");
     find_main_op(p, q);
   }
-  *success = false;
+  
   return 0;
 }
 
@@ -280,6 +281,6 @@ word_t expr(char *e, bool *success) {
   printf("value: %d\r\n", ev);
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();s
-  *success = false;
+  // *success = false;
   return 0;
 }
