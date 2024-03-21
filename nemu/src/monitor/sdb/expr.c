@@ -239,19 +239,19 @@ int find_main_op(int p, int q) {
 // }
 
 bool check_parentheses(int p, int q, bool *success) {
-  printf("%d %d\r\n",p,q);
+  // printf("%d %d\r\n",p,q);
   int cnt = 0;
   if (tokens[p].type != '(' || tokens[q].type != ')') {
     // *success = false;
     return false;
   }
-  for (int i = 0; i < q; i++) {
+  for (int i = 0; i <=q; i++) {
     if (tokens[i].type == '(') {
       cnt++;
     } else if (tokens[i].type == ')') {
       cnt--;
     }
-    if (cnt == 0 && i != q-1) {
+    if (cnt == 0 && i != q) {
       success = 0;
       return false;
     }
