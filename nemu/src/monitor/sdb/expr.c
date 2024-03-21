@@ -239,7 +239,7 @@ int find_main_op(int p, int q) {
 // }
 
 bool check_parentheses(int p, int q, bool *success) {
-  // printf("%d %d\r\n",p,q);
+  printf("%d %d\r\n",p,q);
   int cnt = 0;
   if (tokens[p].type != '(' || tokens[q].type != ')') {
     // *success = false;
