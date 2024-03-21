@@ -102,12 +102,26 @@ static int cmd_x(char *args) {
 }
 
 static int cmd_p(char *args) {
-  char *cmd = strtok(NULL, " ");
-  bool b = 1;
-  expr(cmd, &b);
-  if (b == false)
-    printf("something is wrong,check your expression:\r\n");
+  FILE *fp;
+  char str[50];
+  fp = fopen("input", "r");
+  if (fp == NULL) {
+    printf("Unable to open file.\n");
+    return 1;
+  }
+  bool succ = fgets(str, 50, fp);
+  printf("%d",succ);
+  printf("%s", str);
+  fclose(fp);
   return 0;
+
+
+  // char *cmd = strtok(NULL, " ");
+  // bool b = 1;
+  // expr(cmd, &b);
+  // if (b == false)
+  //   printf("something is wrong,check your expression:\r\n");
+  // return 0;
 }
 
 static int cmd_help(char *args);
