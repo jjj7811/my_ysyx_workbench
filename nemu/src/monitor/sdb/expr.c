@@ -257,7 +257,7 @@ bool check_parentheses(int p, int q, bool *success) {
   }
   if (cnt == 0){
     
-    success = 0;
+    *success = true;
     return true;
   }
     
