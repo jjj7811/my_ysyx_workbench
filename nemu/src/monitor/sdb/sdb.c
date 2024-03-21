@@ -124,7 +124,7 @@ static int cmd_pp(char *args) {
   char cmd[50];
   bool b = 1;
   // printf("%d",succ);
-  for (int i = 0; i < 100; i++) {
+  // for (int i = 0; i < 100; i++) {
     succ = fgets(str, 50, fp);
     if (succ != 0) {
       b = 1;
@@ -136,7 +136,7 @@ static int cmd_pp(char *args) {
       printf("golden value : %s\t", value);
       printf("nemu value: %d\r\n",nemu_value);
     }
-  }
+  // }
   fclose(fp);
   return 0;
 }
