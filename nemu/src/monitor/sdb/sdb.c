@@ -120,6 +120,18 @@ static int cmd_p(char *args) {
     printf("exp is : %s\r\n",cmd);
 
   }
+
+  bool succ1 = fgets(str, 50, fp);
+  // printf("%d",succ);
+  if(succ1!=0){
+    printf("%s\r\n", str);
+    char *value1 = strtok(str, " ");
+    printf("valuse is : %s\r\n",value1);
+
+    char *cmd1 = strtok(NULL, " ");
+    printf("exp is : %s\r\n",cmd1);
+
+  }
   
   fclose(fp);
   return 0;
