@@ -124,6 +124,7 @@ static int cmd_pp(char *args) {
   uint32_t nemu_value=0;
   char cmd[50];
   bool b = 1;
+  int right_cnt = 0;
   // printf("%d",succ);
   for (int i = 0; i < 100; i++) {
     // succ = fscanf(fp, "%[^\n]", str);
@@ -134,6 +135,10 @@ static int cmd_pp(char *args) {
       strcpy(value, strtok(str, " "));
       strcpy(cmd, strtok(NULL, " "));
       nemu_value = expr(cmd, &b);
+
+      if(atoi(value)==nemu_value){
+        right_cnt++;
+      }
 
       printf("exp : %s\t", cmd);
       printf("golden value : %s\t", value);
