@@ -138,6 +138,8 @@ static int cmd_pp(char *args) {
 
       if(atoi(value)==nemu_value){
         right_cnt++;
+      }else{
+                Log("here is a error\r\n");
       }
 
       printf("exp : %s\t", cmd);
