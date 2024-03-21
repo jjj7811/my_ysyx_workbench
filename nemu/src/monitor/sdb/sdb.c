@@ -113,7 +113,7 @@ static int cmd_p(char *args) {
   // printf("%d",succ);
   if(succ!=0){
     printf("%s\r\n", str);
-    char *cmd = strtok(NULL, " ");
+    char *cmd = strtok(str, " ");
     printf("%s\r\n",cmd);
   }
   
