@@ -103,6 +103,7 @@ static int cmd_x(char *args) {
 
 static int cmd_p(char *args) {
   char *cmd = strtok(NULL, " ");
+  printf("test:%s\r\n",cmd);
   bool b = 1;
   expr(cmd, &b);
   if (b == false)
@@ -122,19 +123,19 @@ static int cmd_pp(char *args) {
   char value[50];
   uint32_t nemu_value=0;
   char cmd[50];
-  // bool b = 1;
+  bool b = 1;
   // printf("%d",succ);
   // for (int i = 0; i < 100; i++) {
     succ = fgets(str, 50, fp);
     if (succ != 0) {
-      // b = 1;
+      b = 1;
       strcpy(value, strtok(str, " "));
       strcpy(cmd, strtok(NULL, " "));
-      // nemu_value = expr(cmd, &b);
+      nemu_value = expr(cmd, &b);
 
       printf("exp : %s\t", cmd);
       printf("golden value : %s\t", value);
-      printf("nemu value: %d\n",nemu_value);
+      printf("nemu value: %d\r\n",nemu_value);
     }
   // }
   fclose(fp);
