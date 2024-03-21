@@ -126,7 +126,7 @@ static int cmd_pp(char *args) {
     succ=fgets(str, 50, fp);
     if (succ != 0) {
       
-      printf("%s\r\n", str);
+      // printf("%s\r\n", str);
       strcpy(value, strtok(str, " "));
       // *value = strtok(str, " ");
       printf("valuse is : %s\t", value);
