@@ -119,20 +119,21 @@ static int cmd_pp(char *args) {
     return 1;
   }
   bool succ = 0;
-  char value[50] ;
-  char cmd[50] ;
+  char value[50];
+  uint32_t nemu_value;
+  char cmd[50];
+  bool b = 1;
   // printf("%d",succ);
   for (int i = 0; i < 100; i++) {
-    succ=fgets(str, 50, fp);
+    succ = fgets(str, 50, fp);
     if (succ != 0) {
-      
-      // printf("%s\r\n", str);
       strcpy(value, strtok(str, " "));
-      // *value = strtok(str, " ");
-      printf("valuse is : %s\t", value);
       strcpy(cmd, strtok(NULL, " "));
-      // *cmd = strtok(NULL, " ");
-      printf("exp is : %s\r\n", cmd);
+      nemu_value = expr(cmd, &b);
+
+      printf("exp : %s\t", cmd);
+      printf("golden value : %s\t", value);
+      printf("nemu value: %d\r\n",nemu_value);
     }
   }
   fclose(fp);
