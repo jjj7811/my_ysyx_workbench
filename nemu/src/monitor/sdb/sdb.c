@@ -126,7 +126,8 @@ static int cmd_pp(char *args) {
   // bool b = 1;
   // printf("%d",succ);
   // for (int i = 0; i < 100; i++) {
-    succ = fgets(str, 50, fp);
+    succ = fscanf(fp, "%[^\n]", str);
+    // succ = fgets(str, 50, fp);
     if (succ != 0) {
       // b = 1;
       strcpy(value, strtok(str, " "));
