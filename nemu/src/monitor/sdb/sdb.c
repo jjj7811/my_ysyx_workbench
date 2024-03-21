@@ -129,7 +129,7 @@ static int cmd_pp(char *args) {
       printf("%s\r\n", str);
       strcpy(value, strtok(str, " "));
       // *value = strtok(str, " ");
-      printf("valuse is : %s\r\n", value);
+      printf("valuse is : %s\t", value);
       strcpy(cmd, strtok(NULL, " "));
       // *cmd = strtok(NULL, " ");
       printf("exp is : %s\r\n", cmd);
