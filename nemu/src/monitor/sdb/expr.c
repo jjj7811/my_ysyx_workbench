@@ -245,7 +245,7 @@ bool check_parentheses(int p, int q, bool *success) {
     // *success = false;
     return false;
   }
-  for (int i = 0; i <=q; i++) {
+  for (int i = p; i <=q; i++) {
     if (tokens[i].type == '(') {
       cnt++;
     } else if (tokens[i].type == ')') {
