@@ -113,14 +113,12 @@ static int cmd_p(char *args) {
   // printf("%d",succ);
   if(succ!=0){
     printf("%s\r\n", str);
-    char *cmd = strtok(str, " ");
+    char *value = strtok(str, " ");
+    printf("%s\r\n",value);
+
+    char *cmd = strtok(NULL, " ");
     printf("%s\r\n",cmd);
 
-    char *cmd1 = strtok(NULL, " ");
-    printf("%s\r\n",cmd1);
-
-    char *cmd2 = strtok(NULL, " ");
-    printf("%s\r\n",cmd2);
   }
   
   fclose(fp);
