@@ -262,7 +262,7 @@ bool check_parentheses(int p, int q, bool *success) {
     return true;
   }
     
-  return false;
+  return true;
 }
 
 u_int32_t eval(int p, int q, bool *success) {
