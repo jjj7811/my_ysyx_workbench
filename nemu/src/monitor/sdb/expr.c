@@ -250,7 +250,7 @@ bool check_parentheses(int p, int q, bool *success) {
     } else if (tokens[i].type == ')') {
       cnt--;
     }
-    if (cnt == 0) {
+    if (cnt == 0 && i != q-1) {
       success = 0;
       return false;
     }
