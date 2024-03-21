@@ -243,7 +243,7 @@ bool check_parentheses(int p, int q, bool *success) {
   int cnt = 0;
   if (tokens[p].type != '(' || tokens[q].type != ')') {
     // *success = false;
-    return false;
+    // return false;
   }
   for (int i = 0; i <=q; i++) {
     if (tokens[i].type == '(') {
