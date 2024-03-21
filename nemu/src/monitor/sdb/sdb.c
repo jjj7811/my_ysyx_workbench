@@ -102,34 +102,12 @@ static int cmd_x(char *args) {
 }
 
 static int cmd_p(char *args) {
-  FILE *fp;
-  char str[50];
-  fp = fopen("input", "r");
-  if (fp == NULL) {
-    printf("Unable to open file.\n");
-    return 1;
-  }
-  bool succ = fgets(str, 50, fp);
-  // printf("%d",succ);
-  if(succ!=0){
-    printf("%s\r\n", str);
-    char *value = strtok(str, " ");
-    printf("valuse is : %s\r\n",value);
-
-    char *cmd = strtok(NULL, " ");
-    printf("exp is : %s\r\n",cmd);
-
-  }
-  fclose(fp);
+  char *cmd = strtok(NULL, " ");
+  bool b = 1;
+  expr(cmd, &b);
+  if (b == false)
+    printf("something is wrong,check your expression:\r\n");
   return 0;
-
-
-  // char *cmd = strtok(NULL, " ");
-  // bool b = 1;
-  // expr(cmd, &b);
-  // if (b == false)
-  //   printf("something is wrong,check your expression:\r\n");
-  // return 0;
 }
 
 static int cmd_pp(char *args) {
@@ -140,20 +118,26 @@ static int cmd_pp(char *args) {
     printf("Unable to open file.\n");
     return 1;
   }
-  bool succ = fgets(str, 50, fp);
+  bool succ = 0;
+  char value[50] ;
+  char cmd[50] ;
   // printf("%d",succ);
-  if(succ!=0){
-    printf("%s\r\n", str);
-    char *value = strtok(str, " ");
-    printf("valuse is : %s\r\n",value);
+  for (int i = 0; i < 100; i++) {
+    succ=fgets(str, 50, fp);
+    if (succ != 0) {
+      
+      printf("%s\r\n", str);
+      strcpy(value, strtok(str, " "));
+      // *value = strtok(str, " ");
+      printf("valuse is : %s\r\n", value);
 
-    char *cmd = strtok(NULL, " ");
-    printf("exp is : %s\r\n",cmd);
-
+      // *cmd = strtok(NULL, " ");
+      printf("exp is : %s\r\n", cmd);
+    }
+    fclose(fp);
+    
   }
-  fclose(fp);
   return 0;
-
 }
 
 static int cmd_help(char *args);

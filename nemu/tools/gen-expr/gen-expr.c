@@ -122,9 +122,12 @@ int main(int argc, char *argv[]) {
     pclose(fp);
 
     if(result<0){
+      i--;
       // printf("error,result less than zero");
-    }else if(strlen(buf)<=50){
+    }else if(strlen(buf)<=32){
       printf("%u %s\n", result, buf);
+    }else{
+      i--;
     }
     // printf("%s\n",  buf);
 
