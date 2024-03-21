@@ -256,6 +256,7 @@ bool check_parentheses(int p, int q, bool *success) {
       return false;
     }
   }
+  printf("cnt:%d\r\n",cnt);
   if (cnt == 0){
     
     // *success = True;
