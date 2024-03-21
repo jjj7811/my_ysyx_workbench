@@ -255,8 +255,12 @@ bool check_parentheses(int p, int q, bool *success) {
       return false;
     }
   }
-  if (cnt == 0)
+  if (cnt == 0){
+    
+    success = 0;
     return true;
+  }
+    
   return false;
 }
 
