@@ -115,6 +115,12 @@ static int cmd_p(char *args) {
     printf("%s\r\n", str);
     char *cmd = strtok(str, " ");
     printf("%s\r\n",cmd);
+
+    char *cmd1 = strtok(NULL, " ");
+    printf("%s\r\n",cmd1);
+
+    char *cmd2 = strtok(NULL, " ");
+    printf("%s\r\n",cmd2);
   }
   
   fclose(fp);
