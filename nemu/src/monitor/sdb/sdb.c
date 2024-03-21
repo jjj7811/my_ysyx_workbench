@@ -120,19 +120,6 @@ static int cmd_p(char *args) {
     printf("exp is : %s\r\n",cmd);
 
   }
-
-  bool succ1 = fgets(str, 50, fp);
-  // printf("%d",succ);
-  if(succ1!=0){
-    printf("%s\r\n", str);
-    char *value1 = strtok(str, " ");
-    printf("valuse is : %s\r\n",value1);
-
-    char *cmd1 = strtok(NULL, " ");
-    printf("exp is : %s\r\n",cmd1);
-
-  }
-  
   fclose(fp);
   return 0;
 
@@ -143,6 +130,30 @@ static int cmd_p(char *args) {
   // if (b == false)
   //   printf("something is wrong,check your expression:\r\n");
   // return 0;
+}
+
+static int cmd_pp(char *args) {
+  FILE *fp;
+  char str[50];
+  fp = fopen("input", "r");
+  if (fp == NULL) {
+    printf("Unable to open file.\n");
+    return 1;
+  }
+  bool succ = fgets(str, 50, fp);
+  // printf("%d",succ);
+  if(succ!=0){
+    printf("%s\r\n", str);
+    char *value = strtok(str, " ");
+    printf("valuse is : %s\r\n",value);
+
+    char *cmd = strtok(NULL, " ");
+    printf("exp is : %s\r\n",cmd);
+
+  }
+  fclose(fp);
+  return 0;
+
 }
 
 static int cmd_help(char *args);
@@ -159,6 +170,7 @@ static struct {
     {"info", "print the state of program", cmd_info},
     {"x", "print N values on the addr", cmd_x},
     {"p", "Expression evaluation", cmd_p},
+    {"pp", "test for exp", cmd_pp},
 
     /* TODO: Add more commands */
 
