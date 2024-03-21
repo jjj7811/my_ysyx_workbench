@@ -211,31 +211,53 @@ int find_main_op(int p, int q) {
   return main_op;
 }
 
+// bool check_parentheses(int p, int q, bool *success) {
+//   if (tokens[p].type != '(' || tokens[q].type != ')') {
+//     // *success = false;
+//     return false;
+//   }
+//   while (p <= q) {
+//     // printf("p:%d q:%d\r\n", p, q);
+//     if (tokens[p].type == '(') {
+//       if (tokens[q].type == ')') {
+//         p++;
+//         q--;
+//       } else if (p == q) {
+//         *success = false;
+//         return false;
+//       } else {
+//         p++;
+//       }
+
+//     } else if (tokens[p].type == ')') {
+//       *success = false;
+//       return false;
+//     } else
+//       p++;
+//   }
+//   return true;
+// }
+
 bool check_parentheses(int p, int q, bool *success) {
+  int cnt = 0;
   if (tokens[p].type != '(' || tokens[q].type != ')') {
     // *success = false;
     return false;
   }
-  while (p <= q) {
-    // printf("p:%d q:%d\r\n", p, q);
-    if (tokens[p].type == '(') {
-      if (tokens[q].type == ')') {
-        p++;
-        q--;
-      } else if (p == q) {
-        *success = false;
-        return false;
-      } else {
-        p++;
-      }
-
-    } else if (tokens[p].type == ')') {
-      *success = false;
+  for (int i = 0; i < q; i++) {
+    if (tokens[i].type == '(') {
+      cnt++;
+    } else if (tokens[i].type == ')') {
+      cnt--;
+    }
+    if (cnt == 0) {
+      success = 0;
       return false;
-    } else
-      p++;
+    }
   }
-  return true;
+  if (cnt == 0)
+    return true;
+  return false;
 }
 
 u_int32_t eval(int p, int q, bool *success) {
