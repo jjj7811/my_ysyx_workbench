@@ -226,7 +226,7 @@ bool check_parentheses(int p, int q, bool *success) {
         *success = false;
         return false;
       } else {
-        q--;
+        p++;
       }
 
     } else if (tokens[p].type == ')') {
