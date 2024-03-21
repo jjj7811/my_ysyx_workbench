@@ -110,8 +110,11 @@ static int cmd_p(char *args) {
     return 1;
   }
   bool succ = fgets(str, 50, fp);
-  printf("%d",succ);
-  printf("%s", str);
+  // printf("%d",succ);
+  if(succ!=0){
+    printf("%s", str);
+  }
+  
   fclose(fp);
   return 0;
 
