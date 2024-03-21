@@ -112,9 +112,9 @@ static int cmd_p(char *args) {
   bool succ = fgets(str, 50, fp);
   // printf("%d",succ);
   if(succ!=0){
-    printf("%s", str);
+    printf("%s\r\n", str);
     char *cmd = strtok(NULL, " ");
-    printf("%s",cmd);
+    printf("%s\r\n",cmd);
   }
   
   fclose(fp);
