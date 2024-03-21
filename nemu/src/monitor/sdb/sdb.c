@@ -134,9 +134,8 @@ static int cmd_pp(char *args) {
       // *cmd = strtok(NULL, " ");
       printf("exp is : %s\r\n", cmd);
     }
-    fclose(fp);
-    
   }
+  fclose(fp);
   return 0;
 }
 
