@@ -114,10 +114,10 @@ static int cmd_p(char *args) {
   if(succ!=0){
     printf("%s\r\n", str);
     char *value = strtok(str, " ");
-    printf("%s\r\n",value);
+    printf("valuse is : %s\r\n",value);
 
     char *cmd = strtok(NULL, " ");
-    printf("%s\r\n",cmd);
+    printf("exp is : %s\r\n",cmd);
 
   }
   
