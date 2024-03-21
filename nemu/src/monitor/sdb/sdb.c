@@ -134,7 +134,7 @@ static int cmd_pp(char *args) {
 
       printf("exp : %s\t", cmd);
       printf("golden value : %s\t", value);
-      printf("nemu value: %d\r\n",nemu_value);
+      printf("nemu value: %d\n",nemu_value);
     }
   // }
   fclose(fp);
