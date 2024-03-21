@@ -145,6 +145,7 @@ static int cmd_pp(char *args) {
       printf("nemu value: %d\r\n",nemu_value);
     }
   }
+  printf("right cnt:%d\r\n",right_cnt);
   fclose(fp);
   return 0;
 }
