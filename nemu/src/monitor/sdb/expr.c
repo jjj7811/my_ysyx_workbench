@@ -170,15 +170,15 @@ static bool make_token(char *e) {
 int op_pri(int op_type) {
   switch (op_type) {
   case '+':
-    return 1;
+    return 4;
   case '-':
-    return 1;
+    return 4;
   case '*':
-    return 2;
+    return 3;
   case '/':
-    return 2;
+    return 3;
   case TK_EQ:
-    return 0;
+    return 7;
   default:
     printf("Undefine oprator\n");
     printf("type:%d\r\n", op_type);
@@ -192,7 +192,7 @@ int find_main_op(int p, int q) {
   int pp = p;
   int arry_ptr = 0;
   int main_op;
-  int op_tep_pri = 3;
+  int op_tep_pri = 0;
   int cnts = 0;
   while (pp <= q) {
     if (tokens[pp].type == '(') {
@@ -208,7 +208,7 @@ int find_main_op(int p, int q) {
   main_op = op_arry[0];
   for (int i = 0; i < arry_ptr; i++) {
     op_tep_pri = op_pri(tokens[op_arry[i]].type);
-    if (op_pri(tokens[main_op].type) >= op_tep_pri) {
+    if (op_pri(tokens[main_op].type) <= op_tep_pri) {
       main_op = op_arry[i];
     }
   }
