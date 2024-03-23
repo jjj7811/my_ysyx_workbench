@@ -177,8 +177,8 @@ int op_pri(int op_type) {
     return 2;
   case '/':
     return 2;
-  // case TK_EQ:
-  //   return 0;
+  case TK_EQ:
+    return 0;
   default:
     printf("Undefine oprator\n");
     printf("type:%d\r\n", op_type);
