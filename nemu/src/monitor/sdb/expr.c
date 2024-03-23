@@ -23,6 +23,7 @@
 enum {
   TK_NOTYPE = 256,
   TK_EQ = 1,
+  TK_NEQ = 2,
   // L_par = 2,
   // R_par = 3,
   NUM = 4,
@@ -50,7 +51,8 @@ static struct rule {
     {"\\(", '('}, // left parenthesis
     {"\\)", ')'}, // right parenthesis
 
-    {"==", TK_EQ}, // equal
+    {"==", TK_EQ},  // equal
+    {"!=", TK_NEQ}, // no equal
 
     {"[0-9]*", NUM}, // number
 };
@@ -150,6 +152,11 @@ static bool make_token(char *e) {
           strncpy(tokens[nr_token++].str, e + position - substr_len,
                   substr_len);
           break;
+        case TK_NEQ:
+          tokens[nr_token].type = TK_NEQ;
+          strncpy(tokens[nr_token++].str, e + position - substr_len,
+                  substr_len);
+          break;
         default:
           // TODO();
         }
@@ -178,6 +185,8 @@ int op_pri(int op_type) {
   case '/':
     return 3;
   case TK_EQ:
+    return 7;
+  case TK_NEQ:
     return 7;
   default:
     printf("Undefine oprator\n");
@@ -314,6 +323,9 @@ u_int32_t eval(int p, int q, bool *success) {
       break;
     case TK_EQ:
       return val1 == val2;
+      break;
+    case TK_NEQ:
+      return val1 != val2;
       break;
     default:
       printf("wrong op\r\n");
