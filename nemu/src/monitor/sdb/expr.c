@@ -169,6 +169,7 @@ static bool make_token(char *e) {
                   substr_len);
           break;
         case TK_OR:
+        printf("OR:\r\n");
           tokens[nr_token].type = TK_OR;
           strncpy(tokens[nr_token++].str, e + position - substr_len,
                   substr_len);
