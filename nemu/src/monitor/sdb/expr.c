@@ -144,10 +144,12 @@ static bool make_token(char *e) {
           tokens[nr_token].type = NUM;
           strncpy(tokens[nr_token++].str, e + position - substr_len,
                   substr_len);
+          break;
         case TK_EQ:
           tokens[nr_token].type = TK_EQ;
           strncpy(tokens[nr_token++].str, e + position - substr_len,
                   substr_len);
+          break;
         default:
           // TODO();
         }
