@@ -144,6 +144,10 @@ static bool make_token(char *e) {
           tokens[nr_token].type = NUM;
           strncpy(tokens[nr_token++].str, e + position - substr_len,
                   substr_len);
+        case TK_EQ:
+          tokens[nr_token].type = TK_EQ;
+          strncpy(tokens[nr_token++].str, e + position - substr_len,
+                  substr_len);
         default:
           // TODO();
         }
@@ -171,10 +175,12 @@ int op_pri(int op_type) {
     return 2;
   case '/':
     return 2;
+  case TK_EQ:
+    return 0;
   default:
     printf("Undefine oprator\n");
     printf("type:%d\r\n", op_type);
-    return 3;
+    return 0;
     // assert(0);
   }
 }
@@ -245,7 +251,7 @@ bool check_parentheses(int p, int q, bool *success) {
     // *success = false;
     return false;
   }
-  for (int i = p; i <=q; i++) {
+  for (int i = p; i <= q; i++) {
     if (tokens[i].type == '(') {
       cnt++;
     } else if (tokens[i].type == ')') {
@@ -257,12 +263,12 @@ bool check_parentheses(int p, int q, bool *success) {
     }
   }
   // printf("cnt:%d\r\n",cnt);
-  if (cnt == 0){
-    
+  if (cnt == 0) {
+
     // *success = True;
     return true;
   }
-    
+
   return true;
 }
 
