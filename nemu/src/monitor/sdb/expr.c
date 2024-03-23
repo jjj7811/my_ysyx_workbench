@@ -369,6 +369,7 @@ u_int32_t eval(int p, int q, bool *success) {
 }
 
 word_t expr(char *e, bool *success) {
+  printf("make_token");
   if (!make_token(e)) {
     *success = false;
     return 0;
