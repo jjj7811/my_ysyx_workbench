@@ -111,6 +111,7 @@ static bool make_token(char *e) {
         //     rules[i].regex, position, substr_len, substr_len, substr_start);
 
         position += substr_len;
+        printf("switch\r\n");
 
         /* TODO: Now a new token is recognized with rules[i]. Add codes
          * to record the token in the array `tokens'. For certain types
