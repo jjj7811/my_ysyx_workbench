@@ -24,8 +24,8 @@ enum {
   TK_NOTYPE = 256,
   TK_EQ = 1,
   TK_NEQ = 2,
-  TK_AND = 3,
-  TK_OR = 4,
+  // TK_AND = 3,
+  // TK_OR = 4,
   // L_par = 2,
   // R_par = 3,
   NUM = 5,
@@ -55,8 +55,8 @@ static struct rule {
 
     {"==", TK_EQ},  // equal
     {"!=", TK_NEQ}, // no equal
-    {"&&", TK_AND}, //&&
-    {"||", TK_OR},  //||
+    // {"&&", TK_AND}, //&&
+    // {"||", TK_OR},  //||
 
     {"[0-9]*", NUM}, // number
 };
