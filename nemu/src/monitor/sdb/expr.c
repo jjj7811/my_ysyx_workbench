@@ -312,6 +312,9 @@ u_int32_t eval(int p, int q, bool *success) {
     case '/':
       return val1 / val2;
       break;
+    case TK_EQ:
+      return val1 == val2;
+      break;
     default:
       printf("wrong op\r\n");
       break;
