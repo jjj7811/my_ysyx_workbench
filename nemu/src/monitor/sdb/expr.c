@@ -55,7 +55,8 @@ static struct rule {
 
     {"==", TK_EQ},  // equal
     {"!=", TK_NEQ}, // no equal
-    {"&&", TK_AND},    {"||", TK_OR},
+    {"&&", TK_AND}, //&&
+    {"||", TK_OR},  //||
 
     {"[0-9]*", NUM}, // number
 };
@@ -344,12 +345,12 @@ u_int32_t eval(int p, int q, bool *success) {
     case TK_NEQ:
       return val1 != val2;
       break;
-    case TK_AND:
-      return val1 && val2;
-      break;
-    case TK_OR:
-      return val1 || val2;
-      break;
+    // case TK_AND:
+    //   return val1 && val2;
+    //   break;
+    // case TK_OR:
+    //   return val1 || val2;
+    //   break;
     default:
       printf("wrong op\r\n");
       break;
