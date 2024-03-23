@@ -29,6 +29,7 @@ enum {
   // L_par = 2,
   // R_par = 3,
   NUM = 5,
+  REG = 6,
 
   /* TODO: Add more token types */
 
@@ -56,10 +57,10 @@ static struct rule {
     {"==", TK_EQ},  // equal
     {"!=", TK_NEQ}, // no equal
     {"&&", TK_AND}, //&&
-    {"\\|\\|", TK_OR},	
-
+    {"\\|\\|", TK_OR},
 
     {"[0-9]*", NUM}, // number
+    {"\\$[a-z]+", REG},
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -171,6 +172,11 @@ static bool make_token(char *e) {
           tokens[nr_token].type = TK_OR;
           strncpy(tokens[nr_token++].str, e + position - substr_len,
                   substr_len);
+        case REG:
+          printf("REG:\r\n");
+          // tokens[nr_token].type = NUM;
+          // strncpy(tokens[nr_token++].str, e + position - substr_len,
+          //         substr_len);
           break;
         default:
           // TODO();
@@ -351,7 +357,7 @@ u_int32_t eval(int p, int q, bool *success) {
       break;
     case TK_OR:
       return val1 || val2;
-      break;
+      break; 
     default:
       printf("wrong op\r\n");
       break;
