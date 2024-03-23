@@ -56,7 +56,7 @@ static struct rule {
     {"==", TK_EQ},  // equal
     {"!=", TK_NEQ}, // no equal
     {"&&", TK_AND}, //&&
-    {"||", TK_OR},  //||
+    // {"||", TK_OR},  //||
 
     {"[0-9]*", NUM}, // number
 };
