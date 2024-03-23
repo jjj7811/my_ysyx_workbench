@@ -161,16 +161,16 @@ static bool make_token(char *e) {
           strncpy(tokens[nr_token++].str, e + position - substr_len,
                   substr_len);
           break;
-        case TK_AND:
-          tokens[nr_token].type = TK_AND;
-          strncpy(tokens[nr_token++].str, e + position - substr_len,
-                  substr_len);
-          break;
-        case TK_OR:
-          tokens[nr_token].type = TK_OR;
-          strncpy(tokens[nr_token++].str, e + position - substr_len,
-                  substr_len);
-          break;
+        // case TK_AND:
+        //   tokens[nr_token].type = TK_AND;
+        //   strncpy(tokens[nr_token++].str, e + position - substr_len,
+        //           substr_len);
+        //   break;
+        // case TK_OR:
+        //   tokens[nr_token].type = TK_OR;
+        //   strncpy(tokens[nr_token++].str, e + position - substr_len,
+        //           substr_len);
+        //   break;
         default:
           // TODO();
         }
@@ -202,10 +202,10 @@ int op_pri(int op_type) {
     return 7;
   case TK_NEQ:
     return 7;
-  case TK_AND:
-    return 11;
-  case TK_OR:
-    return 12;
+  // case TK_AND:
+  //   return 11;
+  // case TK_OR:
+  //   return 12;
   default:
     printf("Undefine oprator\n");
     printf("type:%d\r\n", op_type);
