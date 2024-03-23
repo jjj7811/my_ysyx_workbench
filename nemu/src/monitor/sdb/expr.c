@@ -245,7 +245,7 @@ bool check_parentheses(int p, int q, bool *success) {
     // *success = false;
     return false;
   }
-  for (int i = p; i <=q; i++) {
+  for (int i = p; i <= q; i++) {
     if (tokens[i].type == '(') {
       cnt++;
     } else if (tokens[i].type == ')') {
@@ -257,12 +257,12 @@ bool check_parentheses(int p, int q, bool *success) {
     }
   }
   // printf("cnt:%d\r\n",cnt);
-  if (cnt == 0){
-    
+  if (cnt == 0) {
+
     // *success = True;
     return true;
   }
-    
+
   return true;
 }
 
@@ -304,6 +304,8 @@ u_int32_t eval(int p, int q, bool *success) {
     case '/':
       return val1 / val2;
       break;
+    case TK_EQ:
+      return val1 == val2;
     default:
       printf("wrong op\r\n");
       break;
