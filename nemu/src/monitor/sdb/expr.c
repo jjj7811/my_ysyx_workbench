@@ -55,7 +55,8 @@ static struct rule {
 
     {"==", TK_EQ},  // equal
     {"!=", TK_NEQ}, // no equal
-    {"&&", TK_AND},    {"||", TK_OR},
+    {"&&", TK_AND}, //&&
+    {"||", TK_OR},  //||
 
     {"[0-9]*", NUM}, // number
 };
@@ -208,7 +209,7 @@ int op_pri(int op_type) {
   default:
     printf("Undefine oprator\n");
     printf("type:%d\r\n", op_type);
-    return 3;
+    return 0;
     // assert(0);
   }
 }
