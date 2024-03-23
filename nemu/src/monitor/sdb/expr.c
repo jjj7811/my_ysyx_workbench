@@ -176,7 +176,7 @@ int op_pri(int op_type) {
   case '/':
     return 2;
   case TK_EQ:
-    return 3;
+    return 1;
   default:
     printf("Undefine oprator\n");
     printf("type:%d\r\n", op_type);
@@ -210,10 +210,10 @@ int find_main_op(int p, int q) {
       main_op = op_arry[i];
     }
   }
-  // for (int i = 0; i < 10; i++) {
-  //   printf("op_arry:%d\t", op_arry[i]);
-  // }
-  // printf("\r\nmain_op:%d\r\n", main_op);
+  for (int i = 0; i < 10; i++) {
+    printf("op_arry:%d\t", op_arry[i]);
+  }
+  printf("\r\nmain_op:%d\r\n", main_op);
   return main_op;
 }
 
