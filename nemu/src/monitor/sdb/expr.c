@@ -25,10 +25,10 @@ enum {
   TK_EQ = 1,
   TK_NEQ = 2,
   TK_AND = 3,
-  TK_OR = 4,
+  TK_OR = 6,
   // L_par = 2,
   // R_par = 3,
-  NUM = 5,
+  NUM = 4,
 
   /* TODO: Add more token types */
 
