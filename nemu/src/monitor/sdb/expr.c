@@ -54,14 +54,13 @@ static struct rule {
     {"\\(", '('}, // left parenthesis
     {"\\)", ')'}, // right parenthesis
 
-    {"==", TK_EQ},  // equal
-    {"!=", TK_NEQ}, // no equal
-    {"&&", TK_AND}, //&&
-    {"\\|\\|", TK_OR},
-    {"\\$[a-zA-Z]*[0-9]", REG},//reg
+    {"==", TK_EQ},                                 // equal
+    {"!=", TK_NEQ},                                // no equal
+    {"&&", TK_AND},                                //&&
+    {"\\|\\|", TK_OR}, {"\\$[a-zA-Z]*[0-9]", REG}, // reg
 
     {"[0-9]*", NUM}, // number
-    
+
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -112,7 +111,7 @@ static bool make_token(char *e) {
         //     rules[i].regex, position, substr_len, substr_len, substr_start);
 
         position += substr_len;
-        printf("switch:%d\r\n",rules[i].token_type);
+        // printf("switch:%d\r\n",rules[i].token_type);
 
         /* TODO: Now a new token is recognized with rules[i]. Add codes
          * to record the token in the array `tokens'. For certain types
@@ -171,13 +170,13 @@ static bool make_token(char *e) {
                   substr_len);
           break;
         case TK_OR:
-          printf("OR:\r\n");
+          // printf("OR:\r\n");
           tokens[nr_token].type = TK_OR;
           strncpy(tokens[nr_token++].str, e + position - substr_len,
                   substr_len);
           break;
         case REG:
-          printf("REG:\r\n");
+          // printf("REG:\r\n");
           tokens[nr_token].type = REG;
           strncpy(tokens[nr_token++].str, e + position - substr_len,
                   substr_len);
@@ -318,6 +317,16 @@ u_int32_t eval(int p, int q, bool *success) {
     /* Bad expression */
     assert(0);
   } else if (p == q) {
+    if (tokens[p].type == REG) {
+      bool t = true;
+      u_int32_t num= isa_reg_str2val(tokens[p].str, &t);
+      if (!t) {
+        *success = false;
+        num = 0;
+      }else{
+        return num;
+      }
+    }
     /* Single token.
      * For now this token should be a number.
      * Return the value of the number.
