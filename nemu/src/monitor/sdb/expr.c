@@ -349,41 +349,48 @@ u_int32_t eval(int p, int q, bool *success) {
     /* We should do more things here. */
     // printf("else\r\n");
     main_op = find_main_op(p, q);
-    u_int32_t val1 = eval(p, main_op - 1, success);
-    u_int32_t val2 = eval(main_op + 1, q, success);
 
-    switch (tokens[main_op].type) {
-    case '+':
-      return val1 + val2;
-      break;
-    case '-':
-      return val1 - val2;
-      break;
-    case '*':
-      return val1 * val2;
-      break;
-    case '/':
-      return val1 / val2;
-      break;
-    case TK_EQ:
-      return val1 == val2;
-      break;
-    case TK_NEQ:
-      return val1 != val2;
-      break;
-    case TK_AND:
-      return val1 && val2;
-      break;
-    case TK_OR:
-      return val1 || val2;
-      break;
-    case MINUS:
-      printf("minus\r\n");
-      return val1 - val2;
-      break;
-    default:
-      printf("wrong op\r\n");
-      break;
+    if (main_op == MINUS) {
+      u_int32_t val2 = eval(main_op + 1, q, success);
+      return 0-val2;
+
+    } else {
+      u_int32_t val1 = eval(p, main_op - 1, success);
+      u_int32_t val2 = eval(main_op + 1, q, success);
+
+      switch (tokens[main_op].type) {
+      case '+':
+        return val1 + val2;
+        break;
+      case '-':
+        return val1 - val2;
+        break;
+      case '*':
+        return val1 * val2;
+        break;
+      case '/':
+        return val1 / val2;
+        break;
+      case TK_EQ:
+        return val1 == val2;
+        break;
+      case TK_NEQ:
+        return val1 != val2;
+        break;
+      case TK_AND:
+        return val1 && val2;
+        break;
+      case TK_OR:
+        return val1 || val2;
+        break;
+      case MINUS:
+        printf("minus\r\n");
+        return 0 - val2;
+        break;
+      default:
+        printf("wrong op\r\n");
+        break;
+      }
     }
   }
   return 0;
