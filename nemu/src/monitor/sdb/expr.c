@@ -434,15 +434,15 @@ word_t expr(char *e, bool *success) {
     }
   }
 
-  // for (int i = 0; i < nr_token; i++) {
-  //   int ty = tokens[i].type;
-  //   if (ty == 42 || ty == 43 || ty == 45 || ty == 47 || ty == 40 || ty == 41)
-  //     printf("tokens[%d]:\ttype:%c str:%s\r\n", i, ty, tokens[i].str);
-  //   else
-  //     printf("tokens[%d]:\ttype:%d str:%s\r\n", i, tokens[i].type,
-  //            tokens[i].str);
-  // }
-  // printf("nr_token:%d \r\n", nr_token);
+  for (int i = 0; i < nr_token; i++) {
+    int ty = tokens[i].type;
+    if (ty == 42 || ty == 43 || ty == 45 || ty == 47 || ty == 40 || ty == 41)
+      printf("tokens[%d]:\ttype:%c str:%s\r\n", i, ty, tokens[i].str);
+    else
+      printf("tokens[%d]:\ttype:%d str:%s\r\n", i, tokens[i].type,
+             tokens[i].str);
+  }
+  printf("nr_token:%d \r\n", nr_token);
   int ev = eval(0, nr_token - 1, success);
   printf("value: %d\r\n", ev);
   /* TODO: Insert codes to evaluate the expression. */
