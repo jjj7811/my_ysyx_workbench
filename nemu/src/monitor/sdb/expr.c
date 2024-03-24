@@ -33,6 +33,7 @@ enum {
   REG = 6,
   POINTER = 7,
   MINUS = 8,
+  HEX_NUM = 9,
 
   /* TODO: Add more token types */
 
@@ -57,12 +58,14 @@ static struct rule {
     {"\\(", '('}, // left parenthesis
     {"\\)", ')'}, // right parenthesis
 
-    {"==", TK_EQ},                                 // equal
-    {"!=", TK_NEQ},                                // no equal
-    {"&&", TK_AND},                                //&&
-    {"\\|\\|", TK_OR}, {"\\$[a-zA-Z]*[0-9]", REG}, // reg
+    {"==", TK_EQ},  // equal
+    {"!=", TK_NEQ}, // no equal
+    {"&&", TK_AND}, //&&
+    {"\\|\\|", TK_OR},
+    {"\\$[a-zA-Z]*[0-9]", REG}, // reg
 
-    {"[0-9]*", NUM}, // number
+    {"[0-9]*", NUM},                // number
+    {"0[xX][0-9a-fA-F]+", HEX_NUM}, // HEX
 
 };
 
@@ -335,6 +338,10 @@ u_int32_t eval(int p, int q, bool *success) {
       }
     } else if (tokens[p].type == NUM) {
       return atoi(tokens[p].str);
+    } else if (tokens[p].type == HEX_NUM) {
+      uint32_t tmp = 0;
+      sscanf(tokens[p].str, "%x", &tmp);
+      return tmp;
     }
     /* Single token.
      * For now this token should be a number.
