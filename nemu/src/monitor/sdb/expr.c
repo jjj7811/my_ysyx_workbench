@@ -378,7 +378,7 @@ u_int32_t eval(int p, int q, bool *success) {
       return val1 || val2;
       break;
     case MINUS:
-    printf("minus\r\n");
+      printf("minus\r\n");
       return 0 - val2;
       break;
     default:
