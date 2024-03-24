@@ -60,7 +60,7 @@ static struct rule {
     {"\\|\\|", TK_OR},
 
     {"[0-9]*", NUM}, // number
-    {"\\$[a-zA-Z][a-zA-Z]+", REG},
+    {"\\$[a-zA-Z]*[0-9]", REG},
 };
 
 #define NR_REGEX ARRLEN(rules)
