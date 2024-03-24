@@ -350,7 +350,7 @@ u_int32_t eval(int p, int q, bool *success) {
     // printf("else\r\n");
     main_op = find_main_op(p, q);
 
-    if (main_op == MINUS) {
+    if (tokens[main_op].type == MINUS) {
       printf("minus\r\n");
       u_int32_t val2 = eval(main_op + 1, q, success);
       return 0-val2;
