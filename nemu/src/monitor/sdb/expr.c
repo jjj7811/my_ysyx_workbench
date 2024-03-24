@@ -351,12 +351,12 @@ u_int32_t eval(int p, int q, bool *success) {
     main_op = find_main_op(p, q);
 
     if (tokens[main_op].type == MINUS) {
-      printf("minus\r\n");
+      // printf("minus\r\n");
       u_int32_t val2 = eval(main_op + 1, q, success);
       return 0-val2;
 
     } else {
-      printf("else\r\n");
+      // printf("else\r\n");
       u_int32_t val1 = eval(p, main_op - 1, success);
       u_int32_t val2 = eval(main_op + 1, q, success);
 
@@ -386,7 +386,7 @@ u_int32_t eval(int p, int q, bool *success) {
         return val1 || val2;
         break;
       case MINUS:
-        printf("minus\r\n");
+        // printf("minus\r\n");
         return 0 - val2;
         break;
       default:
@@ -417,14 +417,14 @@ word_t expr(char *e, bool *success) {
     }
   }
 
-  for (int i = 0; i < nr_token; i++) {
-    int ty = tokens[i].type;
-    if (ty == 42 || ty == 43 || ty == 45 || ty == 47 || ty == 40 || ty == 41)
-      printf("tokens[%d]:\ttype:%c str:%s\r\n", i, ty, tokens[i].str);
-    else
-      printf("tokens[%d]:\ttype:%d str:%s\r\n", i, tokens[i].type,
-             tokens[i].str);
-  }
+  // for (int i = 0; i < nr_token; i++) {
+  //   int ty = tokens[i].type;
+  //   if (ty == 42 || ty == 43 || ty == 45 || ty == 47 || ty == 40 || ty == 41)
+  //     printf("tokens[%d]:\ttype:%c str:%s\r\n", i, ty, tokens[i].str);
+  //   else
+  //     printf("tokens[%d]:\ttype:%d str:%s\r\n", i, tokens[i].type,
+  //            tokens[i].str);
+  // }
   // printf("nr_token:%d \r\n", nr_token);
   int ev = eval(0, nr_token - 1, success);
   printf("value: %d\r\n", ev);
