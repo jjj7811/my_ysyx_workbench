@@ -58,7 +58,7 @@ static struct rule {
     {"!=", TK_NEQ}, // no equal
     {"&&", TK_AND}, //&&
     {"\\|\\|", TK_OR},
-    {"\\$(\\$0|ra|[sgt]p|t[0-6]|a[0-7]|s([0-9]|1[0-1]))", REG},//reg
+    {"\\$[a-zA-Z]*[0-9]", REG},//reg
 
     {"[0-9]*", NUM}, // number
     
