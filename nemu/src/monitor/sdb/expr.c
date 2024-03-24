@@ -18,8 +18,8 @@
 /* We use the POSIX regex functions to process regular expressions.
  * Type 'man regex' for more information about POSIX regex functions.
  */
-#include <regex.h>
 #include <memory/paddr.h>
+#include <regex.h>
 
 enum {
   TK_NOTYPE = 256,
@@ -220,6 +220,8 @@ int op_pri(int op_type) {
   case TK_OR:
     return 12;
   case MINUS:
+    return 2;
+  case POINTER:
     return 2;
   default:
     printf("Undefine oprator\n");
