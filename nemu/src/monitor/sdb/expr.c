@@ -177,9 +177,9 @@ static bool make_token(char *e) {
           break;
         case REG:
           printf("REG:\r\n");
-          // tokens[nr_token].type = NUM;
-          // strncpy(tokens[nr_token++].str, e + position - substr_len,
-          //         substr_len);
+          tokens[nr_token].type = REG;
+          strncpy(tokens[nr_token++].str, e + position - substr_len,
+                  substr_len);
           break;
         default:
           // TODO();
