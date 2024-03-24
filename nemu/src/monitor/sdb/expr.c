@@ -253,10 +253,10 @@ int find_main_op(int p, int q) {
       main_op = op_arry[i];
     }
   }
-  // for (int i = 0; i < 10; i++) {
-  //   printf("op_arry:%d\t", op_arry[i]);
-  // }
-  // printf("\r\nmain_op:%d\r\n", main_op);
+  for (int i = 0; i < 10; i++) {
+    printf("op_arry:%d\t", op_arry[i]);
+  }
+  printf("\r\nmain_op:%d\r\n", main_op);
   return main_op;
 }
 
