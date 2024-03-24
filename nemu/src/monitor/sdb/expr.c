@@ -32,7 +32,6 @@ enum {
   REG = 6,
   POINTER = 7,
   MINUS = 8,
-  
 
   /* TODO: Add more token types */
 
@@ -376,6 +375,9 @@ u_int32_t eval(int p, int q, bool *success) {
     case TK_OR:
       return val1 || val2;
       break;
+    case MINUS:
+      return 0 - val2;
+      break;
     default:
       printf("wrong op\r\n");
       break;
@@ -396,7 +398,13 @@ word_t expr(char *e, bool *success) {
                     tokens[i - 1].type != ')'))) {
       tokens[i].type = POINTER;
     }
+    if (tokens[i].type == '-' &&
+        (i == 0 || (tokens[i - 1].type != NUM && tokens[i - 1].type != REG &&
+                    tokens[i - 1].type != ')'))) {
+      tokens[i].type = MINUS;
+    }
   }
+
   // for (int i = 0; i < nr_token; i++) {
   //   int ty = tokens[i].type;
   //   if (ty == 42 || ty == 43 || ty == 45 || ty == 47 || ty == 40 || ty == 41)
