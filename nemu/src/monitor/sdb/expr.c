@@ -351,10 +351,12 @@ u_int32_t eval(int p, int q, bool *success) {
     main_op = find_main_op(p, q);
 
     if (main_op == MINUS) {
+      printf("minus\r\n");
       u_int32_t val2 = eval(main_op + 1, q, success);
       return 0-val2;
 
     } else {
+      printf("else\r\n");
       u_int32_t val1 = eval(p, main_op - 1, success);
       u_int32_t val2 = eval(main_op + 1, q, success);
 
