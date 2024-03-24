@@ -58,9 +58,10 @@ static struct rule {
     {"!=", TK_NEQ}, // no equal
     {"&&", TK_AND}, //&&
     {"\\|\\|", TK_OR},
+    {"\\$[a-zA-Z]*[0-9]", REG},//reg
 
     {"[0-9]*", NUM}, // number
-    {"\\[a-zA-Z]*", REG},
+    
 };
 
 #define NR_REGEX ARRLEN(rules)
