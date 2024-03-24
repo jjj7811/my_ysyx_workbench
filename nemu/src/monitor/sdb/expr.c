@@ -379,7 +379,7 @@ u_int32_t eval(int p, int q, bool *success) {
       break;
     case MINUS:
       printf("minus\r\n");
-      return 0 - val2;
+      return val1 - val2;
       break;
     default:
       printf("wrong op\r\n");
