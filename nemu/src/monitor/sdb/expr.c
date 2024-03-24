@@ -218,6 +218,8 @@ int op_pri(int op_type) {
     return 11;
   case TK_OR:
     return 12;
+  case MINUS:
+    return 2;
   default:
     printf("Undefine oprator\n");
     printf("type:%d\r\n", op_type);
