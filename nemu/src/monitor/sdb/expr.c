@@ -30,6 +30,9 @@ enum {
   // R_par = 3,
   NUM = 5,
   REG = 6,
+  POINTER = 7,
+  MINUS = 8,
+  
 
   /* TODO: Add more token types */
 
@@ -319,14 +322,14 @@ u_int32_t eval(int p, int q, bool *success) {
   } else if (p == q) {
     if (tokens[p].type == REG) {
       bool t = true;
-      u_int32_t num= isa_reg_str2val(tokens[p].str, &t);
+      u_int32_t num = isa_reg_str2val(tokens[p].str, &t);
       if (!t) {
         *success = false;
         num = 0;
-      }else{
+      } else {
         return num;
       }
-    }else if (tokens[p].type == NUM){
+    } else if (tokens[p].type == NUM) {
       return atoi(tokens[p].str);
     }
     /* Single token.
@@ -334,7 +337,7 @@ u_int32_t eval(int p, int q, bool *success) {
      * Return the value of the number.
      */
     // printf("singal token\r\n");
-    
+
   } else if (check_parentheses(p, q, success) == true) {
     /* The expression is surrounded by a matched pair of parentheses.
      * If that is the case, just throw away the parentheses.
@@ -386,6 +389,13 @@ word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
+  }
+  for (int i = 0; i < nr_token; i++) {
+    if (tokens[i].type == '*' &&
+        (i == 0 || (tokens[i - 1].type != NUM && tokens[i - 1].type != REG &&
+                    tokens[i - 1].type != ')'))) {
+      tokens[i].type = POINTER;
+    }
   }
   // for (int i = 0; i < nr_token; i++) {
   //   int ty = tokens[i].type;
