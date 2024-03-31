@@ -35,7 +35,7 @@ void init_wp_pool() {
   for (i = 0; i < NR_WP; i++) {
     wp_pool[i].NO = i;
     wp_pool[i].next = (i == NR_WP - 1 ? NULL : &wp_pool[i + 1]);
-    memset(wp_pool[i].expr,0,128);
+    memset(wp_pool[i].expr, 0, 128);
     wp_pool[i].value = 0;
   }
 
@@ -46,28 +46,29 @@ void init_wp_pool() {
 /* TODO: Implement the functionality of watchpoint */
 // free_链表里面存储NR_WP个监视点池，执行该函数将从池中取出一个监视点并返回。
 WP *new_wp() {
-  if(free_ != NULL){
+  if (free_ != NULL) {
     WP *p = free_;
-  free_ = free_->next;
-  return p;
-  }else{
+    free_ = free_->next;
+    return p;
+  } else {
     printf("监视点已用完\r\n");
     assert(0);
   }
-  
 }
 
 // 调用new_wp取出一个监视点，将监视点插入head链表中
 bool set_watchpoint(char *args) {
-  WP *p = new_wp();
-  printf("args:%s\r\n",args);
-  //赋值该监视点相关状态
-  strcpy(p->expr,args);
-  printf("p-expr:%s\r\n",p->expr);
   bool success;
-  p->value = expr(args,&success);
+  WP *p = new_wp();
 
+  // 赋值该监视点相关状态
+  strcpy(p->expr, args);
+  p->value = expr(args, &success);
   p->next = head;
-  head = p;
+  head = p; //加入head链表
+  // 打印监视点状态
+  printf("args:%s\r\n", args);
+  printf("p-expr:%s\r\n", p->expr);
+  printf("value:%d", p->value);
   return 1;
 }
