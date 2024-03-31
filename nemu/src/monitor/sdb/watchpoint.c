@@ -44,7 +44,7 @@ void init_wp_pool() {
 /* TODO: Implement the functionality of watchpoint */
 // free_链表里面存储NR_WP个监视点池，执行该函数将从池中取出一个监视点并返回。
 WP *new_wp() {
-  if(free_->next != NULL){
+  if(free_ != NULL){
     WP *p = free_;
   free_ = free_->next;
   return p;
