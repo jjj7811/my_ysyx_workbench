@@ -60,6 +60,7 @@ WP *new_wp() {
 // 调用new_wp取出一个监视点，将监视点插入head链表中
 bool set_watchpoint(char *args) {
   WP *p = new_wp();
+  printf("args:%s\r\n",args);
 
   p->next = head;
   head = p;
