@@ -70,6 +70,6 @@ uint32_t set_watchpoint(char *args) {
   // 打印监视点状态
   printf("args:%s\r\n", args);
   printf("p-expr:%s\r\n", p->expr);
-  printf("value:%d", p->value);
+  printf("value:%d\r\n", p->value);
   return p->NO;
 }

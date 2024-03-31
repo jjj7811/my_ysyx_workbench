@@ -158,7 +158,7 @@ static int cmd_pp(char *args) {
 static int cmd_w(char *args) {
   uint32_t NO = 0;
   NO = set_watchpoint(args);
-  printf("watchpoint NO:%d",NO);
+  printf("watchpoint NO:%d\r\n",NO);
   return 0;
 }
 
