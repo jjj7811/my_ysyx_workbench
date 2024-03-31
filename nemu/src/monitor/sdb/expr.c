@@ -19,6 +19,7 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <memory/paddr.h>
+#include <memory/vaddr.h>
 #include <regex.h>
 
 enum {
@@ -371,7 +372,7 @@ u_int32_t eval(int p, int q, bool *success) {
       return 0 - val;
     } else if (tokens[main_op].type == POINTER) {
       u_int32_t val = eval(main_op + 1, q, success);
-      return paddr_read(val, 4);
+      return vaddr_read(val, 4);
     } else {
       // printf("else\r\n");
       u_int32_t val1 = eval(p, main_op - 1, success);
