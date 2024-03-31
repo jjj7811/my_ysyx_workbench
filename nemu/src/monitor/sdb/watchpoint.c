@@ -61,6 +61,9 @@ WP *new_wp() {
 bool set_watchpoint(char *args) {
   WP *p = new_wp();
   printf("args:%s\r\n",args);
+  //赋值该监视点相关状态
+  strcpy(p->expr,args);
+  printf("p-expr:%s\r\n",p->expr);
 
   p->next = head;
   head = p;
