@@ -22,7 +22,7 @@ typedef struct watchpoint {
   struct watchpoint *next;
 
   /* TODO: Add more members if necessary */
-  char *expr;
+  char expr[128];
   uint32_t value;
 
 } WP;
@@ -35,7 +35,7 @@ void init_wp_pool() {
   for (i = 0; i < NR_WP; i++) {
     wp_pool[i].NO = i;
     wp_pool[i].next = (i == NR_WP - 1 ? NULL : &wp_pool[i + 1]);
-    wp_pool[i].expr = NULL;
+    // wp_pool[i].expr[0] = NULL;
     wp_pool[i].value = 0;
   }
 
