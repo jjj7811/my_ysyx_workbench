@@ -41,3 +41,11 @@ void init_wp_pool() {
 
 /* TODO: Implement the functionality of watchpoint */
 
+WP* new_wp(){
+  return 0;
+}
+
+bool set_watchpoint(char *args){
+
+return 1;
+}

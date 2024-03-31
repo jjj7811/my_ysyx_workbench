@@ -152,6 +152,18 @@ static int cmd_pp(char *args) {
   return 0;
 }
 
+static int cmd_w(char *args) {
+  bool success = 0;
+  success = set_watchpoint(args);
+  if(success == 0){
+    printf("set watchpoint false\r\n");
+  }else{
+    printf("set watchpoint success\r\n");
+  }
+  return 0;
+}
+
+
 static int cmd_help(char *args);
 
 static struct {
@@ -167,6 +179,7 @@ static struct {
     {"x", "print N values on the addr", cmd_x},
     {"p", "Expression evaluation", cmd_p},
     {"pp", "test for exp", cmd_pp},
+    {"w","set watchpoint",cmd_w},
 
     /* TODO: Add more commands */
 
