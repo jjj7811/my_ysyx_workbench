@@ -372,7 +372,7 @@ u_int32_t eval(int p, int q, bool *success) {
       return 0 - val;
     } else if (tokens[main_op].type == POINTER) {
       u_int32_t val = eval(main_op + 1, q, success);
-      return vaddr_read(val, 4);
+      return paddr_read(val, 4);
     } else {
       // printf("else\r\n");
       u_int32_t val1 = eval(p, main_op - 1, success);

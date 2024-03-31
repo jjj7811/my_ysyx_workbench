@@ -57,7 +57,7 @@ WP *new_wp() {
 }
 
 // 调用new_wp取出一个监视点，将监视点插入head链表中
-bool set_watchpoint(char *args) {
+uint32_t set_watchpoint(char *args) {
   bool success;
   WP *p = new_wp();
 
@@ -66,9 +66,10 @@ bool set_watchpoint(char *args) {
   p->value = expr(args, &success);
   p->next = head;
   head = p; //加入head链表
+
   // 打印监视点状态
   printf("args:%s\r\n", args);
   printf("p-expr:%s\r\n", p->expr);
   printf("value:%d", p->value);
-  return 1;
+  return p->NO;
 }

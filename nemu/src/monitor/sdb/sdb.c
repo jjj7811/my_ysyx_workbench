@@ -156,13 +156,9 @@ static int cmd_pp(char *args) {
 }
 
 static int cmd_w(char *args) {
-  bool success = 0;
-  success = set_watchpoint(args);
-  if (success == 0) {
-    printf("set watchpoint false\r\n");
-  } else {
-    printf("set watchpoint success\r\n");
-  }
+  uint32_t NO = 0;
+  NO = set_watchpoint(args);
+  printf("watchpoint NO:%d",NO);
   return 0;
 }
 
