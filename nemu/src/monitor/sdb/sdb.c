@@ -104,10 +104,13 @@ static int cmd_x(char *args) {
 static int cmd_p(char *args) {
   char *cmd = strtok(NULL, " ");
   // printf("test:%s\r\n",cmd);
-  bool b = 1;
-  expr(cmd, &b);
-  if (b == false)
+  bool success = 1;
+  uint32_t value;
+  value = expr(cmd, &success);
+  if (success == false)
     printf("something is wrong,check your expression:\r\n");
+  else
+    printf("Value:%d", value);
   return 0;
 }
 
@@ -121,7 +124,7 @@ static int cmd_pp(char *args) {
   }
   bool succ = 0;
   char value[50];
-  uint32_t nemu_value=0;
+  uint32_t nemu_value = 0;
   char cmd[50];
   bool b = 1;
   int right_cnt = 0;
@@ -136,18 +139,18 @@ static int cmd_pp(char *args) {
       strcpy(cmd, strtok(NULL, " "));
       nemu_value = expr(cmd, &b);
 
-      if(atoi(value)==nemu_value){
+      if (atoi(value) == nemu_value) {
         right_cnt++;
-      }else{
-                Log("here is a error\r\n");
+      } else {
+        Log("here is a error\r\n");
       }
 
       printf("exp : %s\t", cmd);
       printf("golden value : %s\t", value);
-      printf("nemu value: %d\r\n",nemu_value);
+      printf("nemu value: %d\r\n", nemu_value);
     }
   }
-  printf("right cnt:%d\r\n",right_cnt);
+  printf("right cnt:%d\r\n", right_cnt);
   fclose(fp);
   return 0;
 }
@@ -155,14 +158,13 @@ static int cmd_pp(char *args) {
 static int cmd_w(char *args) {
   bool success = 0;
   success = set_watchpoint(args);
-  if(success == 0){
+  if (success == 0) {
     printf("set watchpoint false\r\n");
-  }else{
+  } else {
     printf("set watchpoint success\r\n");
   }
   return 0;
 }
-
 
 static int cmd_help(char *args);
 
@@ -179,7 +181,7 @@ static struct {
     {"x", "print N values on the addr", cmd_x},
     {"p", "Expression evaluation", cmd_p},
     {"pp", "test for exp", cmd_pp},
-    {"w","set watchpoint",cmd_w},
+    {"w", "set watchpoint", cmd_w},
 
     /* TODO: Add more commands */
 
