@@ -83,28 +83,28 @@ uint32_t set_watchpoint(char *args) {
 }
 
 bool del_watchpoint(int NO) {
-  WP *p, *pre;
-  p = head;
-  pre = NULL;
-  // 此时p指向要删除的节点，pre指向前一个节点
-  while (p != NULL) {
-    if (p->NO == NO) {
-      break;
-    }
-    pre = p;
-    p = p->next;
-  }
-  if (1) {
-    // 此时p就是在开头，pre空指针。
-    if (pre == NULL) {
-      head = p->next;
-    } else {
-      pre->next = p->next;
-    }
-    free_wp(p);
-    return 1;
-  }else{
-    return 0;
-  }
-
+  // WP *p, *pre;
+  // p = head;
+  // pre = NULL;
+  // // 此时p指向要删除的节点，pre指向前一个节点
+  // while (p != NULL) {
+  //   if (p->NO == NO) {
+  //     break;
+  //   }
+  //   pre = p;
+  //   p = p->next;
+  // }
+  // if (p->NO == NO) {
+  //   // 此时p就是在开头，pre空指针。
+  //   if (pre == NULL) {
+  //     head = p->next;
+  //   } else {
+  //     pre->next = p->next;
+  //   }
+  //   free_wp(p);
+  //   return 1;
+  // }else{
+  //   return 0;
+  // }
+  return 0;
 }
