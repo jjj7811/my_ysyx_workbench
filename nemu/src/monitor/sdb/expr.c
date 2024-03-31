@@ -444,7 +444,7 @@ word_t expr(char *e, bool *success) {
   // }
   // printf("nr_token:%d \r\n", nr_token);
   int ev = eval(0, nr_token - 1, success);
-  printf("value: %d\r\n", ev);
+  // printf("value: %d\r\n", ev);
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();s
   memset(tokens,0,sizeof(tokens));
