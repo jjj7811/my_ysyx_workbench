@@ -95,7 +95,7 @@ bool del_watchpoint(int NO) {
     p = p->next;
   }
   if (p == NULL) {
-    printf("cant find the watchpoint \r\n");
+    // printf("cant find the watchpoint \r\n");
     return 0;
   } else if (p->NO == NO) {
     // 此时p就是在开头，pre空指针。
