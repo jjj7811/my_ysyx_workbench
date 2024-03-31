@@ -36,8 +36,6 @@ void init_wp_pool() {
     wp_pool[i].NO = i;
     wp_pool[i].next = (i == NR_WP - 1 ? NULL : &wp_pool[i + 1]);
     memset(wp_pool[i].expr,0,128);
-    // strcpy(wp_pool[i].expr,NULL);
-    // wp_pool[i].expr = NULL;
     wp_pool[i].value = 0;
   }
 
@@ -66,6 +64,8 @@ bool set_watchpoint(char *args) {
   //赋值该监视点相关状态
   strcpy(p->expr,args);
   printf("p-expr:%s\r\n",p->expr);
+  bool success;
+  p->value = expr(args,&success);
 
   p->next = head;
   head = p;
