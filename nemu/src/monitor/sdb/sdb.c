@@ -110,7 +110,7 @@ static int cmd_p(char *args) {
   if (success == false)
     printf("something is wrong,check your expression:\r\n");
   else
-    printf("Value:%d", value);
+    printf("Value:%d\r\n", value);
   return 0;
 }
 
