@@ -68,8 +68,7 @@ uint32_t set_watchpoint(char *args) {
   head = p; //加入head链表
 
   // 打印监视点状态
-  printf("args:%s\r\n", args);
-  printf("p-expr:%s\r\n", p->expr);
+  printf("p-expr:%s\t", p->expr);
   printf("value:%d\r\n", p->value);
   return p->NO;
 }
