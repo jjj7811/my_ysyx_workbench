@@ -59,7 +59,7 @@ WP *new_wp() {
 
 //前插链表，将free的节点插入开头，并且释放expr表达式和value
 void free_wp(WP *p) {
-  // free(p->expr);
+  strcpy(p->expr,"");
   p->value = 0;
   p->next = free_;
   free_ = p;
