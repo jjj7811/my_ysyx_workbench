@@ -162,6 +162,17 @@ static int cmd_w(char *args) {
   return 0;
 }
 
+static int cmd_d(char *args) {
+  char *char_no = strtok(NULL, " ");
+  uint32_t NO = atoi(char_no);
+  printf("NO:%d\r\n",NO);;
+  bool success = del_watchpoint(NO);
+  if(success){
+    printf("Success del watchpoint : %d\r\n",NO);
+  }
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -178,6 +189,7 @@ static struct {
     {"p", "Expression evaluation", cmd_p},
     {"pp", "test for exp", cmd_pp},
     {"w", "set watchpoint", cmd_w},
+    {"d", "set watchpoint", cmd_d},
 
     /* TODO: Add more commands */
 

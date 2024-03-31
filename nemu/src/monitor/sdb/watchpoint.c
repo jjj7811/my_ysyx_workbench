@@ -102,5 +102,4 @@ bool del_watchpoint(int NO){
   }
   free_wp(p);
   return 1;
-
 }
