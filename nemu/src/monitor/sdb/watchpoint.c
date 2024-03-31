@@ -94,11 +94,10 @@ bool del_watchpoint(int NO) {
     pre = p;
     p = p->next;
   }
-  if(p == NULL){
+  if (p == NULL) {
     printf("cant find the watchpoint \r\n");
-    assert(0);
-  }
-  if (p->NO == NO) {
+    return 0;
+  } else if (p->NO == NO) {
     // 此时p就是在开头，pre空指针。
     if (pre == NULL) {
       head = p->next;
@@ -107,9 +106,7 @@ bool del_watchpoint(int NO) {
     }
     free_wp(p);
     return 1;
-  }else{
+  } else {
     return 0;
   }
-  return 0;
-  
 }
