@@ -94,7 +94,7 @@ bool del_watchpoint(int NO) {
     pre = p;
     p = p->next;
   }
-  if (p->NO == NO) {
+  if (1) {
     // 此时p就是在开头，pre空指针。
     if (pre == NULL) {
       head = p->next;
@@ -106,4 +106,5 @@ bool del_watchpoint(int NO) {
   }else{
     return 0;
   }
+
 }
