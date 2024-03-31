@@ -45,6 +45,7 @@ void init_wp_pool() {
 
 /* TODO: Implement the functionality of watchpoint */
 // free_链表里面存储NR_WP个监视点池，执行该函数将从池中取出一个监视点并返回。
+// 从头取出
 WP *new_wp() {
   if (free_ != NULL) {
     WP *p = free_;
@@ -56,6 +57,14 @@ WP *new_wp() {
   }
 }
 
+//前插链表，将free的节点插入开头，并且释放expr表达式和value
+void free_wp(WP *p) {
+  // free(p->expr);
+  p->value = 0;
+  p->next = free_;
+  free_ = p;
+}
+
 // 调用new_wp取出一个监视点，将监视点插入head链表中
 uint32_t set_watchpoint(char *args) {
   bool success;
@@ -65,7 +74,7 @@ uint32_t set_watchpoint(char *args) {
   strcpy(p->expr, args);
   p->value = expr(args, &success);
   p->next = head;
-  head = p; //加入head链表
+  head = p; // 加入head链表
 
   // 打印监视点状态
   printf("p-expr:%s\t", p->expr);
