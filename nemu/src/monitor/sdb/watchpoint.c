@@ -22,6 +22,8 @@ typedef struct watchpoint {
   struct watchpoint *next;
 
   /* TODO: Add more members if necessary */
+  char expr[128];
+  uint32_t value;
 
 } WP;
 
@@ -40,12 +42,18 @@ void init_wp_pool() {
 }
 
 /* TODO: Implement the functionality of watchpoint */
-
+//free_链表里面存储NR_WP个监视点池，执行该函数将从池中取出一个监视点并返回。
 WP* new_wp(){
-  return 0;
+  WP *p = free_;
+  free_ = free_->next;
+  return p;
 }
 
+//调用new_wp取出一个监视点，将监视点插入head链表中
 bool set_watchpoint(char *args){
+  WP *p = new_wp();
 
-return 1;
+  p->next = head;
+  head = p;
+  return 1;
 }
