@@ -25,6 +25,7 @@ static int is_batch_mode = false;
 
 void init_regex();
 void init_wp_pool();
+void disp_info_w();
 
 /* We use the `readline' library to provide more flexibility to read from stdin.
  */
@@ -77,6 +78,7 @@ static int cmd_info(char *args) {
     printf("print args\r\n");
     isa_reg_display();
   } else if (strcmp(arg, "w") == 0) {
+
     printf("Not yet implemented\r\n");
   }
   return 0;

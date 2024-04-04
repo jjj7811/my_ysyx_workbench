@@ -15,7 +15,7 @@
 
 #include "sdb.h"
 
-//监视点个数
+// 监视点个数
 #define NR_WP 32
 
 typedef struct watchpoint {
@@ -23,8 +23,9 @@ typedef struct watchpoint {
   struct watchpoint *next;
 
   /* TODO: Add more members if necessary */
-  char expr[128]; //表达式是不变的，而值有可能变化，每次重新求表达式的值并进行比较即可。
-  uint32_t value; //上一时刻该监视点的值。
+  char expr
+      [128]; // 表达式是不变的，而值有可能变化，每次重新求表达式的值并进行比较即可。
+  uint32_t value; // 上一时刻该监视点的值。
 
 } WP;
 
@@ -112,22 +113,32 @@ bool del_watchpoint(int NO) {
   }
 }
 
-//cpu-exec中检查监视点是否变化
-void check_diff_wp(){
-  WP *p ;
+// cpu-exec中检查监视点是否变化
+void check_diff_wp() {
+  WP *p;
   p = head;
-  bool success = 1; //expr若成功不给success置位1，只有失败置0.
-  while(p != NULL){
+  bool success = 1; // expr若成功不给success置位1，只有失败置0.
+  while (p != NULL) {
     // printf("expr:%s\r\n",p->expr);
     uint32_t new_value = expr(p->expr, &success);
-    printf("new_value:%d",new_value);
-    if(success == false){
-      printf("Watchpoint:%d's expr is valid\r\n",p->NO);
-    }else if(new_value != p->value){
-      printf("NO:%d:new_value:%d\told_value:%d\r\n",p->NO,new_value,p->value);
+    printf("new_value:%d", new_value);
+    if (success == false) {
+      printf("Watchpoint:%d's expr is valid\r\n", p->NO);
+    } else if (new_value != p->value) {
+      printf("NO:%d:new_value:%d\told_value:%d\r\n", p->NO, new_value,
+             p->value);
       p->value = new_value;
       nemu_state.state = NEMU_STOP;
     }
     p = p->next;
+  }
+}
+
+// 打印监视点信息
+void disp_info_w() {
+  WP *p;
+  p = head;
+  while (p != NULL) {
+    printf("NO:%d\texpr:%s\t,value_now:%d\r\n",p->NO,p->expr,p->value);
   }
 }
