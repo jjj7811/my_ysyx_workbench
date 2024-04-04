@@ -139,7 +139,7 @@ void disp_info_w() {
   WP *p;
   p = head;
   while (p != NULL) {
-    printf("NO:%d\texpr:%s\t,value_now:%d\r\n",p->NO,p->expr,p->value);
+    printf("NO:%2d\texpr:%20s\t,value_now:%5d\r\n",p->NO,p->expr,p->value);
     p = p->next;
   }
 }
