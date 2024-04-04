@@ -252,7 +252,7 @@ int find_main_op(int p, int q) {
       cnts++;
     } else if (tokens[pp].type == ')') {
       cnts--;
-    } else if (cnts == 0 && tokens[pp].type != NUM) {
+    } else if (cnts == 0 && tokens[pp].type != NUM && tokens[pp].type != HEX_NUM) {
       op_arry[arry_ptr] = pp;
       arry_ptr++;
     }
