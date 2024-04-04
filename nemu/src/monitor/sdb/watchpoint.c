@@ -119,8 +119,8 @@ void check_diff_wp() {
   p = head;
   bool success = 1; // expr若成功不给success置位1，只有失败置0.
   while (p != NULL) {
-    // printf("expr:%s\r\n",p->expr);
     uint32_t new_value = expr(p->expr, &success);
+    printf("NO:%d\texpr:%s\t",p->NO,p->expr);
     printf("new_value:%d\r\n", new_value);
     if (success == false) {
       printf("Watchpoint:%d's expr is valid\r\n", p->NO);
