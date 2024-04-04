@@ -79,7 +79,6 @@ static int cmd_info(char *args) {
     isa_reg_display();
   } else if (strcmp(arg, "w") == 0) {
     disp_info_w();
-    printf("Not yet implemented\r\n");
   }
   return 0;
 }
