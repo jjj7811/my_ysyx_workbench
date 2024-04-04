@@ -15,15 +15,16 @@
 
 #include "sdb.h"
 
-#define NR_WP 2
+//监视点个数
+#define NR_WP 32
 
 typedef struct watchpoint {
   int NO;
   struct watchpoint *next;
 
   /* TODO: Add more members if necessary */
-  char expr[128];
-  uint32_t value;
+  char expr[128]; //表达式是不变的，而值有可能变化，每次重新求表达式的值并进行比较即可。
+  uint32_t value; //上一时刻该监视点的值。
 
 } WP;
 
@@ -115,9 +116,9 @@ bool del_watchpoint(int NO) {
 void check_diff_wp(){
   WP *p ;
   p = head;
-  bool success = 1;
+  bool success = 1; //expr若成功不给success置位1，只有失败置0.
   while(p != NULL){
-    printf("expr:%s\r\n",p->expr);
+    // printf("expr:%s\r\n",p->expr);
     uint32_t new_value = expr(p->expr, &success);
     printf("new_value:%d",new_value);
     if(success == false){

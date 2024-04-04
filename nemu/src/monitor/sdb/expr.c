@@ -416,6 +416,7 @@ u_int32_t eval(int p, int q, bool *success) {
   return 0;
 }
 
+//若成功则success不变，若失败则success置0.
 word_t expr(char *e, bool *success) {
   // printf("make_token\r\n");
   if (!make_token(e)) {
