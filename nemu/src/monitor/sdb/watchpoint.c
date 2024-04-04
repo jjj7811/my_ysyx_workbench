@@ -115,7 +115,7 @@ bool del_watchpoint(int NO) {
 void check_diff_wp(){
   WP *p ;
   p = head;
-  bool success = 1;
+  bool success = 0;
   while(p != NULL){
     printf("expr:%s\r\n",p->expr);
     uint32_t new_value = expr(p->expr, &success);
