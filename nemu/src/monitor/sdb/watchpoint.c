@@ -140,5 +140,6 @@ void disp_info_w() {
   p = head;
   while (p != NULL) {
     printf("NO:%d\texpr:%s\t,value_now:%d\r\n",p->NO,p->expr,p->value);
+    p = p->next;
   }
 }
