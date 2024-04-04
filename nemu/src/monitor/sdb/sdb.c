@@ -78,7 +78,7 @@ static int cmd_info(char *args) {
     printf("print args\r\n");
     isa_reg_display();
   } else if (strcmp(arg, "w") == 0) {
-
+    disp_info_w();
     printf("Not yet implemented\r\n");
   }
   return 0;
@@ -160,18 +160,19 @@ static int cmd_pp(char *args) {
 static int cmd_w(char *args) {
   uint32_t NO = 0;
   NO = set_watchpoint(args);
-  printf("NO:%d\r\n",NO);
+  printf("NO:%d\r\n", NO);
   return 0;
 }
 
 static int cmd_d(char *args) {
   char *char_no = strtok(NULL, " ");
   uint32_t NO = atoi(char_no);
-  printf("NO:%d\r\n",NO);;
+  printf("NO:%d\r\n", NO);
+  ;
   bool success = del_watchpoint(NO);
-  if(success){
-    printf("Success del watchpoint NO: %d\r\n",NO);
-  }else{
+  if (success) {
+    printf("Success del watchpoint NO: %d\r\n", NO);
+  } else {
     printf("your watchpoint is not exist\r\n");
   }
   return 0;
