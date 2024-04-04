@@ -117,7 +117,7 @@ void check_diff_wp(){
   p = head;
   bool success;
   while(p != NULL){
-    printf("expr:%s",p->expr);
+    printf("expr:%s\r\n",p->expr);
     uint32_t new_value = expr(p->expr, &success);
     if(!success){
       printf("Watchpoint:%d's expr is valid\r\n",p->NO);
