@@ -110,3 +110,21 @@ bool del_watchpoint(int NO) {
     return 0;
   }
 }
+
+//cpu-exec中检查监视点是否变化
+void check_diff_wp(){
+  WP *p ;
+  p = head;
+  bool success;
+  while(p != NULL){
+    uint32_t new_value = expr(p->expr, &success);
+    if(!success){
+      printf("Watchpoint:%d's expr is valid\r\n",p->NO);
+    }else if(new_value != p->value){
+      printf("NO:%d:new_value:%d\told_value:%d\r\n",p->NO,new_value,p->value);
+      p->value = new_value;
+      nemu_state.state = NEMU_STOP;
+    }
+    p = p->next;
+  }
+}

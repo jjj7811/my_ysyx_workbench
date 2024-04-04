@@ -168,7 +168,7 @@ static int cmd_d(char *args) {
   printf("NO:%d\r\n",NO);;
   bool success = del_watchpoint(NO);
   if(success){
-    printf("Success del watchpoint : %d\r\n",NO);
+    printf("Success del watchpoint NO: %d\r\n",NO);
   }else{
     printf("your watchpoint is not exist\r\n");
   }
