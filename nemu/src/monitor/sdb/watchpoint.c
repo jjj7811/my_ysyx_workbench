@@ -121,7 +121,7 @@ void check_diff_wp() {
   while (p != NULL) {
     // printf("expr:%s\r\n",p->expr);
     uint32_t new_value = expr(p->expr, &success);
-    printf("new_value:%d", new_value);
+    printf("new_value:%d\r\n", new_value);
     if (success == false) {
       printf("Watchpoint:%d's expr is valid\r\n", p->NO);
     } else if (new_value != p->value) {
