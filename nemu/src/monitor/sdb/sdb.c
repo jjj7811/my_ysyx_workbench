@@ -147,9 +147,9 @@ static int cmd_pp(char *args) {
         Log("here is a error\r\n");
       }
 
-      printf("exp : %s\t", cmd);
-      printf("golden value : %s\t", value);
-      printf("nemu value: %d\r\n", nemu_value);
+      printf("exp : %20s\t", cmd);
+      printf("golden value : %5s\t", value);
+      printf("nemu value: %5d\r\n", nemu_value);
     }
   }
   printf("right cnt:%d\r\n", right_cnt);
