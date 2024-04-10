@@ -53,6 +53,7 @@ static int cmd_c(char *args) {
 
 static int cmd_q(char *args) {
   // cpu_exec(4);
+  //在这里将状态切换即可，之前把默认值改了，是不对的。
   nemu_state.state = NEMU_QUIT;
   return -1;
 }
