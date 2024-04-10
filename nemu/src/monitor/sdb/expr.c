@@ -272,33 +272,6 @@ int find_main_op(int p, int q) {
   return main_op;
 }
 
-// bool check_parentheses(int p, int q, bool *success) {
-//   if (tokens[p].type != '(' || tokens[q].type != ')') {
-//     // *success = false;
-//     return false;
-//   }
-//   while (p <= q) {
-//     // printf("p:%d q:%d\r\n", p, q);
-//     if (tokens[p].type == '(') {
-//       if (tokens[q].type == ')') {
-//         p++;
-//         q--;
-//       } else if (p == q) {
-//         *success = false;
-//         return false;
-//       } else {
-//         p++;
-//       }
-
-//     } else if (tokens[p].type == ')') {
-//       *success = false;
-//       return false;
-//     } else
-//       p++;
-//   }
-//   return true;
-// }
-
 bool check_parentheses(int p, int q, bool *success) {
   // printf("%d %d\r\n",p,q);
   int cnt = 0;

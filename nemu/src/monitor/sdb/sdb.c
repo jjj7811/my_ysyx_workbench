@@ -98,7 +98,6 @@ static int cmd_x(char *args) {
       printf("%u 0x%x : 0x%x\r\n", n, paddr + i * 4, t);
     }
   }
-
   return 0;
 }
 
