@@ -21,8 +21,9 @@
 #include <time.h>
 
 // this should be enough
-static char buf[65536] = {};
-static char code_buf[65536 + 128] = {}; // a little larger than `buf`
+#define max_length 20
+static char buf[max_length] = {};
+static char code_buf[max_length + 128] = {}; // a little larger than `buf`
 static char *code_format = "#include <stdio.h>\n"
                            "int main() { "
                            "  unsigned result = %s; "
