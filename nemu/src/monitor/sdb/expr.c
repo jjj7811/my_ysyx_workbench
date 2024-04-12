@@ -2,7 +2,7 @@
  * @Author: jjj 2356765453@qq.com
  * @Date: 2024-02-17 20:18:16
  * @LastEditors: jjj 2356765453@qq.com
- * @LastEditTime: 2024-04-13 02:37:57
+ * @LastEditTime: 2024-04-13 02:39:23
  * @FilePath: /ysyx-workbench/nemu/src/monitor/sdb/expr.c
  * @Description: 用作表达式求职
  * 
@@ -327,6 +327,7 @@ u_int32_t eval(int p, int q, bool *success) {
     assert(0);
   } else if (p == q) {
     if (tokens[p].type == REG) {
+      printf("reg:%s\r\n",tokens[p].str);
       bool t = true;
       u_int32_t num = isa_reg_str2val(tokens[p].str, &t);
       if (!t) {
