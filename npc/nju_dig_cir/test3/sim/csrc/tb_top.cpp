@@ -1,3 +1,13 @@
+/*
+ * @Author: jjj 2356765453@qq.com
+ * @Date: 2024-02-24 11:41:44
+ * @LastEditors: jjj 2356765453@qq.com
+ * @LastEditTime: 2024-04-12 23:41:25
+ * @FilePath: /ysyx-workbench/npc/nju_dig_cir/test3/sim/csrc/tb_top.cpp
+ * @Description: 
+ * 
+ * Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
+ */
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 #include "Vtop.h"
@@ -34,16 +44,20 @@ void sim_exit(){
 
 int main() {
   sim_init();
-  top->a = 0b001; top->b = 0b0101;  top->op = 0b0;
+  top->a = 0b001; top->b = 0b0101;  top->op = 0b000;
   single_cycle();
   // step_and_dump_wave();
-  // top->A = 0b0100; top->B = 0b0010; top->Ci = 0b0;
+  top->a = 0b0100; top->b = 0b0010; top->op = 0b001;
+  single_cycle();
   // step_and_dump_wave();
-  // top->A = 0b0011; top->B = 0b0101; top->Ci = 0b0;
+  top->a = 0b0011; top->b = 0b0101; top->op = 0b010;
+  single_cycle();
   // step_and_dump_wave();
-  // top->A = 0b1110; top->B = 0b0010; top->Ci = 0b1;
+  top->a = 0b1110; top->b = 0b0010; top->op = 0b011;
+  single_cycle();
   // step_and_dump_wave();
-  // top->A = 0b1010; top->B = 0b0000; top->Ci = 0b1;
+  top->a = 0b1010; top->b = 0b0000; top->op = 0b100;
+  single_cycle();
   // step_and_dump_wave();
 
                   

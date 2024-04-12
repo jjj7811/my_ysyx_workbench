@@ -99,6 +99,11 @@ typedef struct token {
 static Token tokens[32] __attribute__((used)) = {};
 static int nr_token __attribute__((used)) = 0;
 
+/**
+ * @description: token制作
+ * @param {char} *e 表达式输入
+ * @return {*} 是否成功
+ */
 static bool make_token(char *e) {
   int position = 0;
   int i;
@@ -210,6 +215,11 @@ static bool make_token(char *e) {
   return true;
 }
 
+/**
+ * @description: 获取符号优先级
+ * @param {int} op_type 输入的符号
+ * @return {*}  优先级
+ */
 int op_pri(int op_type) {
   switch (op_type) {
   case '+':
@@ -421,7 +431,7 @@ word_t expr(char *e, bool *success) {
   int ev = eval(0, nr_token - 1, success);
   // printf("value: %d\r\n", ev);
   /* TODO: Insert codes to evaluate the expression. */
-  // TODO();s
+  // TODO();
   memset(tokens,0,sizeof(tokens));
 
   return ev;
