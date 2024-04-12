@@ -2,7 +2,7 @@
  * @Author: jjj 2356765453@qq.com
  * @Date: 2024-02-17 20:18:16
  * @LastEditors: jjj 2356765453@qq.com
- * @LastEditTime: 2024-04-12 16:25:41
+ * @LastEditTime: 2024-04-13 02:37:57
  * @FilePath: /ysyx-workbench/nemu/src/monitor/sdb/expr.c
  * @Description: 用作表达式求职
  * 
@@ -73,7 +73,7 @@ static struct rule {
     {"!=", TK_NEQ}, // no equal
     {"&&", TK_AND}, //&&
     {"\\|\\|", TK_OR},
-    {"\\$[a-zA-Z]*[0-9]", REG}, // reg
+    {"\\$[a-zA-Z]*[0-9]|$pc", REG}, // reg
     {"0[xX][0-9a-fA-F]+", HEX_NUM}, // HEX
     {"[0-9]*", NUM},                // number
     
