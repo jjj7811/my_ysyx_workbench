@@ -33,6 +33,6 @@ void isa_reg_display() {
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) { 
-  printf("%s\r\n",s);
+  printf("%s\r\n",s+1);
   return 0; 
   }
