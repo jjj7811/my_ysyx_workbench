@@ -2,7 +2,7 @@
  * @Author: jjj 2356765453@qq.com
  * @Date: 2024-02-24 11:41:44
  * @LastEditors: jjj 2356765453@qq.com
- * @LastEditTime: 2024-04-12 23:41:25
+ * @LastEditTime: 2024-04-12 23:43:17
  * @FilePath: /ysyx-workbench/npc/nju_dig_cir/test3/sim/csrc/tb_top.cpp
  * @Description: 
  * 
@@ -59,6 +59,12 @@ int main() {
   top->a = 0b1010; top->b = 0b0000; top->op = 0b100;
   single_cycle();
   // step_and_dump_wave();
+  top->a = 0b1010; top->b = 0b0001; top->op = 0b101;
+  single_cycle();
+  top->a = 0b1010; top->b = 0b0010; top->op = 0b110;
+  single_cycle();
+  top->a = 0b1010; top->b = 0b1100; top->op = 0b111;
+  single_cycle();
 
                   
   sim_exit();
