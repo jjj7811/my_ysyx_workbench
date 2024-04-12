@@ -33,13 +33,16 @@ void isa_reg_display() {
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
-  printf("%s\r\n", s + 1);
+  // printf("%s\r\n", s + 1);
   for (int i = 0; i < 32; ++i) {
     if (strcmp(regs[i], s + 1) == 0) {
-      printf("pattern success:%s\r\n",regs[i]);
+      printf("match success:%s\r\n",regs[i]);
       *success = true;
       return cpu.gpr[i];
     }
+  }
+  if(strcmp("pc", s + 1) == 0){
+    printf("match pc:\r\n");
   }
   return 0;
 }
