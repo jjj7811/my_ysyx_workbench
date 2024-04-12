@@ -42,7 +42,9 @@ word_t isa_reg_str2val(const char *s, bool *success) {
     }
   }
   if(strcmp("pc", s + 1) == 0){
-    printf("match pc:\r\n");
+    printf("match pc\r\n");
+    *success = true;
+    return cpu.pc;
   }
   return 0;
 }
