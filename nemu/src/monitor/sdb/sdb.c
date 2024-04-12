@@ -144,7 +144,7 @@ static int cmd_pp(char *args) {
       if (atoi(value) == nemu_value) {
         right_cnt++;
       } else {
-        Log("here is a error\r\n");
+        Log("here is a error,maybe because 中间结果是负数，而要求NEMU使用unsigned\r\n");
       }
 
       printf("exp : %20s\t", cmd);
