@@ -1,13 +1,3 @@
-/*
- * @Author: jjj 2356765453@qq.com
- * @Date: 2024-02-17 20:18:16
- * @LastEditors: jjj 2356765453@qq.com
- * @LastEditTime: 2024-04-13 02:50:38
- * @FilePath: /ysyx-workbench/nemu/src/isa/riscv32/include/isa-def.h
- * @Description: 
- * 
- * Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
- */
 /***************************************************************************************
 * Copyright (c) 2014-2022 Zihao Yu, Nanjing University
 *

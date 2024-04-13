@@ -10,7 +10,6 @@ module MuxKeyInternal #(NR_KEY = 2, KEY_LEN = 1, DATA_LEN = 1, HAS_DEFAULT = 0) 
   wire [KEY_LEN-1:0] key_list [NR_KEY-1:0];
   wire [DATA_LEN-1:0] data_list [NR_KEY-1:0];
 
-// 创建查找表
   generate
     for (genvar n = 0; n < NR_KEY; n = n + 1) begin
       assign pair_list[n] = lut[PAIR_LEN*(n+1)-1 : PAIR_LEN*n];

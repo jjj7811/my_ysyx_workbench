@@ -19,7 +19,5 @@
 #include <common.h>
 
 word_t expr(char *e, bool *success);
-uint32_t set_watchpoint(char *args);
-bool del_watchpoint(int NO);
 
 #endif
