@@ -25,6 +25,7 @@ static int is_batch_mode = false;
 
 void init_regex();
 void init_wp_pool();
+void disp_info_w();
 
 /* We use the `readline' library to provide more flexibility to read from stdin.
  */
@@ -52,6 +53,8 @@ static int cmd_c(char *args) {
 
 static int cmd_q(char *args) {
   // cpu_exec(4);
+  //在这里将状态切换即可，之前把默认值改了，是不对的。
+  nemu_state.state = NEMU_QUIT;
   return -1;
 }
 
@@ -77,7 +80,7 @@ static int cmd_info(char *args) {
     printf("print args\r\n");
     isa_reg_display();
   } else if (strcmp(arg, "w") == 0) {
-    printf("Not yet implemented\r\n");
+    disp_info_w();
   }
   return 0;
 }
@@ -97,7 +100,81 @@ static int cmd_x(char *args) {
       printf("%u 0x%x : 0x%x\r\n", n, paddr + i * 4, t);
     }
   }
+  return 0;
+}
 
+static int cmd_p(char *args) {
+  char *cmd = strtok(NULL, " ");
+  // printf("test:%s\r\n",cmd);
+  bool success = 1;
+  uint32_t value;
+  value = expr(cmd, &success);
+  if (success == false)
+    printf("something is wrong,check your expression:\r\n");
+  else
+    printf("Value:%x\r\n", value);
+  return 0;
+}
+
+static int cmd_pp(char *args) {
+  FILE *fp;
+  char str[50];
+  fp = fopen("input", "r");
+  if (fp == NULL) {
+    printf("Unable to open file.\n");
+    return 1;
+  }
+  bool succ = 0;
+  char value[50];
+  uint32_t nemu_value = 0;
+  char cmd[50];
+  bool b = 1;
+  int right_cnt = 0;
+  // printf("%d",succ);
+  for (int i = 0; i < 100; i++) {
+    // succ = fscanf(fp, "%[^\n]", str);
+    succ = fgets(str, 50, fp);
+    str[strcspn(str, "\n")] = 0;
+    if (succ != 0) {
+      // b = 1;
+      strcpy(value, strtok(str, " "));
+      strcpy(cmd, strtok(NULL, " "));
+      nemu_value = expr(cmd, &b);
+
+      if (atoi(value) == nemu_value) {
+        right_cnt++;
+      } else {
+        Log("here is a error,maybe because 中间结果是负数，而要求NEMU使用unsigned\r\n");
+      }
+
+      printf("exp : %20s\t", cmd);
+      printf("golden value : %5s\t", value);
+      printf("nemu value: %5d\r\n", nemu_value);
+    }
+  }
+  printf("right cnt:%d\r\n", right_cnt);
+  fclose(fp);
+  return 0;
+}
+
+static int cmd_w(char *args) {
+  uint32_t NO = 0;
+  NO = set_watchpoint(args);
+  printf("NO:%d\r\n", NO);
+  return 0;
+}
+
+static int cmd_d(char *args) {
+  char *char_no = strtok(NULL, " ");
+  uint32_t NO = atoi(char_no);
+  printf("NO:%d\r\n", NO);
+  ;
+  bool success = del_watchpoint(NO);
+  if (success) {
+    printf("Success del watchpoint NO: %d\r\n", NO);
+  } else {
+    printf("your watchpoint is not exist\r\n");
+  }
   return 0;
 }
 
@@ -114,6 +191,10 @@ static struct {
     {"si", "exec once", cmd_si},
     {"info", "print the state of program", cmd_info},
     {"x", "print N values on the addr", cmd_x},
+    {"p", "Expression evaluation", cmd_p},
+    {"pp", "test for exp", cmd_pp},
+    {"w", "set watchpoint", cmd_w},
+    {"d", "set watchpoint", cmd_d},
 
     /* TODO: Add more commands */
 
