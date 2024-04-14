@@ -29,6 +29,28 @@ void isa_reg_display() {
       printf("\r\n");
   }
   printf("\r\n");
+<<<<<<< HEAD
+  printf("pc:%x\r\n", cpu.pc);
+}
+
+word_t isa_reg_str2val(const char *s, bool *success) {
+  // printf("%s\r\n", s + 1);
+  for (int i = 0; i < 32; ++i) {
+    if (strcmp(regs[i], s + 1) == 0) {
+      printf("match success:%s\r\n",regs[i]);
+      *success = true;
+      return cpu.gpr[i];
+    }
+  }
+  if(strcmp("pc", s + 1) == 0){
+    printf("match pc\r\n");
+    *success = true;
+    return cpu.pc;
+  }
+  return 0;
+}
+=======
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) { return 0; }
+>>>>>>> main

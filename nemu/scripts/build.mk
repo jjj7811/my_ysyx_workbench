@@ -37,7 +37,7 @@ $(OBJ_DIR)/%.o: %.c
 $(OBJ_DIR)/%.o: %.cc
 	@echo + CXX $<
 	@mkdir -p $(dir $@)
-	@$(CXX) $(CFLAGS) $(CXXFLAGS) -c -o $@ $<
+	@$(CXX) $(CFLAGS) $(CXXFLAGS) -c -o $@ $< 
 	$(call call_fixdep, $(@:.o=.d), $@)
 
 # Depencies
@@ -45,13 +45,17 @@ $(OBJ_DIR)/%.o: %.cc
 
 # Some convenient rules
 
-.PHONY: app clean
+.PHONY: app clean count
 
 app: $(BINARY)
 
 $(BINARY):: $(OBJS) $(ARCHIVES)
 	@echo + LD $@
 	@$(LD) -o $@ $(OBJS) $(LDFLAGS) $(ARCHIVES) $(LIBS)
+
+count:
+	@echo "统计代码行数："
+	@find . -name '*.c' -o -name '*.h' | xargs wc -l
 
 clean:
 	-rm -rf $(BUILD_DIR)
