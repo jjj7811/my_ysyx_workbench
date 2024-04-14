@@ -29,6 +29,7 @@ void isa_reg_display() {
       printf("\r\n");
   }
   printf("\r\n");
+<<<<<<< HEAD
   printf("pc:%x\r\n", cpu.pc);
 }
 
@@ -48,3 +49,8 @@ word_t isa_reg_str2val(const char *s, bool *success) {
   }
   return 0;
 }
+=======
+}
+
+word_t isa_reg_str2val(const char *s, bool *success) { return 0; }
+>>>>>>> main

@@ -53,8 +53,11 @@ static int cmd_c(char *args) {
 
 static int cmd_q(char *args) {
   // cpu_exec(4);
+<<<<<<< HEAD
   //在这里将状态切换即可，之前把默认值改了，是不对的。
   nemu_state.state = NEMU_QUIT;
+=======
+>>>>>>> main
   return -1;
 }
 
@@ -80,7 +83,11 @@ static int cmd_info(char *args) {
     printf("print args\r\n");
     isa_reg_display();
   } else if (strcmp(arg, "w") == 0) {
+<<<<<<< HEAD
     disp_info_w();
+=======
+    printf("Not yet implemented\r\n");
+>>>>>>> main
   }
   return 0;
 }
@@ -100,6 +107,7 @@ static int cmd_x(char *args) {
       printf("%u 0x%x : 0x%x\r\n", n, paddr + i * 4, t);
     }
   }
+<<<<<<< HEAD
   return 0;
 }
 
@@ -175,6 +183,9 @@ static int cmd_d(char *args) {
   } else {
     printf("your watchpoint is not exist\r\n");
   }
+=======
+
+>>>>>>> main
   return 0;
 }
 
@@ -191,10 +202,13 @@ static struct {
     {"si", "exec once", cmd_si},
     {"info", "print the state of program", cmd_info},
     {"x", "print N values on the addr", cmd_x},
+<<<<<<< HEAD
     {"p", "Expression evaluation", cmd_p},
     {"pp", "test for exp", cmd_pp},
     {"w", "set watchpoint", cmd_w},
     {"d", "set watchpoint", cmd_d},
+=======
+>>>>>>> main
 
     /* TODO: Add more commands */
 
