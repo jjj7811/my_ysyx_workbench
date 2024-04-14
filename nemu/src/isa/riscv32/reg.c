@@ -1,3 +1,13 @@
+/*
+ * @Author: jjj 2356765453@qq.com
+ * @Date: 2024-04-14 16:16:39
+ * @LastEditors: jjj 2356765453@qq.com
+ * @LastEditTime: 2024-04-14 16:17:12
+ * @FilePath: /ysyx-workbench/nemu/src/isa/riscv32/reg.c
+ * @Description: 
+ * 
+ * Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
+ */
 /***************************************************************************************
  * Copyright (c) 2014-2022 Zihao Yu, Nanjing University
  *
@@ -29,7 +39,6 @@ void isa_reg_display() {
       printf("\r\n");
   }
   printf("\r\n");
-<<<<<<< HEAD
   printf("pc:%x\r\n", cpu.pc);
 }
 
@@ -49,8 +58,3 @@ word_t isa_reg_str2val(const char *s, bool *success) {
   }
   return 0;
 }
-=======
-}
-
-word_t isa_reg_str2val(const char *s, bool *success) { return 0; }
->>>>>>> main
