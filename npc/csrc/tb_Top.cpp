@@ -21,6 +21,10 @@
 #define COLOR_GREEN "\033[32m"
 #define COLOR_END "\033[0m"
 
+void init_log(const char *log_file);
+static char *log_file = "npc_log.txt";
+
+
 extern void sdb_mainloop();
 
 int main(int argc, char** argv) {
@@ -51,6 +55,7 @@ int main(int argc, char** argv) {
 	// excute_once();
 	init_wp_pool();
 	init_regex();
+	init_log(log_file);
 	init_disasm("riscv32-pc-linux-gnu");
 	sdb_mainloop();
 

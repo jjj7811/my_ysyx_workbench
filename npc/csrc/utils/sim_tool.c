@@ -45,8 +45,8 @@ void sim_reset_one_cycle() {
 
 void check_ebreak(){
 	if(ebreak_flag == 1){
-		nemu_state.state = NEMU_QUIT;
-		printf("***time to quit \r\n");
+		nemu_state.state = NEMU_END;
+		Log("last ebreak inst , program will done \r\n");
 	}else{
 		nemu_state.state = NEMU_RUNNING;
 	}

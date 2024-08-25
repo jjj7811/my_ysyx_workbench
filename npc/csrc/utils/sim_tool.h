@@ -18,7 +18,7 @@
 #include "verilated_vcd_c.h"
 
 #include "utils.h"
-
+#include "debug.h"
 // #define COLOR_GREEN "\033[32m"
 // #define COLOR_END "\033[0m"
 
