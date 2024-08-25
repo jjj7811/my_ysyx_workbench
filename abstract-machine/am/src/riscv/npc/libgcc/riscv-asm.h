@@ -39,3 +39,15 @@ X:
 #define HIDDEN_JUMPTARGET(X)	CONCAT1(__hidden_, X)
 #define HIDDEN_DEF(X)		FUNC_ALIAS(HIDDEN_JUMPTARGET(X), X);     \
 				.hidden HIDDEN_JUMPTARGET(X)
+
+#if defined(__ISA_X86__)
+# define npc_trap(code) asm volatile ("int3" : :"a"(code))
+#elif defined(__ISA_MIPS32__)
+# define npc_trap(code) asm volatile ("move $v0, %0; sdbbp" : :"r"(code))
+#elif defined(__riscv)
+# define npc_trap(code) asm volatile("mv a0, %0; ebreak" : :"r"(code))
+#elif defined(__ISA_LOONGARCH32R__)
+# define npc_trap(code) asm volatile("move $a0, %0; break 0" : :"r"(code))
+#elif
+# error unsupported ISA __ISA__
+#endif

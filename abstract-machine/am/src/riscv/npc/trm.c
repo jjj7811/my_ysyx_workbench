@@ -1,5 +1,6 @@
 #include <am.h>
 #include <klib-macros.h>
+#include "libgcc/riscv-asm.h"
 
 extern char _heap_start;
 int main(const char *args);
@@ -18,6 +19,9 @@ void putch(char ch) {
 }
 
 void halt(int code) {
+  // printf("we need add something here\r\n");
+  npc_trap(code);
+  // asm volatile("mv a0, %0; ebreak" : :"r"(code));
   while (1);
 }
 

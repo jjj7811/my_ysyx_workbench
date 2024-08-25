@@ -13,6 +13,13 @@
 # See the Mulan PSL v2 for more details.
 #**************************************************************************************/
 
+# ifeq ($(wildcard /home/hehe/ysyx-workbench/am-kernels/tests/cpu-tests/direct_run),)
+# direct_run:
+#     @echo "Direct run file not found. Skipping inclusion."
+# else
+# -include /home/hehe/ysyx-workbench/am-kernels/tests/cpu-tests/direct_run
+# endif
+
 -include $(NEMU_HOME)/../Makefile
 include $(NEMU_HOME)/scripts/build.mk
 
@@ -29,13 +36,27 @@ override ARGS += $(ARGS_DIFF)
 
 # Command to execute NEMU
 IMG ?=
+rundirect ?= 
 NEMU_EXEC := $(BINARY) $(ARGS) $(IMG)
 
 run-env: $(BINARY) $(DIFF_REF_SO)
 
 run: run-env
 	$(call git_commit, "run NEMU")
-	$(NEMU_EXEC)
+	$(if $(filter y,$(rundirect)), \
+        @echo "c" | $(NEMU_EXEC), \
+        $(NEMU_EXEC) \
+    )
+	
+#直接运行，不用再输入c。
+# run: run-env
+# 	$(call git_commit, "run NEMU")
+# 	@expect -c ' \
+# 	spawn $(NEMU_EXEC); \
+# 	expect "(nemu)"; \
+# 	send "c\r"; \
+# 	interact \
+# 	'
 
 gdb: run-env
 	$(call git_commit, "gdb NEMU")

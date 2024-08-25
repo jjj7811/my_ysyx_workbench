@@ -2,7 +2,7 @@
  * @Author: jjj 2356765453@qq.com
  * @Date: 2024-02-17 20:18:16
  * @LastEditors: jjj 2356765453@qq.com
- * @LastEditTime: 2024-04-17 15:36:37
+ * @LastEditTime: 2024-06-15 23:14:13
  * @FilePath: /ysyx-workbench/nemu/src/isa/riscv32/inst.c
  * @Description: 
  * 
@@ -27,6 +27,46 @@
 #include <cpu/cpu.h>
 #include <cpu/ifetch.h>
 #include <cpu/decode.h>
+#include <trace.h>
+
+uint32_t tab_cnt = 0;
+
+void print_function_info(word_t pc , word_t dnpc) {
+  int i = 0;
+  //找到对应的函数
+  for (i = 0; i < funcCount; i++) {
+    // if(dnpc >= funcInfos[i].address && dnpc <= funcInfos[i].address+funcInfos[i].size){
+    if(dnpc == funcInfos[i].address){
+      break;
+    }
+    // printf("FUNC: %s at address 0x%x with size %u\n", funcInfos[i].name, funcInfos[i].address, funcInfos[i].size);
+  }
+  printf("PC:%8x ",pc);
+  for(int j = 0 ;j < tab_cnt ; j++){
+    printf(" ");
+  }
+  tab_cnt++;
+  printf("call [%s@0x%8x]\n",funcInfos[i].name,dnpc);
+}
+
+void print_ret_info(word_t pc , word_t dnpc) {
+  int i = 0;
+  //找到对应的函数
+  for (i = 0; i < funcCount; i++) {
+    // if(dnpc >= funcInfos[i].address && dnpc <= funcInfos[i].address+funcInfos[i].size){
+    if(pc >= funcInfos[i].address && pc <= funcInfos[i].address+funcInfos[i].size){
+      break;
+    }
+    // printf("FUNC: %s at address 0x%x with size %u\n", funcInfos[i].name, funcInfos[i].address, funcInfos[i].size);
+  }
+  tab_cnt--;
+  printf("PC:%8x ",pc);
+  for(int j = 0 ;j < tab_cnt ; j++){
+    printf(" ");
+  }
+  
+  printf("ret [%s@0x%8x]\n",funcInfos[i].name,dnpc);
+}
 
 #define R(i) gpr(i)
 #define Mr vaddr_read
@@ -75,7 +115,14 @@ static int decode_exec(Decode *s) {
   INSTPAT_START();
   INSTPAT("??????? ????? ????? 100 ????? 00000 11", lbu    , I, R(rd) = Mr(src1 + imm, 1));
   INSTPAT("??????? ????? ????? 000 ????? 00100 11", addi   , I, R(rd) = src1+imm); //li指令
-  INSTPAT("??????? ????? ????? 000 ????? 11001 11", jalr   , I, R(rd) = s->pc+4,s->dnpc = src1 + imm); //jalr指令 
+  INSTPAT("??????? ????? ????? 000 ????? 11001 11", jalr   , I, R(rd) = s->pc+4,s->dnpc = src1 + imm;
+                                                                IFDEF(CONFIG_FTRACE,if(rd==1){
+                                                                // printf("call \r\n");
+                                                                print_function_info(s->pc,s->dnpc);
+                                                                }else if (rd == 0 && src1 ==  R(1)){
+                                                                print_ret_info(s->pc,s->dnpc);
+                                                                // printf("ret\r\n");
+                                                                })); //jalr指令 
   INSTPAT("??????? ????? ????? 010 ????? 00000 11", lw     , I, R(rd) = Mr(src1 + imm, 4)); //lw指令 
   INSTPAT("??????? ????? ????? 011 ????? 00100 11", sltiu  , I, R(rd) = src1 < imm ? 1 : 0); //sltiu指令
   INSTPAT("??????? ????? ????? 001 ????? 00000 11", lh     , I, R(rd) = SEXT(Mr(src1 + imm, 2),16)); //load-store.c
@@ -89,12 +136,15 @@ static int decode_exec(Decode *s) {
   INSTPAT("??????? ????? ????? ??? ????? 00101 11", auipc  , U, R(rd) = s->pc + imm);
   INSTPAT("??????? ????? ????? ??? ????? 01101 11", lui    , U, R(rd) = imm); //crc32
 
-  INSTPAT("??????? ????? ????? 000 ????? 01000 11", sb     , S, Mw(src1 + imm, 1, src2));
-  INSTPAT("??????? ????? ????? 010 ????? 01000 11", sw     , S, Mw(src1+imm, 4, src2)); //sw指令
-  INSTPAT("??????? ????? ????? 001 ????? 01000 11", sh     , S, Mw(src1+imm, 2, (uint16_t)(src2 & 0xffff))); //sh指令
+  INSTPAT("??????? ????? ????? 000 ????? 01000 11", sb     , S, Mw(src1 + imm, 1, (uint8_t)(src2 & 0xff)));
+  INSTPAT("??????? ????? ????? 010 ????? 01000 11", sw     , S, Mw(src1 + imm, 4, src2)); //sw指令
+  INSTPAT("??????? ????? ????? 001 ????? 01000 11", sh     , S, Mw(src1 + imm, 2, (uint16_t)(src2 & 0xffff))); //sh指令
   // INSTPAT("??????? ????? ????? 001 ????? 01000 11", sh     , S, Mw(src1+imm, 2, src2)); //sw指令
 
-  INSTPAT("??????? ????? ????? ??? ????? 11011 11", jal    , J, R(rd) = s->pc+4,s->dnpc += (imm-4)); //jal指令
+  INSTPAT("??????? ????? ????? ??? ????? 11011 11", jal    , J, R(rd) = s->pc+4,s->dnpc += (imm-4);
+                                                                IFDEF(CONFIG_FTRACE,if(rd==1){
+                                                                  print_function_info(s->pc,s->dnpc);
+                                                                })); //jal指令
 
   INSTPAT("0000000 ????? ????? 000 ????? 01100 11", add    , R, R(rd) = src1 + src2); //add指令
   INSTPAT("0100000 ????? ????? 000 ????? 01100 11", sub    , R, R(rd) = src1 - src2); //sub指令

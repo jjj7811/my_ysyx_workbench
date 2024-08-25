@@ -19,3 +19,13 @@ image: $(IMAGE).elf
 	@$(OBJDUMP) -d $(IMAGE).elf > $(IMAGE).txt
 	@echo + OBJCOPY "->" $(IMAGE_REL).bin
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
+
+run: image 
+	@echo "imgtest" 
+	@echo $(IMAGE)
+	@echo "imgtest done"
+	xxd -p -c 16 $(IMAGE).bin | sed 's/\(..\)/\1 /g' > $(IMAGE)16.bin
+	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) run IMG=$(IMAGE)
+
+# img:
+# 	@echo $(IMG)
